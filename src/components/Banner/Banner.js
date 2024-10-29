@@ -3,7 +3,7 @@ import { LuCircleDollarSign } from "react-icons/lu";
 
 const Banner = () => {
   return (
-    <div className="lg:w-[70%] w-[90%] mx-auto">
+    <div className="lg:w-[80%] w-[90%] mx-auto">
       <button>Register</button>
       {/* analytics */}
       <div className="bg-gray-400 xl:h-[250px] py-10 xl:py-0 px-5 flex w-full justify-center items-center bg-opacity-20 ">

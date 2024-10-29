@@ -1,5 +1,6 @@
 import Banner from "@/components/Banner/Banner";
 import Navbar from "@/components/Navbar/Navbar";
+import About from "@/page/Home/About/About";
 
 export default function Home() {
   return (
@@ -7,7 +8,9 @@ export default function Home() {
       <Navbar />
 
       <Banner />
-      <div className="w-[100%] lg:w-[1000px] xl:w-[1250px] mx-auto"></div>
+      <div className="">
+        <About />
+      </div>
     </div>
   );
 }
