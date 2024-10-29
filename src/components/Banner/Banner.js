@@ -1,3 +1,4 @@
+"use client";
 import { BsPeopleFill } from "react-icons/bs";
 import { LuCircleDollarSign } from "react-icons/lu";
 import Image from "next/image";
@@ -9,8 +10,19 @@ import img4 from "../../../public/images/img4.png";
 import img5 from "../../../public/images/img6.png";
 import img6 from "../../../public/images/img5.png";
 import img7 from "../../../public/images/mars.png";
+import { useEffect, useState } from "react";
 
 const Banner = () => {
+  const [beat, setBeat] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBeat((prev) => !prev);
+    }, 500); // Adjust the timing to sync with your beat
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="lg:w-[80%] w-[90%] mx-auto my-10">
       {/* banner main part */}
@@ -29,7 +41,22 @@ const Banner = () => {
         <div className="relative flex items-center justify-center w-full h-screen bg-black">
           {/* Central "Sun" element */}
           <div className="w-32 h-32 bg-yellow-500 rounded-full flex items-center justify-center z-20 shadow-lg">
-            ☀️
+            <div className="flex items-center justify-center h-screen">
+              <div
+                className={`w-32 h-32 md:w-48 md:h-48 relative transition-transform duration-300 ${
+                  beat ? "scale-110" : "scale-100"
+                }`}
+              >
+                <Image
+                  src={earth}
+                  alt="Logo"
+                  layout="fill"
+                  className={`object-contain ${
+                    beat ? "gradient-animation" : ""
+                  }`}
+                />
+              </div>
+            </div>
           </div>
 
           {/* Orbit Paths */}
