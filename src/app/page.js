@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import About from "@/page/Home/About/About";
 import RoyaltyTag from "@/page/Home/RoyaltyTag/RoyaltyTag";
 import Testimonial from "@/page/Home/Testimonial/Testimonial";
+import TopEarners from "@/page/Home/TopEarners/TopEarners";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <About />
         <Testimonial />
         <RoyaltyTag />
+        <TopEarners />
         <Footer />
       </div>
     </div>
