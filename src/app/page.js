@@ -2,6 +2,7 @@ import Banner from "@/components/Banner/Banner";
 import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 import About from "@/page/Home/About/About";
+import RoyaltyTag from "@/page/Home/RoyaltyTag/RoyaltyTag";
 import Testimonial from "@/page/Home/Testimonial/Testimonial";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <div className="">
         <About />
         <Testimonial />
+        <RoyaltyTag />
         <Footer />
       </div>
     </div>
