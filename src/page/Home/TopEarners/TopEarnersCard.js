@@ -1,4 +1,3 @@
-import img1 from "../../../../public/images/earth.png";
 import Image from "next/image";
 import { BiNetworkChart } from "react-icons/bi";
 import { BsPeopleFill } from "react-icons/bs";
@@ -7,7 +6,13 @@ import { LuCircleDollarSign } from "react-icons/lu";
 const TopEarnersCard = ({ data }) => {
   return (
     <div className="bg-gray-500 bg-opacity-20 py-5">
-      <Image className="w-20 mx-auto" src={img1} alt="image not found" />
+      <Image
+        className="w-20 mx-auto"
+        src={"https://i.ibb.co.com/4tVVvhK/earth.png"}
+        alt="image not found"
+        height={500}
+        width={500}
+      />
       <h2 className="text-white font-bold text-2xl text-center my-2">
         {data?.user}
       </h2>

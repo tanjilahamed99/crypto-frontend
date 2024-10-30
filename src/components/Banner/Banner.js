@@ -2,16 +2,7 @@
 import { BsPeopleFill } from "react-icons/bs";
 import { LuCircleDollarSign } from "react-icons/lu";
 import Image from "next/image";
-import earth from "../../../public/images/earth.png";
-import img1 from "../../../public/images/img1.png";
-import img2 from "../../../public/images/img2.png";
-import img3 from "../../../public/images/img3.png";
-import img4 from "../../../public/images/img4.png";
-import img5 from "../../../public/images/img6.png";
-import img6 from "../../../public/images/img5.png";
-import img7 from "../../../public/images/mars.png";
 import { useEffect, useState } from "react";
-
 const Banner = () => {
   const [beat, setBeat] = useState(false);
 
@@ -34,11 +25,11 @@ const Banner = () => {
         className="text-3xl md:text-6xl font-bold text-center bg-gradient-to-r from-purple-400 via-pink-500 to-yellow-500 bg-clip-text text-transparent animate-gradient-text"
         style={{ backgroundSize: "200% 200%" }}
       >
-        META PRO SPACE
+        Istimate-Pro
       </h2>
 
       <div>
-        <div className="relative flex items-center justify-center w-full h-screen bg-black">
+        <div className="relative flex items-center justify-center w-full h-[650px]  bg-black">
           {/* Central "Sun" element */}
           <div className="w-32 h-32 bg-yellow-500 rounded-full flex items-center justify-center z-20 shadow-lg">
             <div className="flex items-center justify-center h-screen">
@@ -48,7 +39,7 @@ const Banner = () => {
                 }`}
               >
                 <Image
-                  src={earth}
+                  src={"https://i.ibb.co.com/4tVVvhK/earth.png"}
                   alt="Logo"
                   layout="fill"
                   className={`object-contain ${
@@ -72,7 +63,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-earth">
               <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={earth}
+                  src={"https://i.ibb.co.com/4tVVvhK/earth.png"}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -84,7 +75,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-mars">
               <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={img1}
+                  src={"https://i.ibb.co.com/tX34JBX/img1.png"}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -96,7 +87,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-venus">
               <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={img2}
+                  src={"https://i.ibb.co.com/tKQspfj/img2.png"}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -108,7 +99,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-jupiter">
               <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={img3}
+                  src={"https://i.ibb.co.com/5r6cLCp/img3.png"}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -120,7 +111,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-Saturn">
               <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={img4}
+                  src={"https://i.ibb.co.com/KV5kkxs/img4.png"}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -131,7 +122,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-1">
               <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={img5}
+                  src={"https://i.ibb.co.com/GVK5cNK/img5.png"}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -142,7 +133,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-2">
               <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={img6}
+                  src={"https://i.ibb.co.com/6JkFFGz/img6.png"}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -153,7 +144,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-3">
               <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={img7}
+                  src={"https://i.ibb.co.com/SRssZr5/mars.png"}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -163,7 +154,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-4">
               <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={earth}
+                  src={"https://i.ibb.co.com/4tVVvhK/earth.png"}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -174,7 +165,17 @@ const Banner = () => {
         </div>
       </div>
 
-      <button>Register</button>
+      <button
+        className="text-white h-10 w-60 md:h-20 md:w-80 rounded-full text-2xl md:text-3xl mx-auto flex justify-center items-center mb-5 cursor-pointer"
+        style={{
+          backgroundImage: "linear-gradient(90deg, #e56910 0%, #e56910 100%)",
+          border: "1px solid #0F0",
+          boxShadow:
+            "0 1rem 1.25rem 0 rgba(22, 75, 195, 0.5), inset 0 -0.25rem 1.5rem #6e0f9b, inset 0 0.75rem 0.5rem rgba(255, 255, 255, 0.4), inset 0 0.25rem 0.5rem #b446cf",
+        }}
+      >
+        Register
+      </button>
       {/* analytics */}
       <div className="bg-gray-400 xl:h-[250px] py-10 xl:py-0 px-5 flex w-full justify-center items-center bg-opacity-20 ">
         <div className="w-full">

@@ -10,14 +10,13 @@ import {
   HashNavigation,
   Autoplay,
 } from "swiper/modules";
-import img1 from "../../../../public/images/earth.png";
 import Image from "next/image";
 
 const RoyaltyTag = () => {
   return (
     <div className="my-10 lg:w-[80%] w-[90%] mx-auto">
       <h2 className="text-primary  text-2xl lg:text-3xl font-extrabold text-center md:mb-10 mb-5">
-        Testimonials Video
+        Royalty Tag
       </h2>
 
       <p className="text-white text-center">
@@ -29,16 +28,40 @@ const RoyaltyTag = () => {
 
       <div className="lg:grid grid-cols-4 hidden mt-10 gap-5 ">
         <div>
-          <Image src={img1} alt="image not found" height={500} width={500} className="w-[200px] mx-auto"/>
+          <Image
+            src={"https://i.ibb.co.com/SRssZr5/mars.png"}
+            alt="image not found"
+            height={500}
+            width={500}
+            className="w-[200px] mx-auto"
+          />
         </div>
         <div>
-          <Image src={img1} alt="image not found" height={500} width={500} className="w-[200px] mx-auto"/>
+          <Image
+            src={"https://i.ibb.co.com/SRssZr5/mars.png"}
+            alt="image not found"
+            height={500}
+            width={500}
+            className="w-[200px] mx-auto"
+          />
         </div>
         <div>
-          <Image src={img1} alt="image not found" height={500} width={500} className="w-[200px] mx-auto"/>
+          <Image
+            src={"https://i.ibb.co.com/SRssZr5/mars.png"}
+            alt="image not found"
+            height={500}
+            width={500}
+            className="w-[200px] mx-auto"
+          />
         </div>
         <div>
-          <Image src={img1} alt="image not found" height={500} width={500} className="w-[200px] mx-auto"/>
+          <Image
+            src={"https://i.ibb.co.com/SRssZr5/mars.png"}
+            alt="image not found"
+            height={500}
+            width={500}
+            className="w-[200px] mx-auto"
+          />
         </div>
       </div>
       <div className="lg:hidden mt-3">
@@ -56,14 +79,32 @@ const RoyaltyTag = () => {
           modules={[Pagination, Navigation, HashNavigation, Autoplay]}
           className="mySwiper w-full"
         >
-          <SwiperSlide data-hash={`slide1`}>
-            <Image src={img1} alt="image not found" height={500} width={500} className="w-[200px] mx-auto"/>
+          <SwiperSlide>
+            <Image
+              src={"https://i.ibb.co.com/SRssZr5/mars.png"}
+              alt="image not found"
+              height={500}
+              width={500}
+              className="w-[200px] mx-auto"
+            />
           </SwiperSlide>
-          <SwiperSlide data-hash={`slide2`}>
-            <Image src={img1} alt="image not found" height={500} width={500} className="w-[200px] mx-auto"/>
+          <SwiperSlide>
+            <Image
+              src={"https://i.ibb.co.com/SRssZr5/mars.png"}
+              alt="image not found"
+              height={500}
+              width={500}
+              className="w-[200px] mx-auto"
+            />
           </SwiperSlide>
-          <SwiperSlide data-hash={`slide3`}>
-            <Image src={img1} alt="image not found" height={500} width={500} className="w-[200px] mx-auto"/>
+          <SwiperSlide>
+            <Image
+              src={"https://i.ibb.co.com/SRssZr5/mars.png"}
+              alt="image not found"
+              height={500}
+              width={500}
+              className="w-[200px] mx-auto"
+            />
           </SwiperSlide>
         </Swiper>
       </div>

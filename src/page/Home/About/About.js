@@ -6,10 +6,10 @@ const About = () => {
       </h2>
 
       <h2 className="text-white w-full md:mb-4 mb-2 text-sm md:text-base">
-        Meta is the emerging{" "}
+        Istimate-Pro is the emerging{" "}
         <span className="text-primary">3D enabled digital space</span> that
         users virtual reailty & other advanced internet technology. Pro is also
-        advanced technology, then meta-pro have developed on both features.
+        advanced technology, thenIstimate-Pro have developed on both features.
         Everyone know about power of pro technology, Pro means{" "}
         <span className="text-primary">FORWARD</span> & it means{" "}
         <span className="text-primary">FUTURE</span>.

@@ -56,7 +56,51 @@ const TopEarners = () => {
         Top Earners
       </h2>
 
-      <div className=" mt-3">
+      <div className=" mt-3 md:hidden">
+        <Swiper
+          spaceBetween={20}
+          slidesPerView={1}
+          hashNavigation={{
+            watchState: true,
+          }}
+          speed={1000}
+          autoplay={{
+            delay: 1000, // Adjust delay as needed (3000ms = 3s)
+            disableOnInteraction: false, // Autoplay continues even after interactions
+          }}
+          modules={[Pagination, Navigation, HashNavigation, Autoplay]}
+          className="mySwiper w-full"
+        >
+          {data?.map((item, idx) => (
+            <SwiperSlide key={idx}>
+              <TopEarnersCard data={item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <div className=" mt-3 hidden md:inline lg:hidden">
+        <Swiper
+          spaceBetween={20}
+          slidesPerView={2}
+          hashNavigation={{
+            watchState: true,
+          }}
+          speed={1000}
+          autoplay={{
+            delay: 1000, // Adjust delay as needed (3000ms = 3s)
+            disableOnInteraction: false, // Autoplay continues even after interactions
+          }}
+          modules={[Pagination, Navigation, HashNavigation, Autoplay]}
+          className="mySwiper w-full"
+        >
+          {data?.map((item, idx) => (
+            <SwiperSlide key={idx}>
+              <TopEarnersCard data={item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <div className="mt-3 hidden lg:inline">
         <Swiper
           spaceBetween={20}
           slidesPerView={3}
@@ -64,15 +108,15 @@ const TopEarners = () => {
             watchState: true,
           }}
           speed={1000}
-        //   autoplay={{
-        //     delay: 1000, // Adjust delay as needed (3000ms = 3s)
-        //     disableOnInteraction: false, // Autoplay continues even after interactions
-        //   }}
-        //   modules={[Pagination, Navigation, HashNavigation, Autoplay]}
+          autoplay={{
+            delay: 1000, // Adjust delay as needed (3000ms = 3s)
+            disableOnInteraction: false, // Autoplay continues even after interactions
+          }}
+          modules={[Pagination, Navigation, HashNavigation, Autoplay]}
           className="mySwiper w-full"
         >
           {data?.map((item, idx) => (
-            <SwiperSlide key={idx} data-hash={`slide${idx}`}>
+            <SwiperSlide key={idx}>
               <TopEarnersCard data={item} />
             </SwiperSlide>
           ))}

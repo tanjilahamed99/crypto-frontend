@@ -43,13 +43,13 @@ const Testimonial = () => {
           modules={[Pagination, Navigation, HashNavigation, Autoplay]}
           className="mySwiper w-full"
         >
-          <SwiperSlide data-hash={`slide1`}>
+          <SwiperSlide >
             <video src="/" controls autoPlay loop muted />
           </SwiperSlide>
-          <SwiperSlide data-hash={`slide2`}>
+          <SwiperSlide >
             <video src="/" controls autoPlay loop muted />
           </SwiperSlide>
-          <SwiperSlide data-hash={`slide3`}>
+          <SwiperSlide >
             <video src="/" controls autoPlay loop muted />
           </SwiperSlide>
         </Swiper>
