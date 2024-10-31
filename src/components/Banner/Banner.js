@@ -15,10 +15,10 @@ const Banner = () => {
   }, []);
 
   return (
-    <div className="lg:w-[80%] w-[90%] mx-auto my-10">
+    <div className="lg:w-[80%] w-[90%] mx-auto my-10 -mt-1 pt-24">
       {/* banner main part */}
 
-      <h2 className="text-3xl md:text-6xl font-bold text-white text-center">
+      <h2 className="text-3xl md:text-6xl font-bold text-white text-center ">
         Welcome to
       </h2>
       <h2

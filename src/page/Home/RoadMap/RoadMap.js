@@ -1,11 +1,7 @@
 import Image from "next/image";
-import { FaArrowDown } from "react-icons/fa"; //
-import { FaArrowRight } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
-import './roadMap.css'
 
 const RoadMap = () => {
-  const steps = ["Step 1: Initialization", "Step 2: Growth", "Step 3: Success"];
   return (
     <div className="my-10 lg:w-[80%] w-[90%] mx-auto ">
       <div className="bg-gray-400  py-10 md:px-5 grid w-full justify-center items-center bg-opacity-20 ">
