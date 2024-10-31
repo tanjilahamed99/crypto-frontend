@@ -2,12 +2,13 @@ import Image from "next/image";
 import { FaArrowDown } from "react-icons/fa"; //
 import { FaArrowRight } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io";
+import './roadMap.css'
 
 const RoadMap = () => {
   const steps = ["Step 1: Initialization", "Step 2: Growth", "Step 3: Success"];
   return (
     <div className="my-10 lg:w-[80%] w-[90%] mx-auto ">
-      <div className="bg-gray-400  py-10 px-5 grid w-full justify-center items-center bg-opacity-20 ">
+      <div className="bg-gray-400  py-10 md:px-5 grid w-full justify-center items-center bg-opacity-20 ">
         <h2 className="text-primary  text-2xl lg:text-3xl font-extrabold text-center mb-5">
           Road Map
         </h2>
@@ -27,9 +28,9 @@ const RoadMap = () => {
 
         <div>
           {/* roadmap main part */}
-          <div className="flex flex-col  my-10 space-y-4">
+          <div className="flex flex-col  my-10 space-y-4">g
             {/* Project Logo */}
-            <div className="flex items-center mt-10 gap-5 justify-center">
+            <div className="flex items-center mt-10 gap-2 md:gap-5 md:justify-center justify-start">
               <Image
                 src={"https://i.ibb.co.com/9bQnXmF/images-3.jpg"}
                 width={500}
@@ -38,13 +39,13 @@ const RoadMap = () => {
                 className="h-14 w-14 rounded-full"
               />
 
-              <h2 className="flex text-white  font-bold h-12 items-center w-80 justify-center  rounded-lg border  border-green-500">
+              <h2 className="flex text-white  font-bold h-12 items-center w-52 md:w-80 justify-center text-sm md:text-base  rounded-lg border  border-green-500">
                 Millionaire Program
               </h2>
             </div>
           </div>
           {/* Single Connecting Line from Logo */}
-          <div className="ml-52 -mt-10">
+          <div className="lg:ml-52  -mt-10 md:ml-40 road ml-6">
             <div className=" border-l-2 border-green-500 h-[350px] relative">
               {/* Branching Lines and Steps */}
 
@@ -126,7 +127,7 @@ const RoadMap = () => {
           {/* roadmap main part */}
           <div className="flex flex-col  -mt-10 space-y-4">
             {/* Project Logo */}
-            <div className="flex items-start mt-10 gap-5 justify-center">
+            <div className="flex items-start mt-10 gap-2 md:gap-5 md:justify-center justify-start">
               <Image
                 src={"https://i.ibb.co.com/9bQnXmF/images-3.jpg"}
                 width={500}
@@ -136,7 +137,7 @@ const RoadMap = () => {
               />
 
               <div className="space-y-2">
-                <h2 className="flex text-white  font-bold h-12 items-center w-80 justify-center  rounded-lg border  border-green-500">
+                <h2 className="flex text-white  font-bold h-12 items-center w-52 md:w-80 justify-center text-sm md:text-base  rounded-lg border  border-green-500">
                   Lottery Jackpot (Lucky Draw)
                 </h2>
                 <h2 className="text-primary text-center font-bold">
