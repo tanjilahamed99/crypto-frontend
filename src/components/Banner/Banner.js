@@ -3,8 +3,31 @@ import { BsPeopleFill } from "react-icons/bs";
 import { LuCircleDollarSign } from "react-icons/lu";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { RxCross2 } from "react-icons/rx";
+import { useRouter } from "next/navigation";
 const Banner = () => {
   const [beat, setBeat] = useState(false);
+  const [isUnLine, setIsUnLine] = useState(false);
+  const [unLine, setUnLine] = useState(null);
+  const router = useRouter();
+
+  const handleUnLine = (e) => {
+    setUnLine(e.target?.value);
+  };
+
+  const handleRegister = () => {
+    if (isUnLine) {
+      router.push(`/register?unLine=${unLine}`);
+    } else {
+      router.push(`/register`);
+    }
+  };
+
+  useEffect(() => {
+    if (!isUnLine) {
+      setIsUnLine(false);
+    }
+  }, [isUnLine]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -165,7 +188,9 @@ const Banner = () => {
         </div>
       </div>
 
+      {/* Open the modal using document.getElementById('ID').showModal() method */}
       <button
+        onClick={() => document.getElementById("my_modal_1").showModal()}
         className="text-white h-10 w-60 md:h-20 md:w-80 rounded-full text-2xl md:text-3xl mx-auto flex justify-center items-center mb-5 cursor-pointer"
         style={{
           backgroundImage: "linear-gradient(90deg, #e56910 0%, #e56910 100%)",
@@ -176,6 +201,56 @@ const Banner = () => {
       >
         Register
       </button>
+
+      <dialog id="my_modal_1" className="modal custom-backdrop">
+        <div className="modal-box bg-black bg-opacity-20 text-white shadow-lg border border-gray-800">
+          <div className="modal-action mt-0">
+            <form method="dialog">
+              <button className="hover:shadow-lg">
+                <RxCross2 className="text-lg hover:font-extrabold" />
+              </button>
+            </form>
+          </div>
+          <h3 className="font-bold text-lg">Register User</h3>
+          <p className="py-4">Do you already have Upline?</p>
+          <div className="space-x-3 mb-4 grid grid-cols-2">
+            <button
+              className={`inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border bg-background hover:bg-gray-700 hover:text-gray-700-foreground h-10 px-4 py-2 flex-1 ${
+                isUnLine ? "border-primary" : "border-gray-700"
+              }`}
+              onClick={() => setIsUnLine(true)}
+            >
+              Yes
+            </button>
+            <button
+              className={`inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border bg-background hover:bg-gray-700 hover:text-gray-700-foreground h-10 px-4 py-2 flex-1 ${
+                !isUnLine ? "border-primary" : "border-gray-700"
+              }`}
+              onClick={() => setIsUnLine(false)}
+            >
+              No
+            </button>
+          </div>
+
+          {isUnLine && (
+            <input
+              className="bg-black border border-gray-700 w-full  p-2 rounded-md"
+              placeholder="Upline Id"
+              onChange={handleUnLine}
+            />
+          )}
+
+          <div className="flex justify-end ">
+            <button
+              onClick={handleRegister}
+              className=" bg-primary btn hover:bg-[#e08e2a] border-0  mt-5"
+            >
+              Register
+            </button>
+          </div>
+        </div>
+      </dialog>
+
       {/* analytics */}
       <div className="bg-gray-400 xl:h-[250px] py-10 xl:py-0 px-5 flex w-full justify-center items-center bg-opacity-20 ">
         <div className="w-full">
