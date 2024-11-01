@@ -1,3 +1,4 @@
+import ThirdwebProviderV4 from "@/components/Providers/ThirdwebProviderV4";
 import "./globals.css";
 
 export const metadata = {
@@ -9,7 +10,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="">
-        {children}
+        <ThirdwebProviderV4>
+          <body>{children}</body>
+        </ThirdwebProviderV4>
       </body>
     </html>
   );
