@@ -55,7 +55,7 @@ export const options = {
     },
     async jwt({ token, user, account }) {
       if (account?.provider === "credentials") {
-        const provider = "email/pass";
+        
         try {
           const response = await axios.get(
             BASE_URL + `/user/data?wallet=${user?.wallet}`

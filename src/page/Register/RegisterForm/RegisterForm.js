@@ -8,34 +8,44 @@ import axios from "axios";
 import { BASE_URL } from "@/constant/constant";
 import { useRouter } from "next/navigation";
 import { signIn, useSession, signOut } from "next-auth/react";
+import { useEffect } from "react";
 
 const RegisterForm = ({ refer }) => {
   const address = useAddress();
   const router = useRouter();
   const url = `${BASE_URL}/register`;
   const { data: user } = useSession();
-  console.log(user);
   const date = Date();
 
   const register = async () => {
     const { data } = await axios?.post(url, {
-      wallet: "20937498273592635826353kr2ou3n27592752bn429n7",
-      referBy: refer !== "null" ? refer : "1097473",
+      wallet: "20937498273592635826353kr2ou3n27592752bn429n",
+      referBy: refer ? refer : "1097473",
       joined: date,
     });
 
     if (data?.status) {
       try {
         const response = await signIn("credentials", {
-          wallet: "20937498273592635826353kr2ou3n27592752bn429n7",
+          wallet: "20937498273592635826353kr2ou3n27592752bn429n",
           callbackUrl: "/profile",
           redirect: false,
         });
+
+        if (response?.status) {
+          router.push("/profile");
+        }
       } catch (error) {
         console.error("Error logging in:", error);
       }
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      // router.push('/profile');
+    }
+  }, [user]);
 
   return (
     <div className="border border-primary text-white p-5 rounded-lg">

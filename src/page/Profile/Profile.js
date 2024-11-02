@@ -1,16 +1,23 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { FaCopy } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 
 const Profile = () => {
+  const { data: user } = useSession();
+  console.log(user?.user);
   return (
     <div className="my-10 lg:w-[70%] w-[90%] mx-auto">
       <div className="flex flex-col md:flex-row gap-5 md:gap-0  justify-around items-center">
         <div className="">
           <Image
-            src={"https://i.ibb.co.com/9bQnXmF/images-3.jpg"}
+            src={
+              user?.user?.picture
+                ? user?.user?.picture
+                : "https://i.ibb.co.com/9bQnXmF/images-3.jpg"
+            }
             width={500}
             height={500}
             alt="image not found"
@@ -29,12 +36,12 @@ const Profile = () => {
                 <input
                   className="flex h-10 rounded-md border border-input  text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-none  bg-transparent text-white"
                   disabled
-                  value={"32759265"}
+                  value={user?.user?._id}
                 />
                 <button
                   className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring   hover:bg-gray-600 hover:text-accent-foreground p-2 text-white bg-transparent"
                   onClick={() => {
-                    navigator.clipboard.writeText("32759265");
+                    navigator.clipboard.writeText(user?.user?._id);
                   }}
                 >
                   <FaCopy className="text-xl" />
@@ -45,12 +52,12 @@ const Profile = () => {
                 <input
                   className="flex h-10 rounded-md border border-input  text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-none  bg-transparent text-white"
                   disabled
-                  value={"32759265"}
+                  value={user?.user?.wallet.slice(0, 20)}
                 />
                 <button
                   className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring   hover:bg-gray-600 hover:text-accent-foreground p-2 text-white bg-transparent"
                   onClick={() => {
-                    navigator.clipboard.writeText("32759265");
+                    navigator.clipboard.writeText(user?.user?.wallet);
                   }}
                 >
                   <FaCopy className="text-xl" />
@@ -61,12 +68,12 @@ const Profile = () => {
                 <input
                   className="flex h-10 rounded-md border border-input  text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-none  bg-transparent text-white"
                   disabled
-                  value={"32759265"}
+                  value={user?.user?.referBy}
                 />
                 <button
                   className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring   hover:bg-gray-600 hover:text-accent-foreground p-2 text-white bg-transparent"
                   onClick={() => {
-                    navigator.clipboard.writeText("32759265");
+                    navigator.clipboard.writeText(user?.user?.referBy);
                   }}
                 >
                   <FaCopy className="text-xl" />
@@ -77,7 +84,7 @@ const Profile = () => {
                 <input
                   className="flex h-10 rounded-md border border-input  text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-none  bg-transparent text-white"
                   disabled
-                  value={"istimatepro user"}
+                  value={user?.user?.username}
                 />
                 <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring   hover:bg-gray-600 hover:text-accent-foreground p-2 text-white bg-transparent">
                   <FiEdit className="text-xl text-primary" />
@@ -88,7 +95,7 @@ const Profile = () => {
                 <input
                   className="flex h-10 rounded-md border border-input  text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-none  bg-transparent text-white"
                   disabled
-                  value={"28/10/2024"}
+                  value={user?.user?.joined}
                 />
               </div>
               <div className="flex  gap-2 md:gap-3 items-center w-full border-b border-primary/30 shadow-sm p-1 md:p-0">
@@ -116,7 +123,7 @@ const Profile = () => {
                 />
               </div>
               <div className="flex  gap-2 md:gap-3 items-center w-full border-b border-primary/30 shadow-sm p-1 md:p-0">
-                <h2 className="w-fit font-semibold">X-Power Global  Slot :</h2>
+                <h2 className="w-fit font-semibold">X-Power Global Slot :</h2>
                 <input
                   className="flex h-10 rounded-md border border-input  text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-none  bg-transparent text-white"
                   disabled
@@ -124,7 +131,7 @@ const Profile = () => {
                 />
               </div>
               <div className="flex  gap-2 md:gap-3 items-center w-full border-b border-primary/30 shadow-sm p-1 md:p-0">
-                <h2 className="w-fit font-semibold">2X-Power Matrix   Slot :</h2>
+                <h2 className="w-fit font-semibold">2X-Power Matrix Slot :</h2>
                 <input
                   className="flex h-10 rounded-md border border-input  text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-none  bg-transparent text-white"
                   disabled
@@ -132,7 +139,7 @@ const Profile = () => {
                 />
               </div>
               <div className="flex  gap-2 md:gap-3 items-center w-full border-b border-primary/30 shadow-sm p-1 md:p-0">
-                <h2 className="w-fit font-semibold">2X-Power Global    Slot :</h2>
+                <h2 className="w-fit font-semibold">2X-Power Global Slot :</h2>
                 <input
                   className="flex h-10 rounded-md border border-input  text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-none  bg-transparent text-white"
                   disabled
