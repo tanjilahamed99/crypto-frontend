@@ -19,7 +19,7 @@ const RegisterForm = ({ refer }) => {
 
   const register = async () => {
     const { data } = await axios?.post(url, {
-      wallet: "20937498273592635826353kr2ou3n27592752bn429n",
+      wallet: address,
       referBy: refer ? refer : "1097473",
       joined: date,
     });
@@ -27,13 +27,13 @@ const RegisterForm = ({ refer }) => {
     if (data?.status) {
       try {
         const response = await signIn("credentials", {
-          wallet: "20937498273592635826353kr2ou3n27592752bn429n",
-          callbackUrl: "/profile",
+          wallet: address,
+          callbackUrl: "/dashboard",
           redirect: false,
         });
 
         if (response?.status) {
-          router.push("/profile");
+          router.push("/dashboard");
         }
       } catch (error) {
         console.error("Error logging in:", error);
@@ -42,10 +42,10 @@ const RegisterForm = ({ refer }) => {
   };
 
   useEffect(() => {
-    if (user) {
-      // router.push('/profile');
+    if (user && address) {
+      router.push("/dashboard");
     }
-  }, [user]);
+  }, [user, address]);
 
   return (
     <div className="border border-primary text-white p-5 rounded-lg">
@@ -60,20 +60,6 @@ const RegisterForm = ({ refer }) => {
         className="h-32 w-32 rounded-full mx-auto mt-5"
       />
       <h2 className="text-center text-lg font-semibold">Istimate-Pro</h2>
-
-      <button
-        className="btn btn-outline text-white border-white"
-        onClick={register}
-      >
-        Register
-      </button>
-      <button
-        className="btn btn-outline text-white border-white"
-        onClick={() => signOut()}
-      >
-        logout
-      </button>
-
       {/* form */}
       <div>
         <h2>Reffer by</h2>

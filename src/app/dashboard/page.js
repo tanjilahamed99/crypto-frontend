@@ -1,11 +1,12 @@
-import React from 'react';
+import AuthorizeUser from "@/components/AuthorizeUser/AuthorizeUser";
+import React from "react";
 
-const page = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+const Hello = () => {
+  return (
+    <AuthorizeUser>
+      <div></div>
+    </AuthorizeUser>
+  );
 };
 
-export default page;
+export default Hello;
