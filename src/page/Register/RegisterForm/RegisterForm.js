@@ -2,10 +2,27 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { RxCross2 } from "react-icons/rx";
 import RegistrationFunction from "./RegistationFunction";
+import { useAddress } from "@thirdweb-dev/react";
+import axios from "axios";
+import { BASE_URL } from "@/constant/constant";
+import { useRouter } from "next/navigation";
 
-const RegisterForm = () => {
+const RegisterForm = ({ refer }) => {
+  const address = useAddress();
+  const router = useRouter();
+  const url = `${BASE_URL}/user`;
+
+  const register = async () => {
+    const { data } = await axios?.post(url, {
+      address: address,
+      refer: refer !== "null" ? refer : "1097473",
+    });
+
+    if (data?.status) {
+      router.push("/dashboard");
+    }
+  };
 
   return (
     <div className="border border-primary text-white p-5 rounded-lg">
@@ -27,7 +44,7 @@ const RegisterForm = () => {
         <input
           className="bg-black border border-gray-600 w-full  p-2 rounded-md mt-2"
           placeholder="refer code"
-          defaultValue={"297945"}
+          defaultValue={refer ? refer : "09364"}
           disabled
         />
 
@@ -40,7 +57,11 @@ const RegisterForm = () => {
             <RegistrationFunction />
           </div>
         </div>
-        <button className="btn border-none bg-primary w-full my-5 " disabled>
+        <button
+          onClick={register}
+          className="btn border-none bg-primary w-full my-5 "
+          disabled={address ? false : true}
+        >
           Register
         </button>
 
@@ -48,8 +69,6 @@ const RegisterForm = () => {
           Go To Home
         </Link>
       </div>
-
-     
     </div>
   );
 };

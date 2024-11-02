@@ -16,7 +16,7 @@ const Banner = () => {
   };
 
   const handleRegister = () => {
-    if (isUnLine) {
+    if (isUnLine || isUnLine !== "null") {
       router.push(`/register?unLine=${unLine}`);
     } else {
       router.push(`/register`);
@@ -40,7 +40,6 @@ const Banner = () => {
   return (
     <div className="lg:w-[80%] w-[90%] mx-auto my-10 -mt-1 pt-24">
       {/* banner main part */}
-
       <h2 className="text-3xl md:text-6xl font-bold text-white text-center ">
         Welcome to
       </h2>
@@ -52,7 +51,7 @@ const Banner = () => {
       </h2>
 
       <div>
-        <div className="relative flex items-center justify-center w-full h-[650px]  bg-black">
+        <div className="relative hidden md:flex items-center justify-center w-full h-[650px]  bg-black">
           {/* Central "Sun" element */}
           <div className="w-32 h-32 bg-yellow-500 rounded-full flex items-center justify-center z-20 shadow-lg">
             <div className="flex items-center justify-center h-screen">
@@ -176,6 +175,141 @@ const Banner = () => {
             </div>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-4">
               <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white">
+                <Image
+                  src={"https://i.ibb.co.com/4tVVvhK/earth.png"}
+                  height={500}
+                  width={500}
+                  alt="image not found"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative  flex md:hidden items-center justify-center w-full h-[350px]  bg-black">
+          {/* Central "Sun" element */}
+          <div className="w-32 h-32 rounded-full flex items-center justify-center z-20 shadow-lg">
+            <div className="flex items-center justify-center h-screen">
+              <div
+                className={`w-10 h-10  relative transition-transform duration-300 ${
+                  beat ? "scale-110" : "scale-100"
+                }`}
+              >
+                <Image
+                  src={"https://i.ibb.co.com/4tVVvhK/earth.png"}
+                  alt="Logo"
+                  layout="fill"
+                  className={`object-contain ${
+                    beat ? "gradient-animation" : ""
+                  }`}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Orbit Paths */}
+          <div className="absolute w-[5rem] h-[5rem] border border-gray-500 rounded-full"></div>
+          <div className="absolute w-[8rem] h-[8rem] border border-gray-500 rounded-full"></div>
+          <div className="absolute w-[11rem] h-[11rem] border border-gray-500 rounded-full"></div>
+          <div className="absolute w-[14rem] h-[14rem] border border-gray-500 rounded-full"></div>
+          <div className="absolute w-[17rem] h-[17rem] border border-gray-500 rounded-full"></div>
+
+          {/* Orbiting circles with independent circular motion */}
+          <div className="absolute inset-0">
+            {/* Earth - First Orbit */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob1">
+              <div className="w-7 h-7 bg-blue-500 rounded-full flex items-center justify-center text-white">
+                <Image
+                  src={"https://i.ibb.co.com/4tVVvhK/earth.png"}
+                  height={500}
+                  width={500}
+                  alt="image not found"
+                />
+              </div>
+            </div>
+
+            {/* Mars - Second Orbit */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob2">
+              <div className="w-7 h-7 bg-red-500 rounded-full flex items-center justify-center text-white">
+                <Image
+                  src={"https://i.ibb.co.com/tX34JBX/img1.png"}
+                  height={500}
+                  width={500}
+                  alt="image not found"
+                />
+              </div>
+            </div>
+
+            {/* Venus - Third Orbit */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob3">
+              <div className="w-7 h-7 bg-green-500 rounded-full flex items-center justify-center text-white">
+                <Image
+                  src={"https://i.ibb.co.com/tKQspfj/img2.png"}
+                  height={500}
+                  width={500}
+                  alt="image not found"
+                />
+              </div>
+            </div>
+
+            {/* Jupiter - Fourth Orbit */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob4">
+              <div className="w-7 h-7 bg-purple-500 rounded-full flex items-center justify-center text-white">
+                <Image
+                  src={"https://i.ibb.co.com/5r6cLCp/img3.png"}
+                  height={500}
+                  width={500}
+                  alt="image not found"
+                />
+              </div>
+            </div>
+
+            {/* Saturn - Fifth Orbit */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob5">
+              <div className="w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center text-white">
+                <Image
+                  src={"https://i.ibb.co.com/KV5kkxs/img4.png"}
+                  height={500}
+                  width={500}
+                  alt="image not found"
+                />
+              </div>
+            </div>
+            {/* Saturn - Fifth Orbit */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob6">
+              <div className="w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center text-white">
+                <Image
+                  src={"https://i.ibb.co.com/GVK5cNK/img5.png"}
+                  height={500}
+                  width={500}
+                  alt="image not found"
+                />
+              </div>
+            </div>
+            {/* Saturn - Fifth Orbit */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob7">
+              <div className="w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center text-white">
+                <Image
+                  src={"https://i.ibb.co.com/6JkFFGz/img6.png"}
+                  height={500}
+                  width={500}
+                  alt="image not found"
+                />
+              </div>
+            </div>
+            {/* Saturn - Fifth Orbit */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob8">
+              <div className="w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center text-white">
+                <Image
+                  src={"https://i.ibb.co.com/SRssZr5/mars.png"}
+                  height={500}
+                  width={500}
+                  alt="image not found"
+                />
+              </div>
+            </div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob9">
+              <div className="w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
                   src={"https://i.ibb.co.com/4tVVvhK/earth.png"}
                   height={500}

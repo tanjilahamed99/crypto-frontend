@@ -22,12 +22,156 @@ module.exports = {
         "orbit-2": "orbit2 14s linear infinite",
         "orbit-3": "orbit3 16s linear infinite",
         "orbit-4": "orbit4 18s linear infinite",
-        'gradient-text': 'gradient-text 2s ease infinite',
+        "gradient-text": "gradient-text 2s ease infinite",
+        "mob1": "mob1 10s linear infinite",
+        "mob2": "mob2 14s linear infinite",
+        "mob3": "mob3 18s linear infinite",
+        "mob4": "mob4 25s linear infinite",
+        "mob5": "mob5 10s linear infinite",
+        "mob6": "mob6 14s linear infinite",
+        "mob7": "mob7 18s linear infinite",
+        "mob8": "mob8 25s linear infinite",
+        "mob9": "mob9 30s linear infinite",
       },
       keyframes: {
-        'gradient-text': {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
+        mob1: {
+          "0%": { transform: "rotate(0deg) translateX(4rem) rotate(0deg)" },
+          "25%": {
+            transform: "rotate(90deg) translateX(5rem) rotate(-90deg)",
+          },
+          "50%": {
+            transform: "rotate(180deg) translateX(6.5rem) rotate(-180deg)",
+          },
+          "75%": {
+            transform: "rotate(270deg) translateX(6rem) rotate(-270deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg) translateX(4rem) rotate(-360deg)",
+          },
+        },
+        mob2: {
+          "0%": { transform: "rotate(0deg) translateX(4rem) rotate(0deg)" },
+          "25%": {
+            transform: "rotate(90deg) translateX(5rem) rotate(-90deg)",
+          },
+          "50%": {
+            transform: "rotate(180deg) translateX(6.5rem) rotate(-180deg)",
+          },
+          "75%": {
+            transform: "rotate(270deg) translateX(6rem) rotate(-270deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg) translateX(4rem) rotate(-360deg)",
+          },
+        },
+        mob3: {
+          "0%": { transform: "rotate(0deg) translateX(4rem) rotate(0deg)" },
+          "25%": {
+            transform: "rotate(90deg) translateX(5rem) rotate(-90deg)",
+          },
+          "50%": {
+            transform: "rotate(180deg) translateX(6.5rem) rotate(-180deg)",
+          },
+          "75%": {
+            transform: "rotate(270deg) translateX(6rem) rotate(-270deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg) translateX(4rem) rotate(-360deg)",
+          },
+        },
+        mob4: {
+          "0%": { transform: "rotate(0deg) translateX(4rem) rotate(0deg)" },
+          "25%": {
+            transform: "rotate(90deg) translateX(5rem) rotate(-90deg)",
+          },
+          "50%": {
+            transform: "rotate(180deg) translateX(6.5rem) rotate(-180deg)",
+          },
+          "75%": {
+            transform: "rotate(270deg) translateX(6rem) rotate(-270deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg) translateX(4rem) rotate(-360deg)",
+          },
+        },
+        mob5: {
+          "0%": { transform: "rotate(0deg) translateX(7rem) rotate(0deg)" },
+          "25%": {
+            transform: "rotate(90deg) translateX(8rem) rotate(-90deg)",
+          },
+          "50%": {
+            transform: "rotate(180deg) translateX(9rem) rotate(-180deg)",
+          },
+          "75%": {
+            transform: "rotate(270deg) translateX(9rem) rotate(-270deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg) translateX(7rem) rotate(-360deg)",
+          },
+        },
+        mob6: {
+          "0%": { transform: "rotate(0deg) translateX(7rem) rotate(0deg)" },
+          "25%": {
+            transform: "rotate(90deg) translateX(8rem) rotate(-90deg)",
+          },
+          "50%": {
+            transform: "rotate(180deg) translateX(9rem) rotate(-180deg)",
+          },
+          "75%": {
+            transform: "rotate(270deg) translateX(9rem) rotate(-270deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg) translateX(7rem) rotate(-360deg)",
+          },
+        },
+        mob7: {
+          "0%": { transform: "rotate(0deg) translateX(7rem) rotate(0deg)" },
+          "25%": {
+            transform: "rotate(90deg) translateX(8rem) rotate(-90deg)",
+          },
+          "50%": {
+            transform: "rotate(180deg) translateX(9rem) rotate(-180deg)",
+          },
+          "75%": {
+            transform: "rotate(270deg) translateX(9rem) rotate(-270deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg) translateX(7rem) rotate(-360deg)",
+          },
+        },
+        mob8: {
+          "0%": { transform: "rotate(0deg) translateX(7rem) rotate(0deg)" },
+          "25%": {
+            transform: "rotate(90deg) translateX(8rem) rotate(-90deg)",
+          },
+          "50%": {
+            transform: "rotate(180deg) translateX(9rem) rotate(-180deg)",
+          },
+          "75%": {
+            transform: "rotate(270deg) translateX(9rem) rotate(-270deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg) translateX(7rem) rotate(-360deg)",
+          },
+        },
+        mob9: {
+          "0%": { transform: "rotate(0deg) translateX(7rem) rotate(0deg)" },
+          "25%": {
+            transform: "rotate(90deg) translateX(8rem) rotate(-90deg)",
+          },
+          "50%": {
+            transform: "rotate(180deg) translateX(9rem) rotate(-180deg)",
+          },
+          "75%": {
+            transform: "rotate(270deg) translateX(9rem) rotate(-270deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg) translateX(7rem) rotate(-360deg)",
+          },
+        },
+        "gradient-text": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
         },
         orbitEarth: {
           "0%": { transform: "rotate(0deg) translateX(11rem) rotate(0deg)" },
