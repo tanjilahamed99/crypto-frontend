@@ -4,7 +4,7 @@ import React from 'react';
 const RegistrationFunction = () => {
     return (
         <div>
-            <ConnectWallet btnTitle="Connect" hideBuyButton />
+            <ConnectWallet btnTitle="Connect" hideBuyButton  />
         </div>
     );
 };

@@ -16,10 +16,10 @@ const Banner = () => {
   };
 
   const handleRegister = () => {
-    if (isUnLine || isUnLine !== "null") {
+    if (isUnLine) {
       router.push(`/register?unLine=${unLine}`);
     } else {
-      router.push(`/register`);
+      router.push(`/register?unLine=12321332`);
     }
   };
 

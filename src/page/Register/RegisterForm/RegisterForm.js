@@ -7,20 +7,33 @@ import { useAddress } from "@thirdweb-dev/react";
 import axios from "axios";
 import { BASE_URL } from "@/constant/constant";
 import { useRouter } from "next/navigation";
+import { signIn, useSession, signOut } from "next-auth/react";
 
 const RegisterForm = ({ refer }) => {
   const address = useAddress();
   const router = useRouter();
-  const url = `${BASE_URL}/user`;
+  const url = `${BASE_URL}/register`;
+  const { data: user } = useSession();
+  console.log(user);
+  const date = Date();
 
   const register = async () => {
     const { data } = await axios?.post(url, {
-      address: address,
-      refer: refer !== "null" ? refer : "1097473",
+      wallet: "20937498273592635826353kr2ou3n27592752bn429n7",
+      referBy: refer !== "null" ? refer : "1097473",
+      joined: date,
     });
 
     if (data?.status) {
-      router.push("/dashboard");
+      try {
+        const response = await signIn("credentials", {
+          wallet: "20937498273592635826353kr2ou3n27592752bn429n7",
+          callbackUrl: "/profile",
+          redirect: false,
+        });
+      } catch (error) {
+        console.error("Error logging in:", error);
+      }
     }
   };
 
@@ -37,6 +50,19 @@ const RegisterForm = ({ refer }) => {
         className="h-32 w-32 rounded-full mx-auto mt-5"
       />
       <h2 className="text-center text-lg font-semibold">Istimate-Pro</h2>
+
+      <button
+        className="btn btn-outline text-white border-white"
+        onClick={register}
+      >
+        Register
+      </button>
+      <button
+        className="btn btn-outline text-white border-white"
+        onClick={() => signOut()}
+      >
+        logout
+      </button>
 
       {/* form */}
       <div>
