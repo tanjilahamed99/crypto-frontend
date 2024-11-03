@@ -46,7 +46,7 @@ const Drawer = () => {
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link href={"/dashboard/royalitySalary"} className="flex items-center text-md font-semibold">
+        <Link href={"/dashboard/royaltySalary"} className="flex items-center text-md font-semibold">
           <AiTwotoneDollar className="text-2xl" /> Royalty Salary
         </Link>
       </li>
