@@ -56,12 +56,12 @@ const Drawer = () => {
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link href={"/"} className="flex items-center text-md font-semibold">
+        <Link href={"/dashboard/news"} className="flex items-center text-md font-semibold">
           <LuNewspaper className="text-2xl" /> News & Event
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link href={"/"} className="flex items-center text-md font-semibold">
+        <Link href={"/dashboard/support"} className="flex items-center text-md font-semibold">
           <FaPhoneAlt className="text-2xl" /> Support
         </Link>
       </li>

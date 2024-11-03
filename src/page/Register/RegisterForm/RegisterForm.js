@@ -42,12 +42,6 @@ const RegisterForm = ({ refer }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (user && address) {
-  //     router.push("/dashboard");
-  //   }
-  // }, [user, address, router]);
-
   return (
     <div className="border border-primary text-white p-5 rounded-lg">
       <h2 className="text-2xl font-bold leading-none tracking-tight text-center">
