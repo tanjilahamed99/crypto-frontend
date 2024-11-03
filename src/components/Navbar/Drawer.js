@@ -31,7 +31,7 @@ const Drawer = () => {
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link href={"/"} className="flex items-center text-md font-semibold">
+        <Link href={"/dashboard/level"} className="flex items-center text-md font-semibold">
           <SiLevelsdotfyi className="text-2xl" /> Level Team
         </Link>
       </li>
