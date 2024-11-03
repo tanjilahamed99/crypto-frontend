@@ -3,7 +3,7 @@
 import { LuCircleDollarSign } from "react-icons/lu";
 import { TbArrowUp } from "react-icons/tb";
 import LotterySlider from "./LotterySlider";
-const DashboardLottery = () => {
+const DashboardLottery = ({ disable }) => {
   return (
     <div className=" w-full lg:w-[1000px] xl:w-[1350px] mx-auto space-y-2 mt-2">
       <div className="rounded-lg gap-1 shadow-sm p-4 bg-opacity-20 bg-gray-400 w-full">
@@ -78,53 +78,55 @@ const DashboardLottery = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-2 bg-gray-400 rounded-lg text-card-foreground shadow-sm p-4 bg-opacity-20">
-        {/* earnings */}
-        <div className="rounded-lg border shadow-sm w-full bg-transparent hover:bg-primary transition-colors text-primary hover:text-white border-gray-400 mx-auto grid justify-center items-center p-5">
-          <p className="text-white font-semibold text-xl text-center">
-            Lottery
-          </p>
-          <h2 className="text-primary flex items-center gap-1 hover:text-white">
-            <LuCircleDollarSign className="text-3xl" />
-            <span className="text-3xl font-extrabold">0.00</span>
+      {disable && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-2 bg-gray-400 rounded-lg text-card-foreground shadow-sm p-4 bg-opacity-20">
+          {/* earnings */}
+          <div className="rounded-lg border shadow-sm w-full bg-transparent hover:bg-primary transition-colors text-primary hover:text-white border-gray-400 mx-auto grid justify-center items-center p-5">
+            <p className="text-white font-semibold text-xl text-center">
+              Lottery
+            </p>
+            <h2 className="text-primary flex items-center gap-1 hover:text-white">
+              <LuCircleDollarSign className="text-3xl" />
+              <span className="text-3xl font-extrabold">0.00</span>
 
-            <span className="text-green-500 text-xl flex font-semibold items-center">
-              <TbArrowUp className="text-2xl" />
-              0.00
-            </span>
-          </h2>
-        </div>
-        <div className="rounded-lg border shadow-sm w-full bg-transparent hover:bg-primary transition-colors text-primary hover:text-white border-gray-400 mx-auto grid justify-center items-center p-5">
-          <p className="text-white font-semibold text-xl text-center">
-            Millionarie
-          </p>
-          <h2 className="text-primary flex items-center gap-1 hover:text-white">
-            <LuCircleDollarSign className="text-3xl" />
-            <span className="text-3xl font-extrabold">0.00</span>
+              <span className="text-green-500 text-xl flex font-semibold items-center">
+                <TbArrowUp className="text-2xl" />
+                0.00
+              </span>
+            </h2>
+          </div>
+          <div className="rounded-lg border shadow-sm w-full bg-transparent hover:bg-primary transition-colors text-primary hover:text-white border-gray-400 mx-auto grid justify-center items-center p-5">
+            <p className="text-white font-semibold text-xl text-center">
+              Millionarie
+            </p>
+            <h2 className="text-primary flex items-center gap-1 hover:text-white">
+              <LuCircleDollarSign className="text-3xl" />
+              <span className="text-3xl font-extrabold">0.00</span>
 
-            <span className="text-green-500 text-xl flex font-semibold items-center">
-              <TbArrowUp className="text-2xl" />
-              0.00
-            </span>
-          </h2>
+              <span className="text-green-500 text-xl flex font-semibold items-center">
+                <TbArrowUp className="text-2xl" />
+                0.00
+              </span>
+            </h2>
+          </div>
+          <div className="rounded-lg border shadow-sm w-full bg-transparent hover:bg-primary transition-colors text-primary hover:text-white border-gray-400 mx-auto grid justify-center items-center p-5">
+            <p className="text-white font-semibold text-xl text-center">
+              Billionarie
+            </p>
+            <h2 className="text-primary text-2xl flex items-center gap-1 font-bold hover:text-white">
+              Comming Soon
+            </h2>
+          </div>
+          <div className="rounded-lg border shadow-sm w-full bg-transparent hover:bg-primary transition-colors text-primary hover:text-white border-gray-400 mx-auto grid justify-center items-center p-5">
+            <p className="text-white font-semibold text-xl text-center">
+              Trillionarie
+            </p>
+            <h2 className="text-primary text-2xl flex items-center gap-1 font-bold hover:text-white">
+              Comming Soon
+            </h2>
+          </div>
         </div>
-        <div className="rounded-lg border shadow-sm w-full bg-transparent hover:bg-primary transition-colors text-primary hover:text-white border-gray-400 mx-auto grid justify-center items-center p-5">
-          <p className="text-white font-semibold text-xl text-center">
-            Billionarie
-          </p>
-          <h2 className="text-primary text-2xl flex items-center gap-1 font-bold hover:text-white">
-            Comming Soon
-          </h2>
-        </div>
-        <div className="rounded-lg border shadow-sm w-full bg-transparent hover:bg-primary transition-colors text-primary hover:text-white border-gray-400 mx-auto grid justify-center items-center p-5">
-          <p className="text-white font-semibold text-xl text-center">
-            Trillionarie
-          </p>
-          <h2 className="text-primary text-2xl flex items-center gap-1 font-bold hover:text-white">
-            Comming Soon
-          </h2>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

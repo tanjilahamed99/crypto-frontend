@@ -36,22 +36,22 @@ const Drawer = () => {
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link href={"/"} className="flex items-center text-md font-semibold">
+        <Link href={"/dashboard/lottery"} className="flex items-center text-md font-semibold">
           <GoGift className="text-2xl" /> Lottery
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link href={"/"} className="flex items-center text-md font-semibold">
+        <Link href={"/dashboard/proProgram"} className="flex items-center text-md font-semibold">
           <SlMenu className="text-2xl" /> Pro Program
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link href={"/"} className="flex items-center text-md font-semibold">
+        <Link href={"/dashboard/royalitySalary"} className="flex items-center text-md font-semibold">
           <AiTwotoneDollar className="text-2xl" /> Royalty Salary
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link href={"/"} className="flex items-center text-md font-semibold">
+        <Link href={"/dashbard/gamingNft"} className="flex items-center text-md font-semibold">
           <GrGamepad className="text-2xl" /> Gaming NFT
         </Link>
       </li>
