@@ -16,6 +16,7 @@ const RegisterForm = ({ refer }) => {
   const url = `${BASE_URL}/register`;
   const { data: user } = useSession();
   const date = Date();
+  console.log(user);
 
   const register = async () => {
     const { data } = await axios?.post(url, {
@@ -41,11 +42,11 @@ const RegisterForm = ({ refer }) => {
     }
   };
 
-  useEffect(() => {
-    if (user && address) {
-      router.push("/dashboard");
-    }
-  }, [user, address]);
+  // useEffect(() => {
+  //   if (user && address) {
+  //     router.push("/dashboard");
+  //   }
+  // }, [user, address, router]);
 
   return (
     <div className="border border-primary text-white p-5 rounded-lg">

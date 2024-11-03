@@ -13,9 +13,11 @@ const AuthorizeUser = ({ children }) => {
       <span className="loading loading-spinner  loading-lg text-white bg-white h-[100vh] mx-auto flex justify-center"></span>
     );
   }
+  
   if (!user) {
     return router.push("/register");
   }
+
   return <div>{children}</div>;
 };
 
