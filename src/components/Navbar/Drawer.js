@@ -24,7 +24,7 @@ const Drawer = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
         <Link
-          href={"/profile"}
+          href={"/dashboard/profile"}
           className="flex items-center text-md font-semibold"
         >
           <CgProfile className="text-2xl" /> Profile
