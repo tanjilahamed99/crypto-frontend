@@ -7,14 +7,8 @@ import LotteryHistory from "@/page/Lottery/LotteryHistory";
 const page = () => {
   return (
     <>
-      <Navbar />
-      <div className="pt-24">
-        {/* level ain part */}
-        <DashboardLottery disable={true} />
-        <LotteryHistory />
-        <Contact />
-        <Footer />
-      </div>
+      <DashboardLottery disable={true} />
+      <LotteryHistory />
     </>
   );
 };

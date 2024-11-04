@@ -1,27 +1,13 @@
-import AuthorizeUser from "@/components/AuthorizeUser/AuthorizeUser";
-import Footer from "@/components/Footer/Footer";
-import Navbar from "@/components/Navbar/Navbar";
 import DashboardProfile from "@/page/DashBoard/DashboardProfile/DashboardProfile";
 import DashboardLottery from "@/page/DashBoard/Lottery/DashboardLottery";
-import Contact from "@/page/Home/Contact/Contact";
 import React from "react";
 
 const Hello = () => {
   return (
-    <AuthorizeUser>
-      <div>
-        <Navbar />
-
-        <div className="pt-24">
-          {/* main part of dashboard */}
-          <DashboardProfile />
-          {/* lottery */}
-          <DashboardLottery />
-          <Contact />
-          <Footer />
-        </div>
-      </div>
-    </AuthorizeUser>
+    <div className="w-full lg:w-[1000px] xl:w-[1350px] mx-auto space-y-2">
+      <DashboardProfile />
+      <DashboardLottery />
+    </div>
   );
 };
 

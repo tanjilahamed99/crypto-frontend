@@ -4,12 +4,18 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { FaCopy } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
+import { useRouter } from "next/navigation";
 
 const Profile = () => {
   const { data: user } = useSession();
-  console.log(user?.user);
+  const router = useRouter();
+  
+  if (!user) {
+    router.push("/");
+  }
+
   return (
-    <div className="my-10 lg:w-[70%] w-[90%] mx-auto">
+    <div className="lg:w-[70%] w-[90%] mx-auto">
       <div className="flex flex-col md:flex-row gap-5 md:gap-0  justify-around items-center">
         <div className="">
           <Image
