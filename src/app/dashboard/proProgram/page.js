@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 import Contact from "@/page/Home/Contact/Contact";
-import Level from "@/page/level/Level";
+import ProProgram from "../../../page/ProProgram/ProProgram";
 
 const page = () => {
   return (
@@ -9,7 +9,7 @@ const page = () => {
       <Navbar />
       <div className="pt-24">
         {/* level ain part */}
-        <Level />
+        <ProProgram />
         <Contact />
         <Footer />
       </div>
