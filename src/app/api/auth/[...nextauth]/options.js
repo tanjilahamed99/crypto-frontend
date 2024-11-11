@@ -1,7 +1,5 @@
 import axios from "axios";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
-import FacebookProvider from "next-auth/providers/facebook";
 import { BASE_URL } from "@/constant/constant";
 
 export const options = {
@@ -10,10 +8,11 @@ export const options = {
       name: "Credentials",
       credentials: {
         wallet: { label: "wallet", type: "string" },
+        email: { level: "email", type: "email" },
+        email: { level: "password", type: "password" },
       },
       async authorize(credentials, req) {
-        
-        const { wallet } = credentials || {};
+        const { wallet, email, password } = credentials || {};
         if (!wallet) {
           throw new Error("Wallet address is required.");
         }
@@ -21,8 +20,9 @@ export const options = {
         try {
           const response = await axios.post(`${BASE_URL}/logInUser`, {
             wallet,
+            email,
+            password,
           });
-       
 
           const { status, data: user } = response.data;
 
@@ -38,6 +38,7 @@ export const options = {
             joined: user.joined,
             picture: user.picture,
             referBy: user.referBy,
+            role: user?.role,
             provider: "credentials",
           };
         } catch (error) {
@@ -55,12 +56,11 @@ export const options = {
     },
     async jwt({ token, user, account }) {
       if (account?.provider === "credentials") {
-        
         try {
           const response = await axios.get(
             BASE_URL + `/user/data?wallet=${user?.wallet}`
           );
-        
+
           token.user = response.data;
         } catch (error) {
           console.error("Error fetching user data:", error.message);

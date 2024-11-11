@@ -19,7 +19,7 @@ const DashboardProfile = () => {
 
   return (
     <>
-      <div>
+      <div className="space-y-2">
         <div className="flex flex-col lg:flex-row items.center gap-3 p-2 lg:p-0">
           {/* profile items */}
           <div className="rounded-lg text-card-foreground shadow-sm p-2 bg-opacity-20 bg-gray-400 w-full">

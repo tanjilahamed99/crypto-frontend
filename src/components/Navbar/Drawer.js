@@ -11,6 +11,7 @@ import { GoGift } from "react-icons/go";
 import { SlMenu } from "react-icons/sl";
 import { AiTwotoneDollar } from "react-icons/ai";
 import { FaPhoneAlt } from "react-icons/fa";
+import { CiLogin } from "react-icons/ci";
 import "./drawer.css";
 
 const Drawer = () => {
@@ -86,15 +87,23 @@ const Drawer = () => {
           <FaPhoneAlt className="text-2xl" /> Support
         </Link>
       </li>
+      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+        <Link
+          href={"/adminLogin"}
+          className="flex items-center text-md font-semibold"
+        >
+          <CiLogin className="text-2xl" /> Admin Login
+        </Link>
+      </li>
     </>
   );
 
   return (
-    <div className="drawer drawer-end">
+    <div className="drawer">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Page content here */}
-        <label htmlFor="my-drawer-4" className="drawer-button">
+        <label htmlFor="my-drawer-4" className="drawer-button cursor-pointer">
           <FaBars className="mx-auto text-base  md:text-xl bg-black hover:bg-gray-900  text-primary border border-primary h-6 w-8 md:h-10 md:w-12 rounded-lg" />
         </label>
       </div>
@@ -105,11 +114,11 @@ const Drawer = () => {
           aria-label="close sidebar"
           className="drawer-overlay custom-backdrop-blur"
         ></label>
-        <div className="menu bg-black min-h-full w-72 p-4 relative mt-10 rounded-lg border border-gray-500">
+        <div className="menu bg-black min-h-full w-80 p-4 relative mt-10 rounded-lg border border-gray-500">
           {/* Close Button Positioned Higher */}
           <label
             htmlFor="my-drawer-4"
-            className="absolute -top-7 text-white rounded-2xl right-2 cursor-pointer hover:font-extrabold"
+            className="absolute -top-7 text-white rounded-2xl left-2 cursor-pointer hover:font-extrabold"
             aria-label="close drawer"
           >
             <RxCross2 className="w-5 h-5 text-center hover:border hover:shadow-md rounded-full" />
