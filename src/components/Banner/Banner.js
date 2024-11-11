@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useRouter } from "next/navigation";
+import "./banner.css";
 const Banner = () => {
   const [beat, setBeat] = useState(false);
   const [isUnLine, setIsUnLine] = useState(false);
@@ -44,8 +45,12 @@ const Banner = () => {
         Welcome to
       </h2>
       <h2
-        className="text-3xl md:text-6xl font-bold text-center bg-gradient-to-r from-purple-400 via-pink-500 to-yellow-500 bg-clip-text text-transparent animate-gradient-text"
-        style={{ backgroundSize: "200% 200%" }}
+        className="text-3xl md:text-6xl font-bold text-center bg-clip-text text-transparent animate-gradient-text"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, #ff7eb3, #ff65a3, #7afcff, #feff9c, #fff740, #ff00a7, #00d2ff, #ff5f00, #ff00c8, #00ffeb, #ffa07a, #00ff7f, #dda0dd, #ff6347, #4682b4, #7fff00)",
+          backgroundSize: "200% 200%",
+        }}
       >
         Istimate-Pro
       </h2>
