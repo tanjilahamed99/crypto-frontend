@@ -8,8 +8,6 @@ import { useRouter } from "next/navigation";
 const AdminLogin = () => {
   const wallet = useAddress();
   const router = useRouter();
-  const { data: user } = useSession();
-  
 
   const handle = async (e) => {
     e.preventDefault();
@@ -35,23 +33,23 @@ const AdminLogin = () => {
   };
 
   return (
-    <div>
-      <div className="mx-auto w-full max-w-md space-y-5 rounded-lg border bg-gray-700 p-7 shadow-lg sm:p-10 dark:border-zinc-700 dark:bg-zinc-900">
+    <div className="flex items-center justify-center h-[100vh] bg-blue-800">
+      <div className="mx-auto w-full max-w-md space-y-5 rounded-lg border text-white p-7 shadow-lg sm:p-10 dark:border-zinc-700 dark:bg-zinc-900 bg-blue-600">
         <h1 className="text-3xl font-semibold tracking-tight text-white">
-          Sign In
+          Welcome to Istimate Pro
         </h1>
-        <div>
+        <div className="space-y-3">
           <RegistrationFunction />
-          <form onSubmit={handle} className="space-y-2">
+          <form onSubmit={handle} className="space-y-4">
             <div className="space-y-2 text-sm">
               <label
                 htmlFor="username"
                 className="block  dark:text-zinc-300 font-medium"
               >
-               Email
+                Email
               </label>
               <input
-                className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus-visible:outline-none dark:border-zinc-700"
+                className="flex h-10 w-full text-black rounded-md border px-3 py-2 text-sm focus:ring-1 focus-visible:outline-none dark:border-zinc-700"
                 id="username"
                 placeholder="Enter email"
                 name="email"
@@ -67,7 +65,7 @@ const AdminLogin = () => {
                 Password
               </label>
               <input
-                className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus-visible:outline-none dark:border-zinc-700"
+                className="flex h-10 w-full text-black rounded-md border px-3 py-2 text-sm focus:ring-1 focus-visible:outline-none dark:border-zinc-700"
                 id="password"
                 placeholder="Enter password"
                 name="password"
@@ -77,7 +75,7 @@ const AdminLogin = () => {
               <div className="flex justify-end text-xs">
                 <a
                   href="#"
-                  className="text-zinc-700 hover:underline dark:text-zinc-300"
+                  className="hover:underline text-white"
                 >
                   Forgot Password?
                 </a>
@@ -85,7 +83,7 @@ const AdminLogin = () => {
             </div>
             <button
               disabled={!wallet}
-              className="rounded-md bg-primary px-4 py-2 text-white transition-colors"
+              className="rounded-md bg-blue-800 px-4 py-2 text-white transition-colors w-full"
             >
               Login
             </button>

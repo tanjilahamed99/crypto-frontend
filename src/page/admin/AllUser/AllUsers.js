@@ -28,7 +28,7 @@ const AllUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {allUsers?.users?.map((item, idx) => (
+            {allUsers?.map((item, idx) => (
               <tr className="text-white mx-auto" key={idx}>
                 <th className="whitespace-nowrap">{item?.username}</th>
                 <th className="whitespace-nowrap">{item?.email}</th>

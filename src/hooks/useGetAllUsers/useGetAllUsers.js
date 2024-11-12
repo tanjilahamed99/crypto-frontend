@@ -9,7 +9,7 @@ const useGetAllUsers = ({ adminId, adminEmail, wallet }) => {
       const res = await axios(
         `${BASE_URL}/admin/allUsers/${adminId}/${adminEmail}/${wallet}`
       );
-      return res.data;
+      return res.data?.users;
     },
   });
 

@@ -5,9 +5,18 @@ import { FaUserClock } from "react-icons/fa6";
 import { FaGift } from "react-icons/fa";
 import { FaDatabase } from "react-icons/fa6";
 import { MdQuestionAnswer } from "react-icons/md";
+import AdminDrawer from "./AdminDrawer";
 const AdminNavigateLink = () => {
   const ulLinks = (
     <>
+      <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
+        <Link
+          href={"/admin/dashboard"}
+          className="flex items-center text-md font-semibold gap-3"
+        >
+          <FaUserClock className="text-2xl" /> Dashboard
+        </Link>
+      </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
           href={"/admin/dashboard/allUser"}
@@ -69,11 +78,19 @@ const AdminNavigateLink = () => {
 
   return (
     <div className="bg-gray-800 text-white border-gray-900 border h-[]100vh]">
-      <Link href={"/admin/dashboard"}>
-        <h2 className="text-3xl font-bold p-5">Dashboard</h2>
+      <div className="flex md:hidden justify-between items-center p-4">
+        <div className="md:hidden">
+          <AdminDrawer />
+        </div>
+        <Link href={"/admin/dashboard"}>
+          <h2 className="text-2xl font-bold">Dashboard</h2>
+        </Link>
+      </div>
+      <Link className="hidden md:inline" href={"/admin/dashboard"}>
+        <h2 className="text-3xl font-bold p-4">Dashboard</h2>
       </Link>
 
-      <ul className=" flex flex-col gap-4 p-5">{ulLinks}</ul>
+      <ul className="hidden md:flex flex-col gap-4 p-5">{ulLinks}</ul>
     </div>
   );
 };
