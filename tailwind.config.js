@@ -24,151 +24,146 @@ module.exports = {
         "orbit-4": "orbit4 10s linear infinite",
         "gradient-text": "gradient-text 2s ease infinite",
         mob1: "mob1 10s linear infinite",
-        mob2: "mob2 14s linear infinite",
-        mob3: "mob3 18s linear infinite",
-        mob4: "mob4 25s linear infinite",
+        mob2: "mob2 10s linear infinite",
+        mob3: "mob3 10s linear infinite",
+        mob4: "mob4 10s linear infinite",
         mob5: "mob5 10s linear infinite",
-        mob6: "mob6 14s linear infinite",
-        mob7: "mob7 18s linear infinite",
-        mob8: "mob8 25s linear infinite",
-        mob9: "mob9 30s linear infinite",
+        mob6: "mob6 10s linear infinite",
+        mob7: "mob7 10s linear infinite",
+        mob8: "mob8 10s linear infinite",
+        mob9: "mob9 10s linear infinite",
       },
       keyframes: {
-        // mob1: {
-        //   "0%": { transform: "rotate(0deg) translateX(4rem) rotate(0deg)" },
-        //   "25%": {
-        //     transform: "rotate(90deg) translateX(5rem) rotate(-90deg)",
-        //   },
-        //   "50%": {
-        //     transform: "rotate(180deg) translateX(6.5rem) rotate(-180deg)",
-        //   },
-        //   "75%": {
-        //     transform: "rotate(270deg) translateX(6rem) rotate(-270deg)",
-        //   },
-        //   "100%": {
-        //     transform: "rotate(360deg) translateX(4rem) rotate(-360deg)",
-        //   },
-        // },
-        // mob2: {
-        //   "0%": { transform: "rotate(0deg) translateX(4rem) rotate(0deg)" },
-        //   "25%": {
-        //     transform: "rotate(90deg) translateX(5rem) rotate(-90deg)",
-        //   },
-        //   "50%": {
-        //     transform: "rotate(180deg) translateX(6.5rem) rotate(-180deg)",
-        //   },
-        //   "75%": {
-        //     transform: "rotate(270deg) translateX(6rem) rotate(-270deg)",
-        //   },
-        //   "100%": {
-        //     transform: "rotate(360deg) translateX(4rem) rotate(-360deg)",
-        //   },
-        // },
-        // mob3: {
-        //   "0%": { transform: "rotate(0deg) translateX(4rem) rotate(0deg)" },
-        //   "25%": {
-        //     transform: "rotate(90deg) translateX(5rem) rotate(-90deg)",
-        //   },
-        //   "50%": {
-        //     transform: "rotate(180deg) translateX(6.5rem) rotate(-180deg)",
-        //   },
-        //   "75%": {
-        //     transform: "rotate(270deg) translateX(6rem) rotate(-270deg)",
-        //   },
-        //   "100%": {
-        //     transform: "rotate(360deg) translateX(4rem) rotate(-360deg)",
-        //   },
-        // },
-        // mob4: {
-        //   "0%": { transform: "rotate(0deg) translateX(4rem) rotate(0deg)" },
-        //   "25%": {
-        //     transform: "rotate(90deg) translateX(5rem) rotate(-90deg)",
-        //   },
-        //   "50%": {
-        //     transform: "rotate(180deg) translateX(6.5rem) rotate(-180deg)",
-        //   },
-        //   "75%": {
-        //     transform: "rotate(270deg) translateX(6rem) rotate(-270deg)",
-        //   },
-        //   "100%": {
-        //     transform: "rotate(360deg) translateX(4rem) rotate(-360deg)",
-        //   },
-        // },
-        // mob5: {
-        //   "0%": { transform: "rotate(0deg) translateX(7rem) rotate(0deg)" },
-        //   "25%": {
-        //     transform: "rotate(90deg) translateX(8rem) rotate(-90deg)",
-        //   },
-        //   "50%": {
-        //     transform: "rotate(180deg) translateX(9rem) rotate(-180deg)",
-        //   },
-        //   "75%": {
-        //     transform: "rotate(270deg) translateX(9rem) rotate(-270deg)",
-        //   },
-        //   "100%": {
-        //     transform: "rotate(360deg) translateX(7rem) rotate(-360deg)",
-        //   },
-        // },
-        // mob6: {
-        //   "0%": { transform: "rotate(0deg) translateX(7rem) rotate(0deg)" },
-        //   "25%": {
-        //     transform: "rotate(90deg) translateX(8rem) rotate(-90deg)",
-        //   },
-        //   "50%": {
-        //     transform: "rotate(180deg) translateX(9rem) rotate(-180deg)",
-        //   },
-        //   "75%": {
-        //     transform: "rotate(270deg) translateX(9rem) rotate(-270deg)",
-        //   },
-        //   "100%": {
-        //     transform: "rotate(360deg) translateX(7rem) rotate(-360deg)",
-        //   },
-        // },
-        // mob7: {
-        //   "0%": { transform: "rotate(0deg) translateX(7rem) rotate(0deg)" },
-        //   "25%": {
-        //     transform: "rotate(90deg) translateX(8rem) rotate(-90deg)",
-        //   },
-        //   "50%": {
-        //     transform: "rotate(180deg) translateX(9rem) rotate(-180deg)",
-        //   },
-        //   "75%": {
-        //     transform: "rotate(270deg) translateX(9rem) rotate(-270deg)",
-        //   },
-        //   "100%": {
-        //     transform: "rotate(360deg) translateX(7rem) rotate(-360deg)",
-        //   },
-        // },
-        // mob8: {
-        //   "0%": { transform: "rotate(0deg) translateX(7rem) rotate(0deg)" },
-        //   "25%": {
-        //     transform: "rotate(90deg) translateX(8rem) rotate(-90deg)",
-        //   },
-        //   "50%": {
-        //     transform: "rotate(180deg) translateX(9rem) rotate(-180deg)",
-        //   },
-        //   "75%": {
-        //     transform: "rotate(270deg) translateX(9rem) rotate(-270deg)",
-        //   },
-        //   "100%": {
-        //     transform: "rotate(360deg) translateX(7rem) rotate(-360deg)",
-        //   },
-        // },
-        // mob9: {
-        //   "0%": { transform: "rotate(0deg) translateX(7rem) rotate(0deg)" },
-        //   "25%": {
-        //     transform: "rotate(90deg) translateX(8rem) rotate(-90deg)",
-        //   },
-        //   "50%": {
-        //     transform: "rotate(180deg) translateX(9rem) rotate(-180deg)",
-        //   },
-        //   "75%": {
-        //     transform: "rotate(270deg) translateX(9rem) rotate(-270deg)",
-        //   },
-        //   "100%": {
-        //     transform: "rotate(360deg) translateX(7rem) rotate(-360deg)",
-        //   },
-        // },
+        mob1: {
+          "0%": { transform: "rotate(0deg) translateX(4rem) rotate(0deg)" },
+          "25%": {
+            transform: "rotate(90deg) translateX(4.5rem) rotate(-90deg)",
+          },
+          "50%": {
+            transform: "rotate(180deg) translateX(6.5rem) rotate(-180deg)",
+          },
+          "75%": {
+            transform: "rotate(270deg) translateX(6.5rem) rotate(-270deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg) translateX(4rem) rotate(-360deg)",
+          },
+        },
+        mob2: {
+          "0%": { transform: "rotate(82deg) translateX(5rem) rotate(-82deg)" },
+          "25%": {
+            transform: "rotate(172deg) translateX(6rem) rotate(-172deg)",
+          },
+          "50%": {
+            transform: "rotate(262deg) translateX(6.3rem) rotate(-262deg)",
+          },
+          "75%": {
+            transform: "rotate(352deg) translateX(5rem) rotate(-352deg)",
+          },
+          "100%": {
+            transform: "rotate(442deg) translateX(5rem) rotate(-442deg)",
+          },
+        },
+        mob3: {
+          "0%": {
+            transform: "rotate(154deg) translateX(6rem) rotate(-154deg)",
+          },
+          "25%": {
+            transform: "rotate(244deg) translateX(6rem) rotate(-244deg)",
+          },
+          "50%": {
+            transform: "rotate(334deg) translateX(5rem) rotate(-334deg)",
+          },
+          "75%": {
+            transform: "rotate(424deg) translateX(4.7rem) rotate(-424deg)",
+          },
+          "100%": {
+            transform: "rotate(514deg) translateX(6rem) rotate(-514deg)",
+          },
+        },
+        mob4: {
+          "0%": {
+            transform: "rotate(240deg) translateX(6rem) rotate(-240deg)",
+          },
+          "25%": {
+            transform: "rotate(330deg) translateX(5rem) rotate(-330deg)",
+          },
+          "50%": {
+            transform: "rotate(420deg) translateX(5rem) rotate(-420deg)",
+          },
+          "75%": {
+            transform: "rotate(510deg) translateX(5.5rem) rotate(-510deg)",
+          },
+          "100%": {
+            transform: "rotate(600deg) translateX(6rem) rotate(-600deg)",
+          },
+        },
+        mob5: {
+          "0%": { transform: "rotate(40deg) translateX(6rem) rotate(-40deg)" },
+          "25%": {
+            transform: "rotate(130deg) translateX(8rem) rotate(-130deg)",
+          },
+          "50%": {
+            transform: "rotate(220deg) translateX(8rem) rotate(-220deg)",
+          },
+          "75%": {
+            transform: "rotate(310deg) translateX(8rem) rotate(-310deg)",
+          },
+          "100%": {
+            transform: "rotate(400deg) translateX(6rem) rotate(-400deg)",
+          },
+        },
+        mob6: {
+          "0%": {
+            transform: "rotate(120deg) translateX(7rem) rotate(-120deg)",
+          },
+          "25%": {
+            transform: "rotate(210deg) translateX(8rem) rotate(-210deg)",
+          },
+          "50%": {
+            transform: "rotate(300deg) translateX(7rem) rotate(-300deg)",
+          },
+          "75%": {
+            transform: "rotate(390deg) translateX(6.5rem) rotate(-390deg)",
+          },
+          "100%": {
+            transform: "rotate(480deg) translateX(7rem) rotate(-480deg)",
+          },
+        },
+        mob7: {
+          "0%": {
+            transform: "rotate(190deg) translateX(8rem) rotate(-190deg)",
+          },
+          "25%": {
+            transform: "rotate(280deg) translateX(7.5rem) rotate(-280deg)",
+          },
+          "50%": {
+            transform: "rotate(370deg) translateX(6rem) rotate(-370deg)",
+          },
+          "75%": {
+            transform: "rotate(460deg) translateX(6rem) rotate(-460deg)",
+          },
+          "100%": {
+            transform: "rotate(550deg) translateX(8rem) rotate(-550deg)",
+          },
+        },
+        mob8: {
+          "0%": {
+            transform: "rotate(300deg) translateX(7rem) rotate(-300deg)",
+          },
+          "25%": {
+            transform: "rotate(390deg) translateX(6rem) rotate(-390deg)",
+          },
+          "50%": {
+            transform: "rotate(480deg) translateX(7rem) rotate(-480deg)",
+          },
+          "75%": {
+            transform: "rotate(570deg) translateX(8rem) rotate(-570deg)",
+          },
+          "100%": {
+            transform: "rotate(660deg) translateX(7rem) rotate(-660deg)",
+          },
+        },
         "gradient-text": {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
