@@ -37,7 +37,7 @@ const Testimonial = () => {
           }}
           speed={1000}
           autoplay={{
-            delay: 1000, // Adjust delay as needed (3000ms = 3s)
+            delay: 4000, // Adjust delay as needed (3000ms = 3s)
             disableOnInteraction: false, // Autoplay continues even after interactions
           }}
           modules={[Pagination, Navigation, HashNavigation, Autoplay]}

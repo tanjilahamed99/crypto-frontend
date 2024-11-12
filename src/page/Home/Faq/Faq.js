@@ -1,4 +1,7 @@
+"use client";
+import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
 const Faq = () => {
+  const [websiteData] = useGetWebsiteData();
   const data = [
     {
       question: "Why is Istimate-Pro Safe?",
@@ -32,7 +35,7 @@ const Faq = () => {
       <h2 className="text-primary text-2xl lg:text-3xl font-extrabold text-center md:mb-10 mb-5">
         Faq
       </h2>
-      {data.map((item, index) => (
+      {websiteData?.faq?.map((item, index) => (
         <div
           key={index}
           tabIndex={0}
