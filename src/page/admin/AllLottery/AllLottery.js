@@ -9,11 +9,15 @@ import Swal from "sweetalert2";
 import { MdDeleteForever } from "react-icons/md";
 import Image from "next/image";
 import { useState } from "react";
+import { CiEdit } from "react-icons/ci";
+import Link from "next/link";
 
 const AllLottery = () => {
   const { data: user } = useSession() || {};
   const [allLottery, refetch] = useGetAllLottery();
   const [lotteryImg, setLotteryImg] = useState("");
+
+  console.log(allLottery);
 
   const handleCreateLottery = async (e) => {
     e.preventDefault();
@@ -25,9 +29,11 @@ const AllLottery = () => {
 
     const lotteryData = {
       title,
-      image,
+      image: lotteryImg,
       price,
       quantity,
+      remaining: quantity,
+      sell: 0,
     };
 
     const url = `${BASE_URL}/admin/lottery/${user?.user?._id}/${user?.user?.email}/${user?.user?.wallet}`;
@@ -155,13 +161,13 @@ const AllLottery = () => {
             </div>
             <div>
               <h2 className="text-white font-semibold  mb-1">Image Link</h2>
-              <div className="flex justify-between gap-5">
+              <div className="flex flex-col md:flex-row justify-between gap-5">
                 <input
                   name="image"
                   type="text"
                   placeholder="Ex: http.."
                   required
-                  className="w-full pl-2  rounded-md"
+                  className="w-full pl-2 py-2  rounded-md"
                   defaultValue={lotteryImg}
                 />
                 <div>
@@ -202,6 +208,7 @@ const AllLottery = () => {
               <th className="whitespace-nowrap">Remaining</th>
               <th className="whitespace-nowrap">Sell</th>
               <th className="whitespace-nowrap">Action</th>
+              <th className="whitespace-nowrap">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -219,8 +226,15 @@ const AllLottery = () => {
                 <th className="whitespace-nowrap">{item?.title}</th>
                 <th className="whitespace-nowrap">{item?.price}</th>
                 <th className="whitespace-nowrap">{item?.quantity}</th>
-                <th className="whitespace-nowrap"></th>
-                <th className="whitespace-nowrap"></th>
+                <th className="whitespace-nowrap">{item?.remaining}</th>
+                <th className="whitespace-nowrap">{item?.sell}</th>
+                <th className="whitespace-nowrap">
+                  <Link
+                    href={`/admin/dashboard/allLottery/editLottery?id=${item?._id}`}
+                  >
+                    <CiEdit className=" text-2xl cursor-pointer" />
+                  </Link>
+                </th>
                 <th className="whitespace-nowrap">
                   <MdDeleteForever
                     className=" text-2xl text-red-500 cursor-pointer"
