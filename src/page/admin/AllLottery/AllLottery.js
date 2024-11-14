@@ -17,8 +17,6 @@ const AllLottery = () => {
   const [allLottery, refetch] = useGetAllLottery();
   const [lotteryImg, setLotteryImg] = useState("");
 
-  console.log(allLottery);
-
   const handleCreateLottery = async (e) => {
     e.preventDefault();
     const form = e.target;

@@ -1,12 +1,15 @@
+"use client";
+
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { IoHomeOutline } from "react-icons/io5";
-import { FaUserClock } from "react-icons/fa6";
-import { FaGift } from "react-icons/fa";
+import { FaUserClock, FaUserPlus } from "react-icons/fa6";
+import { FaGift, FaUserCog } from "react-icons/fa";
 import { FaDatabase } from "react-icons/fa6";
 import { MdQuestionAnswer } from "react-icons/md";
 import AdminDrawer from "./AdminDrawer";
 const AdminNavigateLink = () => {
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const ulLinks = (
     <>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
@@ -59,7 +62,7 @@ const AdminNavigateLink = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
-          href={"/admin/dashboard/allUser"}
+          href={"/admin/dashboard/testimonialData"}
           className="flex items-center text-md font-semibold gap-3"
         >
           <IoHomeOutline className="text-2xl" /> Testimonail Data
@@ -72,6 +75,40 @@ const AdminNavigateLink = () => {
         >
           <MdQuestionAnswer className="text-2xl" /> Faq Data
         </Link>
+      </li>
+
+      <li className="border border-gray-600 rounded-md hover:bg-gray-700 p-2">
+        <button
+          onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}
+          className="flex items-center text-md font-semibold gap-3 w-full text-left"
+        >
+          <FaUserClock className="text-2xl" /> Website Data
+        </button>
+
+        {/* Submenu items with smooth transition */}
+        <ul
+          className={`ml-6 mt-2 space-y-2 overflow-hidden transition-all duration-300 ${
+            isSubMenuOpen ? "max-h-32 opacity-100" : "max-h-0 opacity-0"
+          }`}
+          style={{ transitionProperty: "max-height, opacity" }}
+        >
+          <li className="hover:bg-gray-800 p-2 rounded-md">
+            <Link
+              href={"/admin/dashboard/addUser"}
+              className="flex items-center gap-2"
+            >
+              <FaUserPlus className="text-lg" /> Add User
+            </Link>
+          </li>
+          <li className="hover:bg-gray-800 p-2 rounded-md">
+            <Link
+              href={"/admin/dashboard/manageUsers"}
+              className="flex items-center gap-2"
+            >
+              <FaUserCog className="text-lg" /> Manage Users
+            </Link>
+          </li>
+        </ul>
       </li>
     </>
   );
