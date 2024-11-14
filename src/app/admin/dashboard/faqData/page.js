@@ -2,6 +2,7 @@
 import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
 import SaveFaq from "@/page/admin/SaveFaq/SaveFaq";
 import React, { useState } from "react";
+import { MdDeleteForever } from "react-icons/md";
 
 const Faq = () => {
   const [websiteData, refetch] = useGetWebsiteData();
@@ -18,7 +19,7 @@ const Faq = () => {
               <div
                 key={index}
                 tabIndex={0}
-                className="collapse collapse-arrow border-b border-gray-500 rounded-none text-white mb-3"
+                className="collapse collapse-arrow border-b border-gray-500 rounded-none text-white mb-3 relative"
               >
                 <div className="collapse-title  font-semibold text-green-600 hover:text-primary">
                   {item.question}
@@ -26,6 +27,7 @@ const Faq = () => {
                 <div className="collapse-content">
                   <p>{item.answer}</p>
                 </div>
+                <MdDeleteForever className="text-white  absolute text-xl right-10 top-5 cursor-pointer" />
               </div>
             ))}
           </>

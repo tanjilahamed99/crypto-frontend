@@ -34,8 +34,8 @@ const AdminLogin = () => {
 
   return (
     <div className="flex items-center justify-center h-[100vh] bg-blue-800">
-      <div className="mx-auto w-full max-w-md space-y-5 rounded-lg border text-white p-7 shadow-lg sm:p-10 dark:border-zinc-700 dark:bg-zinc-900 bg-blue-600">
-        <h1 className="text-3xl font-semibold tracking-tight text-white">
+      <div className="mx-auto w-[90%] md:w-full max-w-md space-y-5 rounded-lg border text-white p-2 md:p-7 shadow-lg dark:border-zinc-700 dark:bg-zinc-900 bg-blue-600">
+        <h1 className=" text-xl md:text-3xl font-semibold tracking-tight text-white">
           Welcome to Istimate Pro
         </h1>
         <div className="space-y-3">
@@ -73,10 +73,7 @@ const AdminLogin = () => {
                 required
               />
               <div className="flex justify-end text-xs">
-                <a
-                  href="#"
-                  className="hover:underline text-white"
-                >
+                <a href="#" className="hover:underline text-white">
                   Forgot Password?
                 </a>
               </div>
