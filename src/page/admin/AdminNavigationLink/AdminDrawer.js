@@ -6,6 +6,8 @@ import { RxCross2 } from "react-icons/rx";
 import { IoHomeOutline } from "react-icons/io5";
 import "./admindrawer.css";
 import { MdQuestionAnswer } from "react-icons/md";
+import { GrGamepad } from "react-icons/gr";
+import { MdOutlineMedicalInformation } from "react-icons/md";
 
 const AdminDrawer = () => {
   const ulLinks = (
@@ -64,7 +66,15 @@ const AdminDrawer = () => {
           href={"/admin/dashboard/allUser"}
           className="flex items-center text-md font-semibold gap-3"
         >
-          <IoHomeOutline className="text-2xl" /> Testimonail Data
+          <MdOutlineMedicalInformation className="text-2xl" />Testimonail
+        </Link>
+      </li>
+      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+        <Link
+          href={"/admin/dashboard/gamingNft"}
+          className="flex items-center text-md font-semibold gap-3"
+        >
+          <GrGamepad className="text-2xl" /> Gaming NFT
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
@@ -72,11 +82,12 @@ const AdminDrawer = () => {
           href={"/admin/dashboard/faqData"}
           className="flex items-center text-md font-semibold gap-3"
         >
-          <MdQuestionAnswer className="text-2xl" /> Faq Data
+          <MdQuestionAnswer className="text-2xl" /> Faq
         </Link>
       </li>
     </>
   );
+
   return (
     <div className="drawer z-40">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />

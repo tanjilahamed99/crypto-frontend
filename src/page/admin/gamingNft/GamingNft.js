@@ -1,6 +1,5 @@
 "use client";
 import { BASE_URL } from "@/constant/constant";
-import useGetAllLottery from "@/hooks/useGetAllLottery/useGetAllLottery";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { RxCross1 } from "react-icons/rx";
@@ -14,7 +13,7 @@ import useGetAllGamingNft from "@/hooks/useGamingNft/useGetAllGamingNft";
 
 const GamingNft = () => {
   const { data: user } = useSession() || {};
-  const [gamingNft, refetch, isLoading] = useGetAllGamingNft() || [];
+  const [gamingNft, refetch] = useGetAllGamingNft() || [];
   const [lotteryImg, setLotteryImg] = useState("");
 
   const handleCreateLottery = async (e) => {
@@ -211,38 +210,37 @@ const GamingNft = () => {
             </tr>
           </thead>
           <tbody>
-            {!isLoading &&
-              gamingNft?.map((item, idx) => (
-                <tr className="text-white mx-auto" key={idx}>
-                  <th className="whitespace-nowrap">
-                    <Image
-                      src={item?.image}
-                      alt="image not found"
-                      height={500}
-                      width={500}
-                      className="w-10 h-10 rounded-full"
-                    />
-                  </th>
-                  <th className="whitespace-nowrap">{item?.title}</th>
-                  <th className="whitespace-nowrap">{item?.price}</th>
-                  <th className="whitespace-nowrap">{item?.quantity}</th>
-                  <th className="whitespace-nowrap">{item?.remaining}</th>
-                  <th className="whitespace-nowrap">{item?.sell}</th>
-                  <th className="whitespace-nowrap">
-                    <Link
-                      href={`/admin/dashboard/gamingNft/editGamingNft?id=${item?._id}`}
-                    >
-                      <CiEdit className=" text-2xl cursor-pointer" />
-                    </Link>
-                  </th>
-                  <th className="whitespace-nowrap">
-                    <MdDeleteForever
-                      className=" text-2xl text-red-500 cursor-pointer"
-                      onClick={() => handleDelete(item?._id)}
-                    />
-                  </th>
-                </tr>
-              ))}
+            {gamingNft?.gamingNft?.map((item, idx) => (
+              <tr className="text-white mx-auto" key={idx}>
+                <th className="whitespace-nowrap">
+                  <Image
+                    src={item?.image}
+                    alt="image not found"
+                    height={500}
+                    width={500}
+                    className="w-10 h-10 rounded-full"
+                  />
+                </th>
+                <th className="whitespace-nowrap">{item?.title}</th>
+                <th className="whitespace-nowrap">{item?.price}</th>
+                <th className="whitespace-nowrap">{item?.quantity}</th>
+                <th className="whitespace-nowrap">{item?.remaining}</th>
+                <th className="whitespace-nowrap">{item?.sell}</th>
+                <th className="whitespace-nowrap">
+                  <Link
+                    href={`/admin/dashboard/gamingNft/editGamingNft?id=${item?._id}`}
+                  >
+                    <CiEdit className=" text-2xl cursor-pointer" />
+                  </Link>
+                </th>
+                <th className="whitespace-nowrap">
+                  <MdDeleteForever
+                    className=" text-2xl text-red-500 cursor-pointer"
+                    onClick={() => handleDelete(item?._id)}
+                  />
+                </th>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

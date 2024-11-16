@@ -9,6 +9,8 @@ import { FaDatabase } from "react-icons/fa6";
 import { MdQuestionAnswer } from "react-icons/md";
 import AdminDrawer from "./AdminDrawer";
 import { GrGamepad } from "react-icons/gr";
+import { MdOutlineMedicalInformation } from "react-icons/md";
+
 const AdminNavigateLink = () => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const ulLinks = (
@@ -66,7 +68,7 @@ const AdminNavigateLink = () => {
           href={"/admin/dashboard/testimonialData"}
           className="flex items-center text-md font-semibold gap-3"
         >
-          <IoHomeOutline className="text-2xl" /> Testimonail Data
+          <MdOutlineMedicalInformation className="text-2xl" /> Testimonail
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
@@ -74,7 +76,7 @@ const AdminNavigateLink = () => {
           href={"/admin/dashboard/faqData"}
           className="flex items-center text-md font-semibold gap-3"
         >
-          <MdQuestionAnswer className="text-2xl" /> Faq Data
+          <MdQuestionAnswer className="text-2xl" /> Faq
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">

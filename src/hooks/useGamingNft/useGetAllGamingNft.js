@@ -11,7 +11,7 @@ const useGetAllGamingNft = () => {
     queryKey: ["gamingNft"],
     queryFn: async () => {
       const res = await axios(`${BASE_URL}/admin/gamingNft`);
-      return res?.data?.gamingNft;
+      return res?.data;
     },
   });
 
