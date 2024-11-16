@@ -8,6 +8,7 @@ import { FaGift, FaUserCog } from "react-icons/fa";
 import { FaDatabase } from "react-icons/fa6";
 import { MdQuestionAnswer } from "react-icons/md";
 import AdminDrawer from "./AdminDrawer";
+import { GrGamepad } from "react-icons/gr";
 const AdminNavigateLink = () => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const ulLinks = (
@@ -74,6 +75,14 @@ const AdminNavigateLink = () => {
           className="flex items-center text-md font-semibold gap-3"
         >
           <MdQuestionAnswer className="text-2xl" /> Faq Data
+        </Link>
+      </li>
+      <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
+        <Link
+          href={"/admin/dashboard/gamingNft"}
+          className="flex items-center text-md font-semibold gap-3"
+        >
+          <GrGamepad className="text-2xl" /> Gamign NFT
         </Link>
       </li>
 
