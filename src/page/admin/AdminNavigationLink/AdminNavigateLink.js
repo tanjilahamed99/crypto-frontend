@@ -10,6 +10,7 @@ import { MdQuestionAnswer } from "react-icons/md";
 import AdminDrawer from "./AdminDrawer";
 import { GrGamepad } from "react-icons/gr";
 import { MdOutlineMedicalInformation } from "react-icons/md";
+import { SlMenu } from "react-icons/sl";
 
 const AdminNavigateLink = () => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
@@ -65,6 +66,14 @@ const AdminNavigateLink = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
+          href={"/admin/dashboard/proProgram"}
+          className="flex items-center text-md font-semibold gap-3"
+        >
+          <SlMenu className="text-2xl" /> Pro Program
+        </Link>
+      </li>
+      <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
+        <Link
           href={"/admin/dashboard/testimonialData"}
           className="flex items-center text-md font-semibold gap-3"
         >
@@ -87,7 +96,6 @@ const AdminNavigateLink = () => {
           <GrGamepad className="text-2xl" /> Gamign NFT
         </Link>
       </li>
-
       <li className="border border-gray-600 rounded-md hover:bg-gray-700 p-2">
         <button
           onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}
