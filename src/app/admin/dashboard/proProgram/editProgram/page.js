@@ -42,8 +42,10 @@ const EditProgram = ({ searchParams }) => {
   };
 
   return (
-    <div>
-      {" "}
+    <div className="w-full md:w-[70%] lg:w-[50%] mx-auto md:my-40 border border-gray-500 p-5 ">
+      <h2 className="text-xl font-semibold mb-4 text-white">
+        Update Pro Program
+      </h2>
       <form onSubmit={handleUpdate} className="text-black space-y-3">
         <div>
           <h2 className="text-white font-semibold  mb-1">Price</h2>

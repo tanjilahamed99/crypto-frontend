@@ -14,6 +14,7 @@
     "@thirdweb-dev/react": "^4.9.4",
     "@thirdweb-dev/sdk": "^4.0.99",
     "axios": "^1.7.7",
+    "ethers": "^5.7.2",
     "mongodb": "^5.9.2",
     "next": "15.0.1",
     "next-auth": "^4.24.10",

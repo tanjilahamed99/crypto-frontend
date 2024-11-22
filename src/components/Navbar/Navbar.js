@@ -8,6 +8,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useAddress } from "@thirdweb-dev/react";
 import { useRouter } from "next/navigation";
 import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
+import RegistrationFunction from "@/page/Register/RegisterForm/RegistationFunction";
 
 const Navbar = () => {
   const { data: user } = useSession();
@@ -40,12 +41,14 @@ const Navbar = () => {
                 Logout
               </button>
               {!wallet && (
-                <button
-                  onClick={handleRegister}
-                  className="bg-primary  text-md font-semibold border-none h-10 w-28 hover:bg-[#f2a74b] rounded-lg hidden md:inline"
-                >
-                  Register
-                </button>
+                <>
+                  <button
+                    onClick={handleRegister}
+                    className="bg-primary  text-md font-semibold border-none h-10 w-28 hover:bg-[#f2a74b] rounded-lg hidden md:inline"
+                  >
+                    Register
+                  </button>
+                </>
               )}
             </div>
           ) : (
@@ -56,6 +59,10 @@ const Navbar = () => {
             </Link>
           )}
         </ul>
+      </div>
+
+      <div className="mr-10">
+        <RegistrationFunction />
       </div>
       <div className="flex-none">
         <Link href={"/"}>

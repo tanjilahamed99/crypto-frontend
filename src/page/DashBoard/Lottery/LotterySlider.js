@@ -11,27 +11,27 @@ import {
 } from "swiper/modules";
 import Image from "next/image";
 
-const LotterySlider = ({ view }) => {
-  const data = [
-    {
-      img: "https://i.ibb.co.com/xMfmVQ2/1629198964029.jpg",
-    },
-    {
-      img: "https://i.ibb.co.com/DKw4yYc/crypto-lottery.png",
-    },
-    {
-      img: "https://i.ibb.co.com/wKs80w9/download.jpg",
-    },
-    {
-      img: "https://i.ibb.co.com/xMfmVQ2/1629198964029.jpg",
-    },
-    {
-      img: "https://i.ibb.co.com/DKw4yYc/crypto-lottery.png",
-    },
-    {
-      img: "https://i.ibb.co.com/wKs80w9/download.jpg",
-    },
-  ];
+const LotterySlider = ({ view, data }) => {
+  // const data = [
+  //   {
+  //     img: "https://i.ibb.co.com/xMfmVQ2/1629198964029.jpg",
+  //   },
+  //   {
+  //     img: "https://i.ibb.co.com/DKw4yYc/crypto-lottery.png",
+  //   },
+  //   {
+  //     img: "https://i.ibb.co.com/wKs80w9/download.jpg",
+  //   },
+  //   {
+  //     img: "https://i.ibb.co.com/xMfmVQ2/1629198964029.jpg",
+  //   },
+  //   {
+  //     img: "https://i.ibb.co.com/DKw4yYc/crypto-lottery.png",
+  //   },
+  //   {
+  //     img: "https://i.ibb.co.com/wKs80w9/download.jpg",
+  //   },
+  // ];
 
   return (
     <div>
@@ -43,16 +43,16 @@ const LotterySlider = ({ view }) => {
         }}
         speed={1500}
         autoplay={{
-          delay: 1000, // Adjust delay as needed (3000ms = 3s)
+          delay: 3000, // Adjust delay as needed (3000ms = 3s)
           disableOnInteraction: false, // Autoplay continues even after interactions
         }}
         modules={[Pagination, Navigation, HashNavigation, Autoplay]}
         className="mySwiper w-full"
       >
         {data?.map((item, idx) => (
-          <SwiperSlide key={idx}>
+          <SwiperSlide className="cursor-pointer" key={idx}>
             <Image
-              src={item?.img}
+              src={item?.image}
               alt="image not found"
               height={500}
               width={500}

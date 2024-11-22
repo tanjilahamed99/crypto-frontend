@@ -1,8 +1,9 @@
 "use client";
 
-import { ThirdwebProvider } from "@thirdweb-dev/react";
+import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
+import { Sepolia } from "@thirdweb-dev/chains";
 import { SessionProvider } from "next-auth/react";
 export default function ThirdwebProviderV4({ children }) {
   const [queryClient] = useState(() => new QueryClient());
@@ -10,9 +11,12 @@ export default function ThirdwebProviderV4({ children }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ThirdwebProvider
-        clientId={"5dc988fd366e2695d7f1b447b3db7c86"}
-        secretKey={process.env.SECRET_KEY}
+        clientId={"dc77039ae2803c20500acdc580770807"}
+        secretKey={
+          "Wa2LoaKZ5D6uq1xUt_qw5yOY3DXP4Pdd7h5g9KsiKPhXXVegJnpYiNe0x6Y_hhRcFmqszWwidhBDfhgOZaFuew"
+        }
         autoConnect={false}
+        activeChain={Sepolia}
       >
         <SessionProvider>{children}</SessionProvider>
       </ThirdwebProvider>
