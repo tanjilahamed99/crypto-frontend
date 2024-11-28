@@ -1,6 +1,6 @@
-// export default BuyButton;
+"use client";
+
 import { BASE_URL } from "@/constant/constant";
-import useSingleLotteryDataById from "@/hooks/useGetAllLottery/useSingleLotteryData";
 import useGetAllMyCartData from "@/hooks/userMyCard/useMyCartData";
 import { useAddress, useSigner, useContract } from "@thirdweb-dev/react";
 import axios from "axios";

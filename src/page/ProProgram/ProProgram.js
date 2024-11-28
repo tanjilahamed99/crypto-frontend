@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const ProProgram = () => {
   return (
@@ -53,9 +54,12 @@ const ProProgram = () => {
               </div>
 
               <div className="items-center p-6 pt-0 flex justify-end">
-                <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-yellow-700 text-white">
-                  More Details
-                </button>
+                <Link href={'/dashboard/proProgram/powerMatrix'}>
+                  
+                  <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-yellow-700 text-white">
+                    More Details
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
