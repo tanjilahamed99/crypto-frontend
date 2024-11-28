@@ -77,10 +77,11 @@ const BuyButton = ({ isEthPayment, lotteryData, id, refetchAll }) => {
 
             const url = `${BASE_URL}/buyLottery/${id}`;
             const { data } = await axios.put(url, newLotteryData);
+
             if (data?.result?.modifiedCount > 0) {
               Swal.fire({
                 title: "Good job!",
-                text: "Buy Completed",
+                text: "Lottery Ticket Completed",
                 icon: "success",
               });
               refetch();

@@ -59,10 +59,10 @@ const DashboardLottery = ({ disable }) => {
                   <h2 className="flex items-center gap-1">
                     Perticipants:
                     <span className="text-green-500 ml-2 mr-1">
-                      {item?.quantity}
+                      {item?.users?.length || 0}
                     </span>
                     <p>/</p>
-                    {item?.users?.length || 0}
+                    {item?.quantity}
                   </h2>
                   {/* You can open the modal using document.getElementById('ID').showModal() method */}
                   <button
