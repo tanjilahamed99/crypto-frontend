@@ -4,13 +4,10 @@ import { LuCircleDollarSign } from "react-icons/lu";
 import { TbArrowUp } from "react-icons/tb";
 import LotterySlider from "./LotterySlider";
 import useGetAllLottery from "@/hooks/useGetAllLottery/useGetAllLottery";
-import { useAddress, useContract } from "@thirdweb-dev/react";
 import BuyButton from "./Send";
 
 const DashboardLottery = ({ disable }) => {
-  const [allLottery] = useGetAllLottery();
-  const address = useAddress();
-  const joinLottery = async () => {};
+  const [allLottery, refetch] = useGetAllLottery();
 
   return (
     <div className=" w-full lg:w-[1000px] xl:w-[1350px] mx-auto space-y-2 mt-2">
@@ -45,16 +42,13 @@ const DashboardLottery = ({ disable }) => {
                     <span className="text-green-500 ml-2 mr-1">$</span>
                     {item?.price}
                   </h2>
-
-                  <BuyButton isEthPayment={true} />
-
-                  {item?.remaining > 0 ? (
-                    <button
-                      onClick={joinLottery}
-                      className="text-lg font-semibold bg-primary text-white rounded-xl px-3 py-1 hover:bg-green-700"
-                    >
-                      Join
-                    </button>
+                  {item?.quantity > 0 ? (
+                    <BuyButton
+                      isEthPayment={true}
+                      lotteryData={item}
+                      id={item?._id}
+                      refetchAll={refetch}
+                    />
                   ) : (
                     <button className="text-lg font-semibold text-white rounded-xl px-3 py-1 bg-green-700">
                       Participant full
@@ -65,17 +59,68 @@ const DashboardLottery = ({ disable }) => {
                   <h2 className="flex items-center gap-1">
                     Perticipants:
                     <span className="text-green-500 ml-2 mr-1">
-                      {item?.remaining}
+                      {item?.quantity}
                     </span>
                     <p>/</p>
-                    {item?.quantity}
+                    {item?.users?.length || 0}
                   </h2>
-                  <button className="text-lg font-semibold bg-primary text-white rounded-xl px-3 py-1 hover:bg-green-700">
+                  {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                  <button
+                    className="text-lg font-semibold bg-primary text-white rounded-xl px-3 py-1 hover:bg-green-700"
+                    onClick={() =>
+                      document
+                        .getElementById(`my_modal_${item?._id}`)
+                        .showModal()
+                    }
+                  >
                     view
                   </button>
+                  <dialog id={`my_modal_${item?._id}`} className="modal">
+                    <div className="modal-box bg-black border-gray-600 border-2 shadow-md shadow-gray-500">
+                      <form method="dialog">
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 ">
+                          ✕
+                        </button>
+                      </form>
+                      <div>
+                        <div className="overflow-x-auto">
+                          <table className="table">
+                            {/* head */}
+                            <thead>
+                              <tr className="text-white">
+                                <th className="whitespace-nowrap">No.</th>
+                                <th className="whitespace-nowrap">User Id</th>
+                                <th className="whitespace-nowrap">Wallet</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {item?.users?.map((item, idx) => (
+                                <tr className="text-white mx-auto" key={idx}>
+                                  <th className="whitespace-nowrap">
+                                    {idx + 1}
+                                  </th>
+                                  <th className="whitespace-nowrap">
+                                    {item?.userId}
+                                  </th>
+                                  <th className="whitespace-nowrap">
+                                    {item?.wallet?.slice(0, 10)}...
+                                    {item?.wallet?.slice(12, 20)}
+                                  </th>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </dialog>
                 </div>
                 <div className="text-white md:text-lg flex items-center font-semibold">
-                  <button className="text-lg font-semibold bg-primary text-white rounded-xl px-3 py-1 hover:bg-green-700">
+                  <button
+                    onClick={() => console.log(item?.users)}
+                    className="text-lg font-semibold bg-primary text-white rounded-xl px-3 py-1 hover:bg-green-700"
+                  >
                     Winner List
                   </button>
                 </div>
