@@ -5,13 +5,22 @@ import useGetAllProProgramByType from "@/hooks/useProPrograms/useAllProgramByTyp
 import Image from "next/image";
 import { LuCircleDollarSign } from "react-icons/lu";
 import ActiveProgram from "./ActiveProgram";
+import useGetAllMyCartData from "@/hooks/userMyCard/useMyCartData";
+import { useSession } from "next-auth/react";
 
 const PowerMatrix = () => {
+  const [websiteData] = useGetWebsiteData();
+  const { data: user } = useSession()
+
   const [programsByTpe, refetch] = useGetAllProProgramByType({
     type: "power-matrix",
   });
 
-  const [websiteData] = useGetWebsiteData();
+  const [myCartData] = useGetAllMyCartData({
+    userId: user?.user?._id,
+    wallet: user?.user?.wallet,
+  });
+
 
   return (
     <div className="w-full lg:w-[1000px] xl:w-[1350px] mx-auto space-y-4 px-2 lg:px-0">
@@ -47,7 +56,20 @@ const PowerMatrix = () => {
                 width={500}
                 className="w-20 h-20"
               />
-              <ActiveProgram isEthPayment={true} programData={item} />
+
+
+
+              {myCartData?.result?.proProgram.find(pro => pro?._id === item?._id) ? (
+                <button
+                  className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-text bg-green-600 text-primary-foreground  h-9 rounded-md px-3"
+                >
+                  Activated
+                </button>
+              ) : (
+                <ActiveProgram isEthPayment={true} programData={item} proRefetch={refetch} id={item?._id} />
+              )}
+
+
             </div>
           </div>
         ))}
