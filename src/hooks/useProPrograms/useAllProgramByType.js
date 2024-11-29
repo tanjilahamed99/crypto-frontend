@@ -7,7 +7,6 @@ const useGetAllProProgramByType = ({ type }) => {
     queryKey: ["programsByTpe"],
     queryFn: async () => {
       const res = await axios(`${BASE_URL}/proProgram/${type}`);
-      console.log(programsByTpe);
       return res?.data;
     },
   });

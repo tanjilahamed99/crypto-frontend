@@ -17,14 +17,19 @@ const ActiveProgram = ({ isEthPayment }) => {
     wallet: user?.user?.wallet,
   });
 
-  const ADMIN_ADDRESS = "0xa2D5c51A941ea7c1CA1c72748bD301a873F5A7df"; // Admin address
+  const ADMIN_ADDRESS = "0xd4835Bc8a235Cc6Ecd6274A06B40495331310F01"; // Admin address
   const ETH_PRICE = "0.001"; // ETH price
 
   const handleBuy = async () => {
     if (!address || !signer) {
-      alert("Connect your wallet first!");
+      Swal.fire({
+        icon: "info",
+        title: "Wallet not connected",
+        text: "Please connect your wallet before proceeding.",
+      });
       return;
     }
+
     try {
       if (isEthPayment) {
         // ETH Payment
@@ -33,13 +38,30 @@ const ActiveProgram = ({ isEthPayment }) => {
           value: ethers.utils.parseEther(ETH_PRICE),
         });
         await tx.wait();
-        alert("tx completed");
+        Swal.fire({
+          icon: "success",
+          title: "Transaction Completed",
+          text: "Your purchase was successful!",
+        });
       }
     } catch (error) {
       console.error("Transaction failed:", error);
-      alert("Transaction failed: " + error.message);
+
+      // Custom error handling
+      let errorMessage = error.message;
+      if (error.code === "INSUFFICIENT_FUNDS") {
+        errorMessage =
+          "You have insufficient funds to complete this transaction.";
+      }
+
+      Swal.fire({
+        icon: "error",
+        title: "Transaction Failed",
+        text: errorMessage,
+      });
     }
   };
+
   return (
     <button
       onClick={handleBuy}
