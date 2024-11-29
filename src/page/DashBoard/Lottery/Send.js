@@ -8,7 +8,7 @@ import { ethers } from "ethers";
 import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 
-const BuyButton = ({ isEthPayment, lotteryData, id, refetchAll }) => {
+const BuyButton = ({ isEthPayment, lotteryData, id, refetchAll, price }) => {
   const address = useAddress(); // Get user's wallet address
   const signer = useSigner(); // Get signer to send transactions
   const { data: user } = useSession();

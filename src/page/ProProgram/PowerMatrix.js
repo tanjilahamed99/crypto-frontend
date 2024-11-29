@@ -47,7 +47,7 @@ const PowerMatrix = () => {
                 width={500}
                 className="w-20 h-20"
               />
-              <ActiveProgram isEthPayment={true} />
+              <ActiveProgram isEthPayment={true} programData={item} />
             </div>
           </div>
         ))}

@@ -8,7 +8,7 @@ import { ethers } from "ethers";
 import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 
-const ActiveProgram = ({ isEthPayment }) => {
+const ActiveProgram = ({ isEthPayment, programData }) => {
   const address = useAddress(); // Get user's wallet address
   const signer = useSigner(); // Get signer to send transactions
   const { data: user } = useSession();
@@ -17,8 +17,10 @@ const ActiveProgram = ({ isEthPayment }) => {
     wallet: user?.user?.wallet,
   });
 
+  console.log(myCartData);
+
   const ADMIN_ADDRESS = "0xd4835Bc8a235Cc6Ecd6274A06B40495331310F01"; // Admin address
-  const ETH_PRICE = "0.001"; // ETH price
+  const ETH_PRICE = "0.0001"; // ETH price
 
   const handleBuy = async () => {
     if (!address || !signer) {
@@ -38,11 +40,66 @@ const ActiveProgram = ({ isEthPayment }) => {
           value: ethers.utils.parseEther(ETH_PRICE),
         });
         await tx.wait();
-        Swal.fire({
-          icon: "success",
-          title: "Transaction Completed",
-          text: "Your purchase was successful!",
-        });
+
+        if (tx) {
+          let mainData = [];
+
+          if (myCartData?.result?.proProgram?.length > 0) {
+            mainData = [
+              {
+                history: tx,
+                ...programData,
+              },
+              ...myCartData?.result?.proProgram,
+            ];
+          } else {
+            mainData = [
+              {
+                history: tx,
+                ...programData,
+              },
+            ];
+          }
+          const { data } = await axios.post(
+            `${BASE_URL}/lottery/${user?.user?._id}/${address}`,
+            { proProgram: mainData }
+          );
+
+          console.log(data);
+
+          if (data?.status) {
+            const newProgramData = {
+              users: [],
+              remaining: parseFloat(programData?.remaining) - 1,
+              sell: parseFloat(programData?.sell) + 1,
+              quantity: parseFloat(programData?.quantity) - 1,
+            };
+
+            if (programData?.users?.length > 0) {
+              newProgramData.users = [
+                ...programData?.users,
+                { userId: user?.user?._id, wallet: user?.user?.wallet },
+              ];
+            } else {
+              newProgramData.users = [
+                { userId: user?.user?._id, wallet: user?.user?.wallet },
+              ];
+            }
+
+            const url = `${BASE_URL}/buyLottery/${id}`;
+            const { data } = await axios.put(url, newProgramData);
+
+            if (data?.result?.modifiedCount > 0) {
+              Swal.fire({
+                icon: "success",
+                title: "Transaction Completed",
+                text: "Your purchase was successful!",
+              });
+              // refetch();
+              // refetchAll();
+            }
+          }
+        }
       }
     } catch (error) {
       console.error("Transaction failed:", error);
