@@ -79,22 +79,25 @@ const ActiveProgram = ({ isEthPayment, programData, price, proRefetch, id }) => 
               ];
             }
 
-            const url = `${BASE_URL}/buyProgram/${id}`;
-            const { data } = await axios.put(url, newProgramData);
+
+            console.log(newProgramData)
+
+            // const url = `${BASE_URL}/buyProgram/${id}`;
+            // const { data } = await axios.put(url, newProgramData);
 
 
-            console.log(data)
+            // console.log(data)
 
 
-            if (data?.result?.modifiedCount > 0) {
-              Swal.fire({
-                icon: "success",
-                title: "Transaction Completed",
-                text: "Your purchase was successful!",
-              });
-              // refetch();
-              // refetchAll();
-            }
+            // if (data?.result?.modifiedCount > 0) {
+            //   Swal.fire({
+            //     icon: "success",
+            //     title: "Transaction Completed",
+            //     text: "Your purchase was successful!",
+            //   });
+            //   // refetch();
+            //   // refetchAll();
+            // }
           }
         }
       }
