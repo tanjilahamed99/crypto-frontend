@@ -28,7 +28,7 @@ const Navbar = () => {
           </div>
           {wallet && user ? (
             <Link href={"/dashboard"}>
-              <button className="bg-primary  text-md font-semibold border-none h-10 w-28 hover:bg-[#f2a74b] rounded-lg hidden md:inline">
+              <button className="bg-primary text-white  text-md font-semibold border-none h-10 w-28 hover:bg-[#f2a74b] rounded-lg hidden md:inline">
                 Dashboard
               </button>
             </Link>
@@ -44,7 +44,7 @@ const Navbar = () => {
                 <>
                   <button
                     onClick={handleRegister}
-                    className="bg-primary  text-md font-semibold border-none h-10 w-28 hover:bg-[#f2a74b] rounded-lg hidden md:inline"
+                    className="bg-primary text-white  text-md font-semibold border-none h-10 w-28 hover:bg-[#f2a74b] rounded-lg hidden md:inline"
                   >
                     Register
                   </button>
@@ -53,7 +53,7 @@ const Navbar = () => {
             </div>
           ) : (
             <Link href={"/register"}>
-              <button className="bg-primary  text-md font-semibold border-none h-10 w-28 hover:bg-[#f2a74b] rounded-lg hidden md:inline">
+              <button className="bg-primary  text-md text-white font-semibold border-none h-10 w-28 hover:bg-[#f2a74b] rounded-lg hidden md:inline">
                 Connect
               </button>
             </Link>

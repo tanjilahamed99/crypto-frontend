@@ -16,6 +16,8 @@ const AllLottery = () => {
   const { data: user } = useSession() || {};
   const [allLottery, refetch] = useGetAllLottery();
   const [lotteryImg, setLotteryImg] = useState("");
+  const [winners, setWinners] = useState([]);
+  const [defaultId, setDefaultId] = useState("");
 
   const handleCreateLottery = async (e) => {
     e.preventDefault();
@@ -105,6 +107,52 @@ const AllLottery = () => {
     }
   };
 
+  const getWinner = async (id) => {
+    try {
+      const { data } = await axios.get(
+        `${BASE_URL}/admin/lotteryDraw/${user?.user._id}/${user?.user?.email}/${user?.user?.wallet}/${id}`
+      );
+      if (data?.status) {
+        document.getElementById("my_modal_3").showModal();
+        setWinners([...data?.winners]);
+        setDefaultId(id);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleClose = () => {
+    document.getElementById("my_modal_3").close();
+    setWinners([]);
+    setDefaultId("");
+  };
+
+  const handleSetWinners = async (id) => {
+    try {
+      const { data } = await axios.post(
+        `${BASE_URL}/admin/setWinners/${user?.user._id}/${user?.user?.email}/${user?.user?.wallet}/${id}`,
+        winners
+      );
+      console.log(data);
+      if (data?.result.modifiedCount > 0) {
+        document.getElementById("my_modal_3").close();
+        setWinners([]);
+        setDefaultId("");
+        refetch();
+        Swal.fire({
+          title: "Good job!",
+          text: "Winner List setup Completed",
+          icon: "success",
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  console.log(allLottery?.lottery);
+
   return (
     <div>
       <div className="flex justify-between items-center px-2">
@@ -117,6 +165,119 @@ const AllLottery = () => {
         </button>
       </div>
 
+      {/* confirm lottery list */}
+      <dialog id="my_modal_3" className="modal">
+        <div className="modal-box bg-gray-600 text-white pt-0">
+          <div className="modal-action">
+            <form method="dialog">
+              <button>
+                <RxCross1 />
+              </button>
+            </form>
+          </div>
+          <div className="text-black space-y-3">
+            <div>
+              <div className="overflow-x-auto">
+                <table className="table">
+                  {/* head */}
+                  <thead>
+                    <tr className="text-white">
+                      <th className="whitespace-nowrap">No.</th>
+                      <th className="whitespace-nowrap">User Id</th>
+                      <th className="whitespace-nowrap">Wallet</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {winners.map((item, idx) => (
+                      <tr className="text-white mx-auto" key={idx}>
+                        <th className="whitespace-nowrap">{idx + 1}</th>
+                        <th className="whitespace-nowrap">{item?.userId}</th>
+                        <th className="whitespace-nowrap">
+                          {item?.wallet?.slice(0, 10)}...
+                          {item?.wallet?.slice(12, 20)}
+                        </th>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center">
+              <button
+                onClick={handleClose}
+                className="bg-red-500 font-semibold border-none h-10 w-28 text-white hover:bg-red-700 rounded-lg"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleSetWinners(defaultId)}
+                className="bg-primary font-semibold border-none h-10 w-28 text-white hover:bg-[#f2a74b] rounded-lg"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </dialog>
+
+      {/* see winner list */}
+      <dialog id="my_modal_4" className="modal">
+        <div className="modal-box bg-gray-600 text-white pt-0">
+          <div className="modal-action">
+            <form method="dialog">
+              <button>
+                <RxCross1 />
+              </button>
+            </form>
+          </div>
+          <div className="text-black space-y-3">
+            <div>
+              <div className="overflow-x-auto">
+                <table className="table">
+                  {/* head */}
+                  <thead>
+                    <tr className="text-white">
+                      <th className="whitespace-nowrap">No.</th>
+                      <th className="whitespace-nowrap">User Id</th>
+                      <th className="whitespace-nowrap">Wallet</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {winners.map((item, idx) => (
+                      <tr className="text-white mx-auto" key={idx}>
+                        <th className="whitespace-nowrap">{idx + 1}</th>
+                        <th className="whitespace-nowrap">{item?.userId}</th>
+                        <th className="whitespace-nowrap">
+                          {item?.wallet?.slice(0, 10)}...
+                          {item?.wallet?.slice(12, 20)}
+                        </th>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center">
+              <button
+                onClick={handleClose}
+                className="bg-red-500 font-semibold border-none h-10 w-28 text-white hover:bg-red-700 rounded-lg"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleSetWinners(defaultId)}
+                className="bg-primary font-semibold border-none h-10 w-28 text-white hover:bg-[#f2a74b] rounded-lg"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </dialog>
+
+      {/* create lottery */}
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box bg-gray-600 text-white pt-0">
           <div className="modal-action">
@@ -194,6 +355,7 @@ const AllLottery = () => {
           </form>
         </div>
       </dialog>
+
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -207,6 +369,8 @@ const AllLottery = () => {
               <th className="whitespace-nowrap">Sell</th>
               <th className="whitespace-nowrap">Action</th>
               <th className="whitespace-nowrap">Action</th>
+              <th className="whitespace-nowrap">Draw</th>
+              <th className="whitespace-nowrap">Winner List</th>
             </tr>
           </thead>
           <tbody>
@@ -238,6 +402,24 @@ const AllLottery = () => {
                     className=" text-2xl text-red-500 cursor-pointer"
                     onClick={() => handleDelete(item?._id)}
                   />
+                </th>
+
+                <th className="whitespace-nowrap">
+                  {item?.remaining <= 0 && (
+                    <button
+                      onClick={() => getWinner(item?._id)}
+                      className="py-2 px-4 hover:bg-[#af7835] bg-primary text-white "
+                    >
+                      Draw
+                    </button>
+                  )}
+                </th>
+                <th className="whitespace-nowrap">
+                  {item?.winners?.length > 0 && (
+                    <button className="p-2 bg-green-600 hover:bg-green-800 text-white ">
+                      Winner List
+                    </button>
+                  )}
                 </th>
               </tr>
             ))}
