@@ -11,6 +11,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import Link from "next/link";
+import SendLotteryPayment from "./sendLotteryPayment";
 
 const AllLottery = () => {
   const { data: user } = useSession() || {};
@@ -137,8 +138,6 @@ const AllLottery = () => {
       console.log(data);
       if (data?.result.modifiedCount > 0) {
         document.getElementById("my_modal_3").close();
-        setWinners([]);
-        setDefaultId("");
         refetch();
         Swal.fire({
           title: "Good job!",
@@ -151,7 +150,10 @@ const AllLottery = () => {
     }
   };
 
-  console.log(allLottery?.lottery);
+  const handleShowWinners = (data) => {
+    setWinners([...data]);
+    document.getElementById("my_modal_4").showModal();
+  };
 
   return (
     <div>
@@ -220,63 +222,6 @@ const AllLottery = () => {
           </div>
         </div>
       </dialog>
-
-      {/* see winner list */}
-      <dialog id="my_modal_4" className="modal">
-        <div className="modal-box bg-gray-600 text-white pt-0">
-          <div className="modal-action">
-            <form method="dialog">
-              <button>
-                <RxCross1 />
-              </button>
-            </form>
-          </div>
-          <div className="text-black space-y-3">
-            <div>
-              <div className="overflow-x-auto">
-                <table className="table">
-                  {/* head */}
-                  <thead>
-                    <tr className="text-white">
-                      <th className="whitespace-nowrap">No.</th>
-                      <th className="whitespace-nowrap">User Id</th>
-                      <th className="whitespace-nowrap">Wallet</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {winners.map((item, idx) => (
-                      <tr className="text-white mx-auto" key={idx}>
-                        <th className="whitespace-nowrap">{idx + 1}</th>
-                        <th className="whitespace-nowrap">{item?.userId}</th>
-                        <th className="whitespace-nowrap">
-                          {item?.wallet?.slice(0, 10)}...
-                          {item?.wallet?.slice(12, 20)}
-                        </th>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div className="flex justify-between items-center">
-              <button
-                onClick={handleClose}
-                className="bg-red-500 font-semibold border-none h-10 w-28 text-white hover:bg-red-700 rounded-lg"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => handleSetWinners(defaultId)}
-                className="bg-primary font-semibold border-none h-10 w-28 text-white hover:bg-[#f2a74b] rounded-lg"
-              >
-                Confirm
-              </button>
-            </div>
-          </div>
-        </div>
-      </dialog>
-
       {/* create lottery */}
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box bg-gray-600 text-white pt-0">
@@ -356,6 +301,55 @@ const AllLottery = () => {
         </div>
       </dialog>
 
+      {/* see winner list */}
+      <dialog id="my_modal_4" className="modal">
+        <div className="modal-box bg-gray-600 text-white pt-0">
+          <div className="modal-action">
+            <form method="dialog">
+              <button>
+                <RxCross1 />
+              </button>
+            </form>
+          </div>
+          <div className="text-black space-y-3">
+            <div>
+              <div className="overflow-x-auto">
+                <table className="table">
+                  {/* head */}
+                  <thead>
+                    <tr className="text-white">
+                      <th className="whitespace-nowrap">No.</th>
+                      <th className="whitespace-nowrap">User Id</th>
+                      <th className="whitespace-nowrap">Wallet</th>
+                      <th className="whitespace-nowrap">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {winners.map((item, idx) => (
+                      <tr className="text-white mx-auto" key={idx}>
+                        <th className="whitespace-nowrap">{idx + 1}</th>
+                        <th className="whitespace-nowrap">{item?.userId}</th>
+                        <th className="whitespace-nowrap">
+                          {item?.wallet?.slice(0, 10)}...
+                          {item?.wallet?.slice(12, 20)}
+                        </th>
+                        <th className="whitespace-nowrap">
+                          <SendLotteryPayment
+                            wallet={item?.wallet}
+                            userId={item?.userId}
+                            isEthPayment={true}
+                          />
+                        </th>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
+
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -416,7 +410,10 @@ const AllLottery = () => {
                 </th>
                 <th className="whitespace-nowrap">
                   {item?.winners?.length > 0 && (
-                    <button className="p-2 bg-green-600 hover:bg-green-800 text-white ">
+                    <button
+                      onClick={() => handleShowWinners(item?.winners)}
+                      className="p-2 bg-green-600 hover:bg-green-800 text-white "
+                    >
                       Winner List
                     </button>
                   )}
