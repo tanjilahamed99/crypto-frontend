@@ -59,7 +59,6 @@ const BuyButton = ({ isEthPayment, lotteryData, id, refetchAll, price }) => {
           if (data?.status) {
             const newLotteryData = {
               users: [],
-              remaining: parseFloat(lotteryData?.remaining) - 1,
               sell: parseFloat(lotteryData?.sell) + 1,
               quantity: parseFloat(lotteryData?.quantity) - 1,
             };
@@ -74,6 +73,8 @@ const BuyButton = ({ isEthPayment, lotteryData, id, refetchAll, price }) => {
                 { userId: user?.user?._id, wallet: user?.user?.wallet },
               ];
             }
+
+            console.log(newLotteryData);
 
             const url = `${BASE_URL}/buyLottery/${id}`;
             const { data } = await axios.put(url, newLotteryData);

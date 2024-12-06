@@ -48,7 +48,7 @@ const EditLottery = ({ searchParams }) => {
       {" "}
       <form
         onSubmit={handleUpdateLottery}
-        className="text-black space-y-5 w-full md:w-[70%] mx-auto lg:w-[60%]"
+        className="text-white space-y-5 w-full md:w-[70%] mx-auto lg:w-[60%]"
       >
         <div>
           <h2 className="text-white font-semibold  mb-1">Title</h2>

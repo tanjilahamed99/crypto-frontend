@@ -15,6 +15,7 @@ const SendLotteryPayment = ({
   id,
   winners,
   winnerData,
+  setReValidate,
 }) => {
   const address = useAddress(); // Get user's wallet address
   const signer = useSigner(); // Get signer to send transactions
@@ -60,6 +61,7 @@ const SendLotteryPayment = ({
           console.log(data);
           if (data?.result?.modifiedCount > 0) {
             refetchAll();
+            setReValidate(true);
           }
         }
       }

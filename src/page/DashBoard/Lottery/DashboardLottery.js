@@ -11,7 +11,7 @@ const DashboardLottery = ({ disable }) => {
   const [allLottery, refetch] = useGetAllLottery();
   console.log(allLottery?.lottery);
   const { data: user } = useSession();
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className=" w-full lg:w-[1000px] xl:w-[1350px] mx-auto space-y-2 mt-2">

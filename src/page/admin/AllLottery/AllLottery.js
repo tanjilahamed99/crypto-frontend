@@ -8,7 +8,7 @@ import { RxCross1 } from "react-icons/rx";
 import Swal from "sweetalert2";
 import { MdDeleteForever } from "react-icons/md";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import Link from "next/link";
 import SendLotteryPayment from "./SendLotteryPayment";
@@ -19,6 +19,7 @@ const AllLottery = () => {
   const [lotteryImg, setLotteryImg] = useState("");
   const [winners, setWinners] = useState([]);
   const [defaultId, setDefaultId] = useState("");
+  const [reValidate, setReValidate] = useState(true);
 
   const handleCreateLottery = async (e) => {
     e.preventDefault();
@@ -155,8 +156,6 @@ const AllLottery = () => {
     document.getElementById("my_modal_4").showModal();
     setDefaultId(id);
   };
-
-  // console.log(allLottery);
 
   return (
     <div>
@@ -345,6 +344,7 @@ const AllLottery = () => {
                             id={defaultId}
                             refetchAll={refetch}
                             winnerData={item}
+                            setReValidate={setReValidate}
                           />
                         </th>
                       </tr>
@@ -406,7 +406,7 @@ const AllLottery = () => {
                 </th>
 
                 <th className="whitespace-nowrap">
-                  {item?.remaining <= 0 && (
+                  {item?.quantity <= 0 && (
                     <button
                       onClick={() => getWinner(item?._id)}
                       className="py-2 px-4 hover:bg-[#af7835] bg-primary text-white "
