@@ -11,7 +11,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import Link from "next/link";
-import SendLotteryPayment from "./sendLotteryPayment";
+import SendLotteryPayment from "./SendLotteryPayment";
 
 const AllLottery = () => {
   const { data: user } = useSession() || {};
@@ -150,10 +150,13 @@ const AllLottery = () => {
     }
   };
 
-  const handleShowWinners = (data) => {
+  const handleShowWinners = ({ data, id }) => {
     setWinners([...data]);
     document.getElementById("my_modal_4").showModal();
+    setDefaultId(id);
   };
+
+  // console.log(allLottery);
 
   return (
     <div>
@@ -301,9 +304,9 @@ const AllLottery = () => {
         </div>
       </dialog>
 
-      {/* see winner list */}
+      {/* You can open the modal using document.getElementById('ID').showModal() method */}
       <dialog id="my_modal_4" className="modal">
-        <div className="modal-box bg-gray-600 text-white pt-0">
+        <div className="modal-box w-11/12 max-w-5xl">
           <div className="modal-action">
             <form method="dialog">
               <button>
@@ -338,6 +341,10 @@ const AllLottery = () => {
                             wallet={item?.wallet}
                             userId={item?.userId}
                             isEthPayment={true}
+                            winners={winners}
+                            id={defaultId}
+                            refetchAll={refetch}
+                            winnerData={item}
                           />
                         </th>
                       </tr>
@@ -411,7 +418,12 @@ const AllLottery = () => {
                 <th className="whitespace-nowrap">
                   {item?.winners?.length > 0 && (
                     <button
-                      onClick={() => handleShowWinners(item?.winners)}
+                      onClick={() =>
+                        handleShowWinners({
+                          data: item?.winners,
+                          id: item?._id,
+                        })
+                      }
                       className="p-2 bg-green-600 hover:bg-green-800 text-white "
                     >
                       Winner List
