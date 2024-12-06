@@ -382,7 +382,7 @@ const Banner = () => {
           <div className="flex justify-end ">
             <button
               onClick={handleRegister}
-              className=" bg-primary btn hover:bg-[#e08e2a] border-0  mt-5"
+              className="text-white bg-primary btn hover:bg-[#e08e2a] border-0  mt-5"
             >
               Register
             </button>

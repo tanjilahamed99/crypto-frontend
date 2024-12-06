@@ -42,13 +42,13 @@ const SendLotteryPayment = ({
         // console.log(tx);
         if (tx) {
           const main = winners?.filter((user) => user?.userId !== userId);
-          console.log(main);
           const mainWinnersList = [
             {
               userId,
               wallet,
               history: tx,
               payment: "Completed",
+              amount: 0.03,
             },
             ...main,
           ];

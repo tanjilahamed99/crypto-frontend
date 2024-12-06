@@ -5,9 +5,13 @@ import { TbArrowUp } from "react-icons/tb";
 import LotterySlider from "./LotterySlider";
 import useGetAllLottery from "@/hooks/useGetAllLottery/useGetAllLottery";
 import BuyButton from "./Send";
+import { useSession } from "next-auth/react";
 
 const DashboardLottery = ({ disable }) => {
   const [allLottery, refetch] = useGetAllLottery();
+  console.log(allLottery?.lottery);
+  const { data: user } = useSession();
+  console.log(user);
 
   return (
     <div className=" w-full lg:w-[1000px] xl:w-[1350px] mx-auto space-y-2 mt-2">
@@ -116,13 +120,74 @@ const DashboardLottery = ({ disable }) => {
                     </div>
                   </dialog>
                 </div>
+
+                <dialog
+                  id={`my_modal_${item?._id}_winnersList`}
+                  className="modal"
+                >
+                  <div className="modal-box bg-black border-gray-600 border-2 shadow-md shadow-gray-500">
+                    <form method="dialog">
+                      {/* if there is a button in form, it will close the modal */}
+                      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 ">
+                        ✕
+                      </button>
+                    </form>
+                    <div>
+                      <div className="overflow-x-auto">
+                        <table className="table">
+                          {/* head */}
+                          <thead>
+                            <tr className="text-white">
+                              <th className="whitespace-nowrap">No.</th>
+                              <th className="whitespace-nowrap">User Id</th>
+                              <th className="whitespace-nowrap">Wallet</th>
+                              <th className="whitespace-nowrap">Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {item?.winners?.map((item, idx) => (
+                              <tr className="text-white mx-auto" key={idx}>
+                                <th className="whitespace-nowrap">{idx + 1}</th>
+                                <th className="whitespace-nowrap">
+                                  {item?.userId}
+                                </th>
+                                <th className="whitespace-nowrap">
+                                  {item?.wallet?.slice(0, 10)}...
+                                  {item?.wallet?.slice(12, 20)}
+                                </th>
+                                <th className="whitespace-nowrap">
+                                  <button className="bg-green-500 px-5 py-2 rounded-md">
+                                    {item?.payment}
+                                  </button>
+                                </th>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </dialog>
                 <div className="text-white md:text-lg flex items-center font-semibold">
-                  <button
-                    onClick={() => console.log(item?.users)}
-                    className="text-lg font-semibold bg-primary text-white rounded-xl px-3 py-1 hover:bg-green-700"
-                  >
-                    Winner List
-                  </button>
+                  {item?.winners?.length > 0 ? (
+                    <button
+                      onClick={() =>
+                        document
+                          .getElementById(`my_modal_${item?._id}_winnersList`)
+                          .showModal()
+                      }
+                      className="text-lg font-semibold bg-primary text-white rounded-xl px-3 py-1 hover:bg-green-700"
+                    >
+                      Winner List
+                    </button>
+                  ) : (
+                    <button
+                      className="text-lg font-semibold bg-primary text-white rounded-xl px-3 py-1 "
+                      disabled
+                    >
+                      Winner List
+                    </button>
+                  )}
                 </div>
               </div>
               <div>
@@ -131,21 +196,32 @@ const DashboardLottery = ({ disable }) => {
                     className="text-white text-lg font-semibold
       "
                   >
-                    Rank: 0
+                    Rank: 1
                   </h2>
                 </div>
-                <div className=" rounded-md md:mt-2 my-2 md:mb-6">
-                  <h2
-                    className="text-white text-lg font-semibold
-      "
-                  >
-                    Winner amount: 0.00
-                  </h2>
+
+                
+                <div className="rounded-md md:mt-2 my-2 md:mb-6">
+                  {(() => {
+                    const winner = item?.winners?.find(
+                      (win) => win.userId === user?.user?._id
+                    );
+                    return (
+                      <h2 className="text-white text-lg font-semibold">
+                        Winner amount: {winner?.amount || "0.00"}
+                      </h2>
+                    );
+                  })()}
                 </div>
+
                 <div className="">
-                  <button className="flex text-nowrap mt-5 items-center  py-1 px-2 text-white bg-black rounded-lg border-2 border-indigo-600 transform transition-transform duration-300 hover:scale-110 hover:bg-green-700 hover:border-indigo-700">
-                    Claim Reward
-                  </button>
+                  {item?.winners?.some(
+                    (win) => win.userId === user?.user?._id
+                  ) && (
+                    <button className="flex text-nowrap mt-5 items-center py-1 px-2 text-white bg-black rounded-lg border-2 border-indigo-600 transform transition-transform duration-300 hover:scale-110 hover:bg-green-700 hover:border-indigo-700">
+                      Claimed Reward
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

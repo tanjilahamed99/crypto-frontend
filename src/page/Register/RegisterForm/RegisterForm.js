@@ -76,7 +76,7 @@ const RegisterForm = ({ refer }) => {
         </div>
         <button
           onClick={register}
-          className="btn border-none bg-primary w-full my-5 "
+          className="btn border-none bg-primary w-full my-5 text-white"
           disabled={address ? false : true}
         >
           Register
