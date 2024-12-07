@@ -21,8 +21,6 @@ const PowerMatrix = () => {
     wallet: user?.user?.wallet,
   });
 
-  // console.log(programsByTpe)
-
 
   return (
     <div className="w-full lg:w-[1000px] xl:w-[1350px] mx-auto space-y-4 px-2 lg:px-0">

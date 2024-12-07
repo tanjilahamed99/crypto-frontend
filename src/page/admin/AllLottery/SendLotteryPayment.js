@@ -5,6 +5,7 @@ import { useAddress, useSigner, useContract } from "@thirdweb-dev/react";
 import axios from "axios";
 import { ethers } from "ethers";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 
 const SendLotteryPayment = ({
   isEthPayment,
@@ -20,21 +21,20 @@ const SendLotteryPayment = ({
   const address = useAddress(); // Get user's wallet address
   const signer = useSigner(); // Get signer to send transactions
   const { data: user } = useSession();
+  const [loading, setIsLoading] = useState(false);
 
   const ETH_PRICE = "0.001"; // ETH price
-
-  // console.log(id);
-
-  console.log(winners);
 
   const handleBuy = async () => {
     if (!address || !signer) {
       alert("Connect your wallet first!");
       return;
     }
+    setIsLoading(true);
     try {
       if (isEthPayment) {
         // ETH Payment
+
         const tx = await signer.sendTransaction({
           to: wallet,
           value: ethers.utils.parseEther(ETH_PRICE),
@@ -68,6 +68,8 @@ const SendLotteryPayment = ({
     } catch (error) {
       console.error("Transaction failed:", error);
       alert("Transaction failed: " + error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -84,6 +86,19 @@ const SendLotteryPayment = ({
         >
           Send
         </button>
+      )}
+
+      {/* Loading Modal */}
+      {isLoading && (
+        <dialog id="loading_modal" className="modal" open>
+          <div className="modal-box">
+            <span className="loading loading-spinner loading-lg flex justify-center mx-auto"></span>
+            <h3 className="font-bold text-lg">Processing...</h3>
+            <p className="py-4">
+              Your transaction is being processed. Please wait...
+            </p>
+          </div>
+        </dialog>
       )}
     </>
   );

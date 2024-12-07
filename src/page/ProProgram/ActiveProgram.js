@@ -8,7 +8,13 @@ import { ethers } from "ethers";
 import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 
-const ActiveProgram = ({ isEthPayment, programData, price, proRefetch, id }) => {
+const ActiveProgram = ({
+  isEthPayment,
+  programData,
+  price,
+  proRefetch,
+  id,
+}) => {
   const address = useAddress(); // Get user's wallet address
   const signer = useSigner(); // Get signer to send transactions
   const { data: user } = useSession();
@@ -79,25 +85,22 @@ const ActiveProgram = ({ isEthPayment, programData, price, proRefetch, id }) => 
               ];
             }
 
+            console.log(newProgramData);
 
-            console.log(newProgramData)
+            const url = `${BASE_URL}/buyProgram/${id}`;
+            const { data } = await axios.put(url, newProgramData);
 
-            // const url = `${BASE_URL}/buyProgram/${id}`;
-            // const { data } = await axios.put(url, newProgramData);
+            console.log(data);
 
-
-            // console.log(data)
-
-
-            // if (data?.result?.modifiedCount > 0) {
-            //   Swal.fire({
-            //     icon: "success",
-            //     title: "Transaction Completed",
-            //     text: "Your purchase was successful!",
-            //   });
-            //   // refetch();
-            //   // refetchAll();
-            // }
+            if (data?.result?.modifiedCount > 0) {
+              Swal.fire({
+                icon: "success",
+                title: "Transaction Completed",
+                text: "Your purchase was successful!",
+              });
+              refetch();
+              proRefetch();
+            }
           }
         }
       }

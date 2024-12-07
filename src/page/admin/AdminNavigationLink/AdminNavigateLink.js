@@ -58,7 +58,7 @@ const AdminNavigateLink = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
-          href={"/admin/dashboard/allUser"}
+          href={"/admin/dashboard/royaltySalary"}
           className="flex items-center text-md font-semibold gap-3"
         >
           <IoHomeOutline className="text-2xl" /> Royalty Tag

@@ -20,16 +20,13 @@ const AdminProProgram = () => {
     programName: "millionaire",
   });
 
-
   const handleAddSlot = async (e) => {
     e.preventDefault();
     const form = e.target;
     const price = form.price.value;
-    const quantity = form.quantity.value;
 
     const newSlotData = {
       price,
-      quantity,
       order:
         programs?.programs?.length > 0
           ? parseFloat(programs?.programs?.length) + 1
@@ -38,13 +35,9 @@ const AdminProProgram = () => {
       programName: "millionaire",
     };
 
-    console.log(newSlotData);
-
     try {
       const url = `${BASE_URL}/admin/proprogram/${user?.user?._id}/${user?.user?.email}/${user?.user?.wallet}`;
       const { data } = await axios.post(url, newSlotData);
-      console.log(data);
-
       if (data?.status) {
         document.getElementById("my_modal_1").close();
         Swal.fire({
@@ -121,10 +114,9 @@ const AdminProProgram = () => {
                     <LuCircleDollarSign className="text-primary text-2xl" />
                     {item?.price}
                   </p>
-                  <p className="font-semibold">Quantity : {item?.quantity}</p>
                   <p className="flex items-center gap-2 ">
                     <FaUser className="text-primary text-xl" />
-                    {item?.users ? item?.users : 0}
+                    {item?.users?.length > 0 ? item?.users?.length : 0}
                   </p>
 
                   <div className="flex justify-between text-2xl">
@@ -152,7 +144,7 @@ const AdminProProgram = () => {
                   </button>
                 </form>
               </div>
-              <form onSubmit={handleAddSlot} className="text-black space-y-3">
+              <form onSubmit={handleAddSlot} className="text-white space-y-3">
                 <div>
                   <h2 className="text-white font-semibold  mb-1">Price</h2>
                   <input
@@ -163,17 +155,6 @@ const AdminProProgram = () => {
                     className="w-full pl-2 py-2 rounded-md"
                   />
                 </div>
-                <div>
-                  <h2 className="text-white font-semibold  mb-1">Quantity</h2>
-                  <input
-                    type="number"
-                    name="quantity"
-                    placeholder="Ex: quantity"
-                    required
-                    className="w-full pl-2 py-2 rounded-md"
-                  />
-                </div>
-
                 <button className="bg-primary font-semibold border-none h-10 w-28 text-white hover:bg-[#f2a74b] rounded-lg">
                   Create
                 </button>
