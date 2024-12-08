@@ -50,7 +50,12 @@ const RegistrationFunction = () => {
 
   return (
     <div>
-      <ConnectWallet btnTitle="Connect" hideBuyButton hideNetworkSelector />
+      <ConnectWallet
+        btnTitle="Connect"
+        hideBuyButton
+        hideNetworkSelector
+        className="bg-primary"
+      />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import { FaBars } from "react-icons/fa6";
@@ -13,8 +14,11 @@ import { AiTwotoneDollar } from "react-icons/ai";
 import { FaPhoneAlt } from "react-icons/fa";
 import { CiLogin } from "react-icons/ci";
 import "./drawer.css";
+import { signOut, useSession } from "next-auth/react";
+import { useAddress } from "@thirdweb-dev/react";
 
 const Drawer = () => {
+  const { data: user } = useSession();
   const ulLinks = (
     <>
       {" "}
@@ -23,57 +27,69 @@ const Drawer = () => {
           <IoHomeOutline className="text-2xl" /> Home
         </Link>
       </li>
+      {user && (
+        <>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+            <Link
+              href={"/dashboard/profile"}
+              className="flex items-center text-md font-semibold"
+            >
+              <CgProfile className="text-2xl" /> Profile
+            </Link>
+          </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+            <Link
+              href={"/dashboard/level"}
+              className="flex items-center text-md font-semibold"
+            >
+              <SiLevelsdotfyi className="text-2xl" /> Level Team
+            </Link>
+          </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+            <Link
+              href={"/dashboard/lottery"}
+              className="flex items-center text-md font-semibold"
+            >
+              <GoGift className="text-2xl" /> Lottery
+            </Link>
+          </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+            <Link
+              href={"/dashboard/proProgram"}
+              className="flex items-center text-md font-semibold"
+            >
+              <SlMenu className="text-2xl" /> Pro Program
+            </Link>
+          </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+            <Link
+              href={"/dashboard/royaltySalary"}
+              className="flex items-center text-md font-semibold"
+            >
+              <AiTwotoneDollar className="text-2xl" /> Royalty Salary
+            </Link>
+          </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+            <Link
+              href={"/dashboard/gamingNft"}
+              className="flex items-center text-md font-semibold"
+            >
+              <GrGamepad className="text-2xl" /> Gaming NFT
+            </Link>
+          </li>
+        </>
+      )}
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
         <Link
-          href={"/dashboard/profile"}
+          href={"/updates"}
           className="flex items-center text-md font-semibold"
         >
-          <CgProfile className="text-2xl" /> Profile
+          <LuNewspaper className="text-2xl" /> Updates
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
         <Link
-          href={"/dashboard/level"}
-          className="flex items-center text-md font-semibold"
-        >
-          <SiLevelsdotfyi className="text-2xl" /> Level Team
-        </Link>
-      </li>
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link
-          href={"/dashboard/lottery"}
-          className="flex items-center text-md font-semibold"
-        >
-          <GoGift className="text-2xl" /> Lottery
-        </Link>
-      </li>
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link
-          href={"/dashboard/proProgram"}
-          className="flex items-center text-md font-semibold"
-        >
-          <SlMenu className="text-2xl" /> Pro Program
-        </Link>
-      </li>
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link
-          href={"/dashboard/royaltySalary"}
-          className="flex items-center text-md font-semibold"
-        >
-          <AiTwotoneDollar className="text-2xl" /> Royalty Salary
-        </Link>
-      </li>
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link
-          href={"/dashboard/gamingNft"}
-          className="flex items-center text-md font-semibold"
-        >
-          <GrGamepad className="text-2xl" /> Gaming NFT
-        </Link>
-      </li>
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link
-          href={"/dashboard/news"}
+          href={"/news"}
           className="flex items-center text-md font-semibold"
         >
           <LuNewspaper className="text-2xl" /> News & Event
@@ -81,7 +97,7 @@ const Drawer = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
         <Link
-          href={"/dashboard/support"}
+          href={"/support"}
           className="flex items-center text-md font-semibold"
         >
           <FaPhoneAlt className="text-2xl" /> Support
@@ -97,6 +113,7 @@ const Drawer = () => {
       </li>
     </>
   );
+  const wallet = useAddress();
 
   return (
     <div className="drawer">
@@ -125,7 +142,27 @@ const Drawer = () => {
           </label>
           {/* Sidebar content here */}
           <div className="text-white">
-            <ul className=" flex flex-col gap-3">{ulLinks}</ul>
+            <ul className=" flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => signOut()}
+                  className="bg-red-800 font-bold hover:bg-red-900 text-white text-md border-none h-10 w-28 rounded-lg md:hidden"
+                >
+                  Logout
+                </button>
+                {!wallet && (
+                  <>
+                    <Link href={"/register"}>
+                      <button className="bg-primary text-white  text-md font-semibold border-none h-10 w-28 hover:bg-[#f2a74b] rounded-lg md:hidden">
+                        Register
+                      </button>
+                    </Link>
+                  </>
+                )}
+              </div>
+
+              {ulLinks}
+            </ul>
             <div className="mt-10 text-start">
               <h3 className="text-xl font-bold">Change Language</h3>
             </div>
