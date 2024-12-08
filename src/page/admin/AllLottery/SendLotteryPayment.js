@@ -156,7 +156,7 @@ const SendLotteryPayment = ({
 
   return (
     <>
-      {winnerData?.payment === "Complet" ? (
+      {winnerData?.payment === "Completed" ? (
         <button className="bg-green-500  py-2 px-5 rounded-md cursor-text">
           Completed
         </button>

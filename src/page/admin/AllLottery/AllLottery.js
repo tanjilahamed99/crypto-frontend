@@ -8,7 +8,7 @@ import { RxCross1 } from "react-icons/rx";
 import Swal from "sweetalert2";
 import { MdDeleteForever } from "react-icons/md";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import Link from "next/link";
 import SendLotteryPayment from "./SendLotteryPayment";
@@ -20,8 +20,6 @@ const AllLottery = () => {
   const [lotteryImg, setLotteryImg] = useState("");
   const [winners, setWinners] = useState([]);
   const [defaultId, setDefaultId] = useState("");
-
-  console.log(allLottery);
 
   const handleCreateLottery = async (e) => {
     e.preventDefault();
@@ -461,7 +459,7 @@ const AllLottery = () => {
                   />
                 </th>
 
-                {item?.winners?.length < 0 ? (
+                {item?.winners?.length > 0 ? (
                   <th className="whitespace-nowrap">
                     <button className="py-2 px-4 hover:bg-[#af7835] bg-primary text-white ">
                       Completed
