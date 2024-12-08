@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { CiEdit } from "react-icons/ci";
 import Link from "next/link";
 import SendLotteryPayment from "./SendLotteryPayment";
+import { AiOutlineDollarCircle } from "react-icons/ai";
 
 const AllLottery = () => {
   const { data: user } = useSession() || {};
@@ -19,7 +20,8 @@ const AllLottery = () => {
   const [lotteryImg, setLotteryImg] = useState("");
   const [winners, setWinners] = useState([]);
   const [defaultId, setDefaultId] = useState("");
-  const [reValidate, setReValidate] = useState(true);
+
+  console.log(allLottery);
 
   const handleCreateLottery = async (e) => {
     e.preventDefault();
@@ -132,10 +134,57 @@ const AllLottery = () => {
 
   const handleSetWinners = async (id) => {
     try {
+      const lotteryData = allLottery?.lottery?.find((item) => item?._id === id);
+
+      // Calculate total prize pool
+      const totalPrizePool = lotteryData.users.length * lotteryData.price;
+
+      // Deduct 10% commission
+      const prizeAfterCommission = totalPrizePool - totalPrizePool * 0.1;
+
+      // Define placement percentages
+      const placementPercentages = [40, 20, 15, 10, 5]; // Top 5 placements
+      // Calculate rewards for top 5 placements
+      const top5Rewards = placementPercentages.map(
+        (percentage) => (prizeAfterCommission * percentage) / 100
+      );
+
+      // Remaining prize pool for all other users
+      const remainingPrizePool =
+        prizeAfterCommission -
+        top5Rewards.reduce((sum, reward) => sum + reward, 0);
+
+      // Calculate reward for remaining users
+      const remainingUsers = lotteryData.users.length - 5;
+      const rewardPerRemainingUser =
+        remainingUsers > 0 ? remainingPrizePool / remainingUsers : 0;
+
+      // Prepare updated winners with placements and rewards
+      const updatedWinners = lotteryData.users.map((user, index) => {
+        let reward = 0;
+
+        if (index < 5) {
+          // Top 5 users
+          reward = top5Rewards[index];
+        } else {
+          // All other users
+          reward = rewardPerRemainingUser;
+        }
+
+        return {
+          userId: user.userId,
+          wallet: user.wallet,
+          placement: index + 1,
+          reward,
+        };
+      });
+
+      // Send updated winners data to the server
       const { data } = await axios.post(
         `${BASE_URL}/admin/setWinners/${user?.user._id}/${user?.user?.email}/${user?.user?.wallet}/${id}`,
-        winners
+        updatedWinners
       );
+
       console.log(data);
       if (data?.result.modifiedCount > 0) {
         document.getElementById("my_modal_3").close();
@@ -234,7 +283,7 @@ const AllLottery = () => {
               </button>
             </form>
           </div>
-          <form onSubmit={handleCreateLottery} className="text-black space-y-3">
+          <form onSubmit={handleCreateLottery} className="text-white space-y-3">
             <div>
               <h2 className="text-white font-semibold  mb-1">Title</h2>
               <input
@@ -320,20 +369,27 @@ const AllLottery = () => {
                   {/* head */}
                   <thead>
                     <tr className="text-white">
-                      <th className="whitespace-nowrap">No.</th>
+                      <th className="whitespace-nowrap">Placement</th>
                       <th className="whitespace-nowrap">User Id</th>
                       <th className="whitespace-nowrap">Wallet</th>
+                      <th className="whitespace-nowrap">Reward</th>
                       <th className="whitespace-nowrap">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {winners.map((item, idx) => (
                       <tr className="text-white mx-auto" key={idx}>
-                        <th className="whitespace-nowrap">{idx + 1}</th>
+                        <th className="whitespace-nowrap">{item?.placement}</th>
                         <th className="whitespace-nowrap">{item?.userId}</th>
                         <th className="whitespace-nowrap">
                           {item?.wallet?.slice(0, 10)}...
                           {item?.wallet?.slice(12, 20)}
+                        </th>
+                        <th className="whitespace-nowrap">
+                          <div className="flex items-center gap-1">
+                            <AiOutlineDollarCircle className="text-primary text-lg" />{" "}
+                            {item?.reward}
+                          </div>
                         </th>
                         <th className="whitespace-nowrap">
                           <SendLotteryPayment
@@ -344,7 +400,7 @@ const AllLottery = () => {
                             id={defaultId}
                             refetchAll={refetch}
                             winnerData={item}
-                            setReValidate={setReValidate}
+                            price={item?.reward}
                           />
                         </th>
                       </tr>
@@ -405,16 +461,25 @@ const AllLottery = () => {
                   />
                 </th>
 
-                <th className="whitespace-nowrap">
-                  {item?.quantity <= 0 && (
-                    <button
-                      onClick={() => getWinner(item?._id)}
-                      className="py-2 px-4 hover:bg-[#af7835] bg-primary text-white "
-                    >
-                      Draw
+                {item?.winners?.length < 0 ? (
+                  <th className="whitespace-nowrap">
+                    <button className="py-2 px-4 hover:bg-[#af7835] bg-primary text-white ">
+                      Completed
                     </button>
-                  )}
-                </th>
+                  </th>
+                ) : (
+                  <th className="whitespace-nowrap">
+                    {item?.quantity <= 0 && (
+                      <button
+                        onClick={() => getWinner(item?._id)}
+                        className="py-2 px-4 hover:bg-[#af7835] bg-primary text-white "
+                      >
+                        Draw
+                      </button>
+                    )}
+                  </th>
+                )}
+
                 <th className="whitespace-nowrap">
                   {item?.winners?.length > 0 && (
                     <button

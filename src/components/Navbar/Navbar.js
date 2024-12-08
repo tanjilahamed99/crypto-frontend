@@ -57,9 +57,9 @@ const Navbar = () => {
         </ul>
       </div>
 
-      <div className="mr-10">
-      </div>
+      <div className="mr-10"></div>
       <div className="flex-none">
+        <RegistrationFunction />
         <Link href={"/"}>
           <Image
             src={

@@ -11,6 +11,7 @@ import AdminDrawer from "./AdminDrawer";
 import { GrGamepad } from "react-icons/gr";
 import { MdOutlineMedicalInformation } from "react-icons/md";
 import { SlMenu } from "react-icons/sl";
+import { LuNewspaper } from "react-icons/lu";
 
 const AdminNavigateLink = () => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
@@ -93,7 +94,15 @@ const AdminNavigateLink = () => {
           href={"/admin/dashboard/gamingNft"}
           className="flex items-center text-md font-semibold gap-3"
         >
-          <GrGamepad className="text-2xl" /> Gamign NFT
+          <GrGamepad className="text-2xl" /> Gaming NFT
+        </Link>
+      </li>
+      <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
+        <Link
+          href={"/admin/dashboard/allUpdates"}
+          className="flex items-center text-md font-semibold gap-3"
+        >
+          <LuNewspaper className="text-2xl" /> Updates
         </Link>
       </li>
       <li className="border border-gray-600 rounded-md hover:bg-gray-700 p-2">
