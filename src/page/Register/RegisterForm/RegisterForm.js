@@ -21,7 +21,7 @@ const RegisterForm = ({ refer }) => {
   const register = async () => {
     const { data } = await axios?.post(url, {
       wallet: address,
-      referBy: refer ? refer : "1097473",
+      referBy: refer ? refer : "6729caf3a6953243197ef6bb",
       joined: date,
     });
 
@@ -61,7 +61,7 @@ const RegisterForm = ({ refer }) => {
         <input
           className="bg-black border border-gray-600 w-full  p-2 rounded-md mt-2"
           placeholder="refer code"
-          defaultValue={refer ? refer : "09364"}
+          defaultValue={refer ? refer : "6729caf3a6953243197ef6bb"}
           disabled
         />
 

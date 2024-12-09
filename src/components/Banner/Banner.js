@@ -45,7 +45,7 @@ const Banner = () => {
         Welcome to
       </h2>
       <h2
-        className="text-3xl md:text-6xl font-bold text-center bg-clip-text text-transparent animate-gradient-text"
+        className="text-4xl md:text-6xl font-extrabold text-center bg-clip-text text-transparent animate-gradient-text"
         style={{
           backgroundImage:
             "linear-gradient(to right, #ff7eb3, #ff65a3, #7afcff, #feff9c, #fff740, #ff00a7, #00d2ff, #ff5f00, #ff00c8, #00ffeb, #ffa07a, #00ff7f, #dda0dd, #ff6347, #4682b4, #7fff00)",
@@ -330,7 +330,7 @@ const Banner = () => {
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       <button
         onClick={() => document.getElementById("my_modal_1").showModal()}
-        className="text-white h-10 w-60 md:h-20 md:w-80 rounded-full text-2xl md:text-3xl mx-auto flex justify-center items-center mb-5 cursor-pointer"
+        className="text-white h-10 w-60 md:h-20 md:w-80 rounded-full font-extrabold text-2xl md:text-3xl mx-auto flex justify-center items-center mb-5 cursor-pointer"
         style={{
           backgroundImage: "linear-gradient(90deg, #e56910 0%, #e56910 100%)",
           border: "1px solid #0F0",

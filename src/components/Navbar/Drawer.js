@@ -16,6 +16,7 @@ import { CiLogin } from "react-icons/ci";
 import "./drawer.css";
 import { signOut, useSession } from "next-auth/react";
 import { useAddress } from "@thirdweb-dev/react";
+import { AiOutlineDashboard } from "react-icons/ai";
 
 const Drawer = () => {
   const { data: user } = useSession();
@@ -29,6 +30,14 @@ const Drawer = () => {
       </li>
       {user && (
         <>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+            <Link
+              href={"/dashboard"}
+              className="flex items-center text-md font-semibold"
+            >
+              <AiOutlineDashboard className="text-2xl" /> Dashboard
+            </Link>
+          </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-700">
             <Link
               href={"/dashboard/profile"}

@@ -24,7 +24,7 @@ const RoadMap = () => {
 
         <div>
           {/* roadmap main part */}
-          <div className="flex flex-col  my-10 space-y-4">g
+          <div className="flex flex-col  my-10 space-y-4">
             {/* Project Logo */}
             <div className="flex items-center mt-10 gap-2 md:gap-5 md:justify-center justify-start">
               <Image
