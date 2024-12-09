@@ -1,12 +1,17 @@
 "use client";
 
+import { BASE_URL } from "@/constant/constant";
 import useGetAllUpdates from "@/hooks/useGetAllUpdates/useGetAllUpdates";
+import axios from "axios";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
+import Swal from "sweetalert2";
 
 const AdminAllUpdates = () => {
   const [allUpdates, refetch] = useGetAllUpdates();
   const [lotteryImg, setLotteryImg] = useState("");
+  const { data: user } = useSession();
 
   const handleCreateUpdate = async (e) => {
     e.preventDefault();

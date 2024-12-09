@@ -8,7 +8,6 @@ import axios from "axios";
 import { BASE_URL } from "@/constant/constant";
 import { useRouter } from "next/navigation";
 import { signIn, useSession, signOut } from "next-auth/react";
-import { useEffect } from "react";
 
 const RegisterForm = ({ refer }) => {
   const address = useAddress();
@@ -16,7 +15,6 @@ const RegisterForm = ({ refer }) => {
   const url = `${BASE_URL}/register`;
   const { data: user } = useSession();
   const date = Date();
-  console.log(user);
 
   const register = async () => {
     const { data } = await axios?.post(url, {
@@ -24,6 +22,8 @@ const RegisterForm = ({ refer }) => {
       referBy: refer ? refer : "6729caf3a6953243197ef6bb",
       joined: date,
     });
+
+    // console.log(data);
 
     if (data?.status) {
       try {
@@ -34,7 +34,14 @@ const RegisterForm = ({ refer }) => {
         });
 
         if (response?.status) {
-          router.push("/dashboard");
+          if (user) {
+            const newUser = user?.user?._id;
+            const referOwner = refer || "6729caf3a6953243197ef6bb";
+            const { data } = await axios.post(
+              `${BASE_URL}/saveRefer/${referOwner}/${newUser}`
+            );
+            router.push("/dashboard");
+          }
         }
       } catch (error) {
         console.error("Error logging in:", error);
