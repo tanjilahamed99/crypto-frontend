@@ -1,7 +1,8 @@
 "use client";
 
 import { BASE_URL } from "@/constant/constant";
-import { useAddress, useSigner, useContract } from "@thirdweb-dev/react";
+import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
+import { useAddress, useSigner } from "@thirdweb-dev/react";
 import axios from "axios";
 import { ethers } from "ethers";
 import { useSession } from "next-auth/react";
@@ -16,14 +17,13 @@ const SendLotteryPayment = ({
   id,
   winners,
   winnerData,
-  setReValidate,
 }) => {
   const address = useAddress(); // Get user's wallet address
   const signer = useSigner(); // Get signer to send transactions
   const { data: user } = useSession();
   const [isLoading, setIsLoading] = useState(false);
   const date = Date();
-
+  const [websiteData, refetch] = useGetWebsiteData();
   const ETH_PRICE = "0.001"; // ETH price
 
   // // Fetch BNB price in USD
@@ -76,10 +76,45 @@ const SendLotteryPayment = ({
             `${BASE_URL}/admin/sendLotteryPayment/${user?.user._id}/${user?.user?.email}/${user?.user?.wallet}/${id}`,
             mainWinnersList
           );
-          console.log(data);
           if (data?.result?.modifiedCount > 0) {
             refetchAll();
-            setReValidate(true);
+          }
+
+          let history = [];
+
+          if (websiteData?.totalWithdrawal?.length > 0) {
+            history = [
+              {
+                history: tx,
+                userId: user?.user?._id,
+                wallet: address,
+                amount: parseFloat(ETH_PRICE),
+                date,
+              },
+              ...websiteData?.totalWithdrawal,
+            ];
+          } else {
+            history = [
+              {
+                history: tx,
+                userId: user?.user?._id,
+                wallet: address,
+                amount: parseFloat(ETH_PRICE),
+                date,
+              },
+            ];
+          }
+
+          const mainHistory = {
+            totalWithdrawal: history,
+          };
+
+          const { data: historyData } = await axios.post(
+            `${BASE_URL}/history`,
+            mainHistory
+          );
+          if (historyData?.status) {
+            refetch();
           }
         }
       }

@@ -1,8 +1,9 @@
 "use client";
 
 import { BASE_URL } from "@/constant/constant";
+import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
 import useGetAllMyCartData from "@/hooks/userMyCard/useMyCartData";
-import { useAddress, useSigner, useContract } from "@thirdweb-dev/react";
+import { useAddress, useSigner } from "@thirdweb-dev/react";
 import axios from "axios";
 import { ethers } from "ethers";
 import { useSession } from "next-auth/react";
@@ -22,9 +23,11 @@ const ActiveProgram = ({
     userId: user?.user?._id,
     wallet: user?.user?.wallet,
   });
-
+  const [isLoading, setIsLoading] = useState(false);
+  const date = Date();
   const ADMIN_ADDRESS = "0xd4835Bc8a235Cc6Ecd6274A06B40495331310F01"; // Admin address
   const ETH_PRICE = "0.0001"; // ETH price
+  const [websiteData] = useGetWebsiteData();
 
   const handleBuy = async () => {
     if (!address || !signer) {
@@ -102,6 +105,40 @@ const ActiveProgram = ({
               proRefetch();
             }
           }
+
+          let history = [];
+
+          if (websiteData?.totalDeposit?.length > 0) {
+            history = [
+              {
+                history: tx,
+                userId: user?.user?._id,
+                wallet: address,
+                amount: parseFloat(ETH_PRICE),
+                date,
+              },
+              ...websiteData?.totalDeposit,
+            ];
+          } else {
+            history = [
+              {
+                history: tx,
+                userId: user?.user?._id,
+                wallet: address,
+                amount: parseFloat(ETH_PRICE),
+                date,
+              },
+            ];
+          }
+
+          const mainHistory = {
+            totalDeposit: history,
+          };
+
+          const { data: historyData } = await axios.post(
+            `${BASE_URL}/history`,
+            mainHistory
+          );
         }
       }
     } catch (error) {
@@ -119,16 +156,32 @@ const ActiveProgram = ({
         title: "Transaction Failed",
         text: errorMessage,
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <button
-      onClick={handleBuy}
-      className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3"
-    >
-      Activate
-    </button>
+    <>
+      <button
+        onClick={handleBuy}
+        className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3"
+      >
+        Activate
+      </button>
+      {/* Loading Modal */}
+      {isLoading && (
+        <dialog id="loading_modal" className="modal" open>
+          <div className="modal-box">
+            <span className="loading loading-spinner loading-lg flex justify-center mx-auto"></span>
+            <h3 className="font-bold text-lg">Processing...</h3>
+            <p className="py-4">
+              Your transaction is being processed. Please wait...
+            </p>
+          </div>
+        </dialog>
+      )}
+    </>
   );
 };
 

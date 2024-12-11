@@ -6,12 +6,13 @@ import LotterySlider from "./LotterySlider";
 import useGetAllLottery from "@/hooks/useGetAllLottery/useGetAllLottery";
 import BuyButton from "./Send";
 import { useSession } from "next-auth/react";
+import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
 
 const DashboardLottery = ({ disable }) => {
   const [allLottery, refetch] = useGetAllLottery();
-  console.log(allLottery?.lottery);
   const { data: user } = useSession();
-  // console.log(user);
+  const [websiteData] = useGetWebsiteData();
+  console.log(websiteData);
 
   return (
     <div className=" w-full lg:w-[1000px] xl:w-[1350px] mx-auto space-y-2 mt-2">
@@ -200,7 +201,6 @@ const DashboardLottery = ({ disable }) => {
                   </h2>
                 </div>
 
-                
                 <div className="rounded-md md:mt-2 my-2 md:mb-6">
                   {(() => {
                     const winner = item?.winners?.find(
