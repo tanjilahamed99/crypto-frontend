@@ -82,7 +82,7 @@ const AdminDashBoard = () => {
       );
       setTodayWithdrawal(todayDeposit);
     }
-  }, [dashboardData, date]);
+  }, [dashboardData]);
 
   return (
     <div>
