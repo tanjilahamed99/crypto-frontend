@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { FaBars, FaDatabase, FaGift, FaUserClock } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { IoHomeOutline } from "react-icons/io5";
@@ -8,20 +8,97 @@ import "./admindrawer.css";
 import { MdQuestionAnswer } from "react-icons/md";
 import { GrGamepad } from "react-icons/gr";
 import { MdOutlineMedicalInformation } from "react-icons/md";
+import { SlMenu } from "react-icons/sl";
+import { LuNewspaper } from "react-icons/lu";
+import { FiImage } from "react-icons/fi";
 
 const AdminDrawer = () => {
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const ulLinks = (
     <>
-      {" "}
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+      <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
           href={"/admin/dashboard"}
-          className="flex items-center text-md font-semibold"
+          className="flex items-center text-md font-semibold gap-3"
         >
-          <IoHomeOutline className="text-2xl" /> Dashboard
+          <FaUserClock className="text-2xl" /> Dashboard
         </Link>
       </li>
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+      {/* new dropdown */}
+      <li className="border border-gray-600 rounded-md hover:bg-gray-700 p-2">
+        <button
+          onClick={() => setIsSubMenuOpen(!isSubMenuOpen)}
+          className="flex items-center text-md font-semibold gap-3 w-full text-left"
+        >
+          <FaDatabase className="text-2xl" /> Website Data
+        </button>
+
+        {/* Submenu items with smooth transition */}
+        <ul
+          className={`ml-2 mt-2 space-y-2 overflow-hidden transition-all duration-300 ${
+            isSubMenuOpen ? "opacity-100" : "max-h-0 opacity-0"
+          }`}
+          style={{ transitionProperty: "max-height, opacity" }}
+        >
+          <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
+            <Link
+              href={"/admin/dashboard/websiteData"}
+              className="flex items-center text-md font-semibold gap-3"
+            >
+              <FaDatabase className="text-2xl" /> Website Info
+            </Link>
+          </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
+            <Link
+              href={"/admin/dashboard/allUpdates"}
+              className="flex items-center text-md font-semibold gap-3"
+            >
+              <LuNewspaper className="text-2xl" /> Updates
+            </Link>
+          </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
+            <Link
+              href={"/admin/dashboard/testimonialData"}
+              className="flex items-center text-md font-semibold gap-3"
+            >
+              <MdOutlineMedicalInformation className="text-2xl" /> Testimonail
+            </Link>
+          </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
+            <Link
+              href={"/admin/dashboard/faqData"}
+              className="flex items-center text-md font-semibold gap-3"
+            >
+              <MdQuestionAnswer className="text-2xl" /> Faq
+            </Link>
+          </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
+            <Link
+              href={"/admin/dashboard/banner"}
+              className="flex items-center text-md font-semibold gap-3"
+            >
+              <FiImage className="text-2xl" /> Banner
+            </Link>
+          </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
+            <Link
+              href={"/admin/dashboard/royaltyTag"}
+              className="flex items-center text-md font-semibold gap-3"
+            >
+              <FiImage className="text-2xl" /> Royalty Tag
+            </Link>
+          </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
+            <Link
+              href={"/admin/dashboard/certified "}
+              className="flex items-center text-md font-semibold gap-3"
+            >
+              <FiImage className="text-2xl" /> Certified
+            </Link>
+          </li>
+        </ul>
+      </li>
+      <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
           href={"/admin/dashboard/allUser"}
           className="flex items-center text-md font-semibold gap-3"
@@ -29,7 +106,7 @@ const AdminDrawer = () => {
           <FaUserClock className="text-2xl" /> All Users
         </Link>
       </li>
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+      <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
           href={"/admin/dashboard/allLottery"}
           className="flex items-center text-md font-semibold gap-3"
@@ -37,52 +114,36 @@ const AdminDrawer = () => {
           <FaGift className="text-2xl" /> All Lottery
         </Link>
       </li>
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+      <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
-          href={"/admin/dashboard/websiteData"}
-          className="flex items-center text-md font-semibold gap-3"
-        >
-          <FaDatabase className="text-2xl" /> Website Data
-        </Link>
-      </li>
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link
-          href={"/admin/dashboard/allUser"}
+          href={"/admin/dashboard/topEarners"}
           className="flex items-center text-md font-semibold gap-3"
         >
           <IoHomeOutline className="text-2xl" /> Top Earners
         </Link>
       </li>
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+      <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
-          href={"/admin/dashboard/allUser"}
+          href={"/admin/dashboard/royaltySalary"}
           className="flex items-center text-md font-semibold gap-3"
         >
-          <IoHomeOutline className="text-2xl" /> Royalty Tag
+          <IoHomeOutline className="text-2xl" /> Royalty Salary
         </Link>
       </li>
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+      <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
-          href={"/admin/dashboard/allUser"}
+          href={"/admin/dashboard/proProgram"}
           className="flex items-center text-md font-semibold gap-3"
         >
-          <MdOutlineMedicalInformation className="text-2xl" />Testimonail
+          <SlMenu className="text-2xl" /> Pro Program
         </Link>
       </li>
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+      <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
           href={"/admin/dashboard/gamingNft"}
           className="flex items-center text-md font-semibold gap-3"
         >
           <GrGamepad className="text-2xl" /> Gaming NFT
-        </Link>
-      </li>
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link
-          href={"/admin/dashboard/faqData"}
-          className="flex items-center text-md font-semibold gap-3"
-        >
-          <MdQuestionAnswer className="text-2xl" /> Faq
         </Link>
       </li>
     </>

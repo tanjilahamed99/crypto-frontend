@@ -11,43 +11,10 @@ import {
   HashNavigation,
   Autoplay,
 } from "swiper/modules";
+import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
 
 const Certified = () => {
-  const data = [
-    {
-      img: "https://i.ibb.co.com/4tVVvhK/earth.png",
-      name: "Certik",
-    },
-    {
-      img: "https://i.ibb.co.com/4tVVvhK/earth.png",
-      name: "meta",
-    },
-    {
-      img: "https://i.ibb.co.com/4tVVvhK/earth.png",
-      name: "Hindawi",
-    },
-    {
-      img: "https://i.ibb.co.com/4tVVvhK/earth.png",
-      name: "Tenderly",
-    },
-    {
-      img: "https://i.ibb.co.com/4tVVvhK/earth.png",
-      name: "Alchemy",
-    },
-    {
-      img: "https://i.ibb.co.com/4tVVvhK/earth.png",
-      name: "Coinsbench",
-    },
-    {
-      img: "https://i.ibb.co.com/4tVVvhK/earth.png",
-      name: "Moralis",
-    },
-    {
-      img: "https://i.ibb.co.com/4tVVvhK/earth.png",
-      name: "InterFi",
-    },
-  ];
-
+  const [websiteData] = useGetWebsiteData();
   return (
     <div className="my-10 lg:w-[80%] w-[90%] mx-auto">
       <h2 className="text-primary  text-2xl lg:text-3xl font-extrabold text-center md:mb-10 mb-5">
@@ -55,11 +22,11 @@ const Certified = () => {
       </h2>
 
       <div className="hidden lg:grid grid-cols-8 items-center ">
-        {data?.map((item, idx) => (
+        {websiteData?.certified?.map((item, idx) => (
           <div key={idx}>
             <Image
               alt="image not found"
-              src={item?.img}
+              src={item?.image}
               height={500}
               width={500}
               className="w-20 mx-auto mb-2"
@@ -86,12 +53,12 @@ const Certified = () => {
           modules={[Pagination, Navigation, HashNavigation, Autoplay]}
           className="mySwiper w-full"
         >
-          {data?.map((item, idx) => (
+          {websiteData?.certified?.map((item, idx) => (
             <SwiperSlide key={idx}>
               <div key={idx}>
                 <Image
                   alt="image not found"
-                  src={item?.img}
+                  src={item?.image}
                   height={500}
                   width={500}
                   className="w-20 mx-auto mb-2"
@@ -119,12 +86,12 @@ const Certified = () => {
           modules={[Pagination, Navigation, HashNavigation, Autoplay]}
           className="mySwiper w-full"
         >
-          {data?.map((item, idx) => (
+          {websiteData?.certified?.map((item, idx) => (
             <SwiperSlide key={idx}>
               <div key={idx}>
                 <Image
                   alt="image not found"
-                  src={item?.img}
+                  src={item?.image}
                   height={500}
                   width={500}
                   className="w-20 mx-auto mb-2"

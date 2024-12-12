@@ -10,45 +10,10 @@ import {
   Autoplay,
 } from "swiper/modules";
 import TopEarnersCard from "./TopEarnersCard";
+import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
 
 const TopEarners = () => {
-  const data = [
-    {
-      user: "asif",
-      userId: "5435345435435",
-      totalProfit: "1230",
-      totalPartner: "123",
-      totalTeam: "12",
-    },
-    {
-      user: "kaif",
-      userId: "34543543543",
-      totalProfit: "1230",
-      totalPartner: "123",
-      totalTeam: "12",
-    },
-    {
-      user: "jonson",
-      userId: "3453455435",
-      totalProfit: "1230",
-      totalPartner: "123",
-      totalTeam: "12",
-    },
-    {
-      user: "niloy",
-      userId: "5345435543",
-      totalProfit: "1230",
-      totalPartner: "123",
-      totalTeam: "12",
-    },
-    {
-      user: "hero",
-      userId: "34543543",
-      totalProfit: "1230",
-      totalPartner: "123",
-      totalTeam: "12",
-    },
-  ];
+  const [websiteData] = useGetWebsiteData();
 
   return (
     <div className="my-10 lg:w-[80%] w-[90%] mx-auto">
@@ -71,7 +36,7 @@ const TopEarners = () => {
           modules={[Pagination, Navigation, HashNavigation, Autoplay]}
           className="mySwiper w-full"
         >
-          {data?.map((item, idx) => (
+          {websiteData?.topEarners?.map((item, idx) => (
             <SwiperSlide key={idx}>
               <TopEarnersCard data={item} />
             </SwiperSlide>
@@ -93,7 +58,7 @@ const TopEarners = () => {
           modules={[Pagination, Navigation, HashNavigation, Autoplay]}
           className="mySwiper w-full"
         >
-          {data?.map((item, idx) => (
+          {websiteData?.topEarners?.map((item, idx) => (
             <SwiperSlide key={idx}>
               <TopEarnersCard data={item} />
             </SwiperSlide>
@@ -115,7 +80,7 @@ const TopEarners = () => {
           modules={[Pagination, Navigation, HashNavigation, Autoplay]}
           className="mySwiper w-full"
         >
-          {data?.map((item, idx) => (
+          {websiteData?.topEarners?.map((item, idx) => (
             <SwiperSlide key={idx}>
               <TopEarnersCard data={item} />
             </SwiperSlide>

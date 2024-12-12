@@ -11,8 +11,10 @@ import {
   Autoplay,
 } from "swiper/modules";
 import Image from "next/image";
+import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
 
 const RoyaltyTag = () => {
+  const [websiteData] = useGetWebsiteData();
   return (
     <div className="my-10 lg:w-[80%] w-[90%] mx-auto">
       <h2 className="text-primary  text-2xl lg:text-3xl font-extrabold text-center md:mb-10 mb-5">
@@ -27,43 +29,19 @@ const RoyaltyTag = () => {
       </p>
 
       <div className="lg:grid grid-cols-4 hidden mt-10 gap-5 ">
-        <div>
-          <Image
-            src={"https://i.ibb.co.com/SRssZr5/mars.png"}
-            alt="image not found"
-            height={500}
-            width={500}
-            className="w-[200px] mx-auto"
-          />
-        </div>
-        <div>
-          <Image
-            src={"https://i.ibb.co.com/SRssZr5/mars.png"}
-            alt="image not found"
-            height={500}
-            width={500}
-            className="w-[200px] mx-auto"
-          />
-        </div>
-        <div>
-          <Image
-            src={"https://i.ibb.co.com/SRssZr5/mars.png"}
-            alt="image not found"
-            height={500}
-            width={500}
-            className="w-[200px] mx-auto"
-          />
-        </div>
-        <div>
-          <Image
-            src={"https://i.ibb.co.com/SRssZr5/mars.png"}
-            alt="image not found"
-            height={500}
-            width={500}
-            className="w-[200px] mx-auto"
-          />
-        </div>
+        {websiteData?.royaltyTag?.slice(0, 4).map((item, idx) => (
+          <div key={idx}>
+            <Image
+              src={item}
+              alt="image not found"
+              height={500}
+              width={500}
+              className="w-[200px] h-[200px] mx-auto"
+            />
+          </div>
+        ))}
       </div>
+
       <div className="lg:hidden mt-3">
         <Swiper
           spaceBetween={10}
@@ -79,33 +57,17 @@ const RoyaltyTag = () => {
           modules={[Pagination, Navigation, HashNavigation, Autoplay]}
           className="mySwiper w-full"
         >
-          <SwiperSlide>
-            <Image
-              src={"https://i.ibb.co.com/SRssZr5/mars.png"}
-              alt="image not found"
-              height={500}
-              width={500}
-              className="w-[200px] mx-auto"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              src={"https://i.ibb.co.com/SRssZr5/mars.png"}
-              alt="image not found"
-              height={500}
-              width={500}
-              className="w-[200px] mx-auto"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              src={"https://i.ibb.co.com/SRssZr5/mars.png"}
-              alt="image not found"
-              height={500}
-              width={500}
-              className="w-[200px] mx-auto"
-            />
-          </SwiperSlide>
+          {websiteData?.royaltyTag?.map((item, idx) => (
+            <SwiperSlide key={idx}>
+              <Image
+                src={item}
+                alt="image not found"
+                height={500}
+                width={500}
+                className="w-[200px] mx-auto h-[200px]"
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>
