@@ -90,6 +90,14 @@ const AdminNavigateLink = () => {
               <FiImage className="text-2xl" /> Royalty Tag
             </Link>
           </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
+            <Link
+              href={"/admin/dashboard/certified "}
+              className="flex items-center text-md font-semibold gap-3"
+            >
+              <FiImage className="text-2xl" /> Certified
+            </Link>
+          </li>
         </ul>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
@@ -110,7 +118,7 @@ const AdminNavigateLink = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
-          href={"/admin/dashboard/allUser"}
+          href={"/admin/dashboard/topEarners"}
           className="flex items-center text-md font-semibold gap-3"
         >
           <IoHomeOutline className="text-2xl" /> Top Earners
@@ -121,7 +129,7 @@ const AdminNavigateLink = () => {
           href={"/admin/dashboard/royaltySalary"}
           className="flex items-center text-md font-semibold gap-3"
         >
-          <IoHomeOutline className="text-2xl" /> Royalty Tag
+          <IoHomeOutline className="text-2xl" /> Royalty Salary
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
