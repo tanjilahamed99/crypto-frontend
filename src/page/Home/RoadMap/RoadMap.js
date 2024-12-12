@@ -1,7 +1,10 @@
+"use client";
+import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
 import Image from "next/image";
 import { IoIosArrowForward } from "react-icons/io";
 
 const RoadMap = () => {
+  const [websiteData] = useGetWebsiteData();
   return (
     <div className="my-10 lg:w-[80%] w-[90%] mx-auto ">
       <div className="bg-gray-400  py-10 md:px-5 grid w-full justify-center items-center bg-opacity-20 ">
@@ -28,7 +31,7 @@ const RoadMap = () => {
             {/* Project Logo */}
             <div className="flex items-center mt-10 gap-2 md:gap-5 md:justify-center justify-start">
               <Image
-                src={"https://i.ibb.co.com/9bQnXmF/images-3.jpg"}
+                src={websiteData?.websiteImage || ""}
                 width={500}
                 height={500}
                 alt="image not found"
@@ -125,7 +128,7 @@ const RoadMap = () => {
             {/* Project Logo */}
             <div className="flex items-start mt-10 gap-2 md:gap-5 md:justify-center justify-start">
               <Image
-                src={"https://i.ibb.co.com/9bQnXmF/images-3.jpg"}
+               src={websiteData?.websiteImage || ""}
                 width={500}
                 height={500}
                 alt="image not found"

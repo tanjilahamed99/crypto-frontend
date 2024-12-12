@@ -82,6 +82,14 @@ const AdminNavigateLink = () => {
               <FiImage className="text-2xl" /> Banner
             </Link>
           </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
+            <Link
+              href={"/admin/dashboard/royaltyTag"}
+              className="flex items-center text-md font-semibold gap-3"
+            >
+              <FiImage className="text-2xl" /> Royalty Tag
+            </Link>
+          </li>
         </ul>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">

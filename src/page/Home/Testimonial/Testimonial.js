@@ -9,8 +9,11 @@ import {
   HashNavigation,
   Autoplay,
 } from "swiper/modules";
+import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
 
 const Testimonial = () => {
+  const [websiteData] = useGetWebsiteData();
+  console.log();
   return (
     <div className="my-10 lg:w-[80%] w-[90%] mx-auto">
       {" "}
@@ -43,15 +46,11 @@ const Testimonial = () => {
           modules={[Pagination, Navigation, HashNavigation, Autoplay]}
           className="mySwiper w-full"
         >
-          <SwiperSlide >
-            <video src="/" controls autoPlay loop muted />
-          </SwiperSlide>
-          <SwiperSlide >
-            <video src="/" controls autoPlay loop muted />
-          </SwiperSlide>
-          <SwiperSlide >
-            <video src="/" controls autoPlay loop muted />
-          </SwiperSlide>
+          {websiteData?.testimonial?.map((item, idx) => (
+            <SwiperSlide key={idx}>
+              <video src={item || "/"} controls autoPlay loop muted />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>

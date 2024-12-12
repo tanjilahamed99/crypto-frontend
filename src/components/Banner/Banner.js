@@ -17,7 +17,6 @@ const Banner = () => {
   const [totalLotteryEaring, setTotalLotteryEaring] = useState(0);
   const [totalRoyaltySalary, setTotalRoyaltySalary] = useState(0);
   const [websiteData] = useGetWebsiteData();
-  // console.log(websiteData?.totalWithdrawal);
   const [allUsers] = useGetAllUsers();
 
   const handleUnLine = (e) => {
@@ -103,7 +102,7 @@ const Banner = () => {
                 }`}
               >
                 <Image
-                  src={"https://i.ibb.co.com/4tVVvhK/earth.png"}
+                  src={websiteData?.banner?.mainImage || ""}
                   alt="Logo"
                   layout="fill"
                   className={`object-contain ${
@@ -127,7 +126,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-earth">
               <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/4tVVvhK/earth.png"}
+                  src={websiteData?.banner?.smFirstImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -139,7 +138,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-mars">
               <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/tX34JBX/img1.png"}
+                  src={websiteData?.banner?.smSecantImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -151,7 +150,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-venus">
               <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/tKQspfj/img2.png"}
+                  src={websiteData?.banner?.smThirdImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -163,7 +162,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-jupiter">
               <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/5r6cLCp/img3.png"}
+                  src={websiteData?.banner?.smForthImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -175,7 +174,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-Saturn">
               <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/KV5kkxs/img4.png"}
+                  src={websiteData?.banner?.mainImage || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -186,7 +185,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-1">
               <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/GVK5cNK/img5.png"}
+                  src={websiteData?.banner?.bigFirstImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -197,7 +196,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-2">
               <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/6JkFFGz/img6.png"}
+                  src={websiteData?.banner?.bigSecantImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -208,7 +207,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-3">
               <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/SRssZr5/mars.png"}
+                  src={websiteData?.banner?.bigThirdImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -218,7 +217,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-orbit-4">
               <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/4tVVvhK/earth.png"}
+                  src={websiteData?.banner?.bigForthImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -238,7 +237,7 @@ const Banner = () => {
                 }`}
               >
                 <Image
-                  src={"https://i.ibb.co.com/4tVVvhK/earth.png"}
+                  src={websiteData?.banner?.mainImage || ""}
                   alt="Logo"
                   layout="fill"
                   className={`object-contain ${
@@ -262,7 +261,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob1">
               <div className="w-7 h-7 bg-blue-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/4tVVvhK/earth.png"}
+                  src={websiteData?.banner?.smFirstImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -274,7 +273,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob2">
               <div className="w-7 h-7 bg-red-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/tX34JBX/img1.png"}
+                  src={websiteData?.banner?.smSecantImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -286,7 +285,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob3">
               <div className="w-7 h-7 bg-green-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/tKQspfj/img2.png"}
+                  src={websiteData?.banner?.smThirdImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -298,7 +297,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob4">
               <div className="w-7 h-7 bg-purple-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/5r6cLCp/img3.png"}
+                  src={websiteData?.banner?.smForthImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -310,7 +309,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob5">
               <div className="w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/KV5kkxs/img4.png"}
+                  src={websiteData?.banner?.bigFirstImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -321,7 +320,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob6">
               <div className="w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/GVK5cNK/img5.png"}
+                  src={websiteData?.banner?.bigSecantImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -332,7 +331,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob7">
               <div className="w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/6JkFFGz/img6.png"}
+                  src={websiteData?.banner?.bigThirdImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -343,7 +342,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob8">
               <div className="w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/SRssZr5/mars.png"}
+                  src={websiteData?.banner?.bigForthImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
@@ -353,7 +352,7 @@ const Banner = () => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-mob9">
               <div className="w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center text-white">
                 <Image
-                  src={"https://i.ibb.co.com/4tVVvhK/earth.png"}
+                  src={websiteData?.banner?.smSecantImg || ""}
                   height={500}
                   width={500}
                   alt="image not found"
