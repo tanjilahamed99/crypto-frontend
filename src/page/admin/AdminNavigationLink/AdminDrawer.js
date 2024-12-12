@@ -14,10 +14,18 @@ import { FiImage } from "react-icons/fi";
 
 const AdminDrawer = () => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+  const closeDrawer = () => {
+    const drawerCheckbox = document.getElementById("my-drawer-4");
+    if (drawerCheckbox) {
+      drawerCheckbox.checked = false;
+    }
+  };
+
   const ulLinks = (
     <>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
+          onClick={closeDrawer}
           href={"/admin/dashboard"}
           className="flex items-center text-md font-semibold gap-3"
         >
@@ -42,6 +50,7 @@ const AdminDrawer = () => {
         >
           <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
             <Link
+              onClick={closeDrawer}
               href={"/admin/dashboard/websiteData"}
               className="flex items-center text-md font-semibold gap-3"
             >
@@ -50,6 +59,7 @@ const AdminDrawer = () => {
           </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
             <Link
+              onClick={closeDrawer}
               href={"/admin/dashboard/allUpdates"}
               className="flex items-center text-md font-semibold gap-3"
             >
@@ -58,6 +68,7 @@ const AdminDrawer = () => {
           </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
             <Link
+              onClick={closeDrawer}
               href={"/admin/dashboard/testimonialData"}
               className="flex items-center text-md font-semibold gap-3"
             >
@@ -66,6 +77,7 @@ const AdminDrawer = () => {
           </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
             <Link
+              onClick={closeDrawer}
               href={"/admin/dashboard/faqData"}
               className="flex items-center text-md font-semibold gap-3"
             >
@@ -74,6 +86,7 @@ const AdminDrawer = () => {
           </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
             <Link
+              onClick={closeDrawer}
               href={"/admin/dashboard/banner"}
               className="flex items-center text-md font-semibold gap-3"
             >
@@ -82,6 +95,7 @@ const AdminDrawer = () => {
           </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
             <Link
+              onClick={closeDrawer}
               href={"/admin/dashboard/royaltyTag"}
               className="flex items-center text-md font-semibold gap-3"
             >
@@ -90,6 +104,7 @@ const AdminDrawer = () => {
           </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
             <Link
+              onClick={closeDrawer}
               href={"/admin/dashboard/certified "}
               className="flex items-center text-md font-semibold gap-3"
             >
@@ -100,6 +115,7 @@ const AdminDrawer = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
+          onClick={closeDrawer}
           href={"/admin/dashboard/allUser"}
           className="flex items-center text-md font-semibold gap-3"
         >
@@ -108,6 +124,7 @@ const AdminDrawer = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
+          onClick={closeDrawer}
           href={"/admin/dashboard/allLottery"}
           className="flex items-center text-md font-semibold gap-3"
         >
@@ -116,6 +133,7 @@ const AdminDrawer = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
+          onClick={closeDrawer}
           href={"/admin/dashboard/topEarners"}
           className="flex items-center text-md font-semibold gap-3"
         >
@@ -124,6 +142,7 @@ const AdminDrawer = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
+          onClick={closeDrawer}
           href={"/admin/dashboard/royaltySalary"}
           className="flex items-center text-md font-semibold gap-3"
         >
@@ -132,6 +151,7 @@ const AdminDrawer = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
+          onClick={closeDrawer}
           href={"/admin/dashboard/proProgram"}
           className="flex items-center text-md font-semibold gap-3"
         >
@@ -140,6 +160,7 @@ const AdminDrawer = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
         <Link
+          onClick={closeDrawer}
           href={"/admin/dashboard/gamingNft"}
           className="flex items-center text-md font-semibold gap-3"
         >

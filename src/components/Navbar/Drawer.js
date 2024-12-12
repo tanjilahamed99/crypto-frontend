@@ -20,11 +20,23 @@ import { AiOutlineDashboard } from "react-icons/ai";
 
 const Drawer = () => {
   const { data: user } = useSession();
+
+  const closeDrawer = () => {
+    const drawerCheckbox = document.getElementById("my-drawer-4");
+    if (drawerCheckbox) {
+      drawerCheckbox.checked = false;
+    }
+  };
+
   const ulLinks = (
     <>
       {" "}
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link href={"/"} className="flex items-center text-md font-semibold">
+        <Link
+          onClick={closeDrawer}
+          href={"/"}
+          className="flex items-center text-md font-semibold"
+        >
           <IoHomeOutline className="text-2xl" /> Home
         </Link>
       </li>
@@ -32,6 +44,7 @@ const Drawer = () => {
         <>
           <li className="border border-gray-600  rounded-md hover:bg-gray-700">
             <Link
+              onClick={closeDrawer}
               href={"/dashboard"}
               className="flex items-center text-md font-semibold"
             >
@@ -40,6 +53,7 @@ const Drawer = () => {
           </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-700">
             <Link
+              onClick={closeDrawer}
               href={"/dashboard/profile"}
               className="flex items-center text-md font-semibold"
             >
@@ -48,6 +62,7 @@ const Drawer = () => {
           </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-700">
             <Link
+              onClick={closeDrawer}
               href={"/dashboard/level"}
               className="flex items-center text-md font-semibold"
             >
@@ -56,6 +71,7 @@ const Drawer = () => {
           </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-700">
             <Link
+              onClick={closeDrawer}
               href={"/dashboard/lottery"}
               className="flex items-center text-md font-semibold"
             >
@@ -64,6 +80,7 @@ const Drawer = () => {
           </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-700">
             <Link
+              onClick={closeDrawer}
               href={"/dashboard/proProgram"}
               className="flex items-center text-md font-semibold"
             >
@@ -72,6 +89,7 @@ const Drawer = () => {
           </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-700">
             <Link
+              onClick={closeDrawer}
               href={"/dashboard/royaltySalary"}
               className="flex items-center text-md font-semibold"
             >
@@ -80,6 +98,7 @@ const Drawer = () => {
           </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-700">
             <Link
+              onClick={closeDrawer}
               href={"/dashboard/gamingNft"}
               className="flex items-center text-md font-semibold"
             >
@@ -90,6 +109,7 @@ const Drawer = () => {
       )}
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
         <Link
+          onClick={closeDrawer}
           href={"/updates"}
           className="flex items-center text-md font-semibold"
         >
@@ -98,6 +118,7 @@ const Drawer = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
         <Link
+          onClick={closeDrawer}
           href={"/news"}
           className="flex items-center text-md font-semibold"
         >
@@ -106,6 +127,7 @@ const Drawer = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
         <Link
+          onClick={closeDrawer}
           href={"/support"}
           className="flex items-center text-md font-semibold"
         >
@@ -114,6 +136,7 @@ const Drawer = () => {
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700">
         <Link
+          onClick={closeDrawer}
           href={"/adminLogin"}
           className="flex items-center text-md font-semibold"
         >
