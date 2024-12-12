@@ -53,7 +53,7 @@ const TopEarners = () => {
   return (
     <div className="my-10 lg:w-[80%] w-[90%] mx-auto">
       <h2 className="text-primary  text-2xl lg:text-3xl font-extrabold text-center md:mb-10 mb-5">
-        Top Earners
+        Top User Earners
       </h2>
 
       <div className=" mt-3 md:hidden">

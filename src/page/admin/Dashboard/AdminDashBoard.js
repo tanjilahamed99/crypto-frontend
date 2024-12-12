@@ -41,45 +41,48 @@ const AdminDashBoard = () => {
   });
 
   useEffect(() => {
-      if (dashboardData?.dashboard?.totalDeposit?.length > 0) {
-        // Calculate the total deposit
-        const total = dashboardData.dashboard.totalDeposit.reduce(
-          (sum, item) => sum + (item.amount || 0),
-          0
-        );
-        setTotalDeposit(total);
-        const todayDepositFunc = dashboardData?.dashboard?.totalDeposit?.filter((item) => {
-            if (!item?.date) return false; // Skip items without a date
-            const todayDepo = new Date(item.date)?.toISOString()?.split("T")[0];
-            return todayDepo === today;
-          });
-          
-        const todayDeposit = todayDepositFunc?.reduce(
-          (sum, item) => sum + (item.amount || 0),
-          0
-        );
-        setTodayDeposit(todayDeposit);
-      }
-      if (dashboardData?.dashboard?.totalWithdrawal?.length > 0) {
-        // Calculate the total deposit
-        const total = dashboardData.dashboard.totalWithdrawal.reduce(
-          (sum, item) => sum + (item.amount || 0),
-          0
-        );
-        setTotalWithdrawal(total);
-        const todayDepositFunc = dashboardData?.dashboard?.totalWithdrawal?.filter((item) => {
-            if (!item?.date) return false; // Skip items without a date
-            const todayDepo = new Date(item.date)?.toISOString()?.split("T")[0];
-            return todayDepo === today;
-          });
-          
-        const todayDeposit = todayDepositFunc?.reduce(
-          (sum, item) => sum + (item.amount || 0),
-          0
-        );
-        setTodayWithdrawal(todayDeposit);
-      }
-  }, [dashboardData]);
+    if (dashboardData?.dashboard?.totalDeposit?.length > 0) {
+      // Calculate the total deposit
+      const total = dashboardData.dashboard.totalDeposit.reduce(
+        (sum, item) => sum + (item.amount || 0),
+        0
+      );
+      setTotalDeposit(total);
+      const todayDepositFunc = dashboardData?.dashboard?.totalDeposit?.filter(
+        (item) => {
+          if (!item?.date) return false; // Skip items without a date
+          const todayDepo = new Date(item.date)?.toISOString()?.split("T")[0];
+          return todayDepo === today;
+        }
+      );
+
+      const todayDeposit = todayDepositFunc?.reduce(
+        (sum, item) => sum + (item.amount || 0),
+        0
+      );
+      setTodayDeposit(todayDeposit);
+    }
+    if (dashboardData?.dashboard?.totalWithdrawal?.length > 0) {
+      // Calculate the total deposit
+      const total = dashboardData.dashboard.totalWithdrawal.reduce(
+        (sum, item) => sum + (item.amount || 0),
+        0
+      );
+      setTotalWithdrawal(total);
+      const todayDepositFunc =
+        dashboardData?.dashboard?.totalWithdrawal?.filter((item) => {
+          if (!item?.date) return false; // Skip items without a date
+          const todayDepo = new Date(item.date)?.toISOString()?.split("T")[0];
+          return todayDepo === today;
+        });
+
+      const todayDeposit = todayDepositFunc?.reduce(
+        (sum, item) => sum + (item.amount || 0),
+        0
+      );
+      setTodayWithdrawal(todayDeposit);
+    }
+  }, [dashboardData, date]);
 
   return (
     <div>

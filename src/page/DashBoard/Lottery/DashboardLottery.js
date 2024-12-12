@@ -17,7 +17,7 @@ const DashboardLottery = ({ disable }) => {
   return (
     <div className=" w-full lg:w-[1000px] xl:w-[1350px] mx-auto space-y-2 mt-2">
       <div className="rounded-lg gap-1 shadow-sm p-4 bg-opacity-20 bg-gray-400 w-full">
-        <h2 className="text-3xl font-bold text-white">Lottery</h2>
+        <h2 className="text-3xl font-bold text-white">Lottery Images</h2>
 
         {/* slider  */}
         <div className="mt-3">
@@ -42,6 +42,9 @@ const DashboardLottery = ({ disable }) => {
             >
               <div>
                 <div className="text-white md:text-lg flex items-center font-semibold gap-2 md:gap-5">
+                  <h2 className="flex items-center">
+                    Lottery Jackpot - {idx + 0}
+                  </h2>
                   <h2 className="flex items-center">
                     Entry fee:{" "}
                     <span className="text-green-500 ml-2 mr-1">$</span>

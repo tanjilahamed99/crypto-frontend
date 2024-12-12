@@ -4,6 +4,7 @@ import { BASE_URL } from "@/constant/constant";
 import useGetAllUpdates from "@/hooks/useGetAllUpdates/useGetAllUpdates";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import Swal from "sweetalert2";
@@ -12,6 +13,7 @@ const AdminAllUpdates = () => {
   const [allUpdates, refetch] = useGetAllUpdates();
   const [lotteryImg, setLotteryImg] = useState("");
   const { data: user } = useSession();
+  const date = Date();
 
   const handleCreateUpdate = async (e) => {
     e.preventDefault();
@@ -23,13 +25,12 @@ const AdminAllUpdates = () => {
       title,
       image: lotteryImg,
       description: desc,
+      date,
     };
 
     const url = `${BASE_URL}/admin/updates/${user?.user?._id}/${user?.user?.email}/${user?.user?.wallet}`;
 
     const { data } = await axios.post(url, updatesData);
-
-    console.log(data);
 
     if (data?.status) {
       document.getElementById("my_modal_1").close();
@@ -151,11 +152,23 @@ const AdminAllUpdates = () => {
         </div>
       </dialog>
 
-      {allUpdates?.updates?.map((item, idx) => (
-        <div key={idx}>
-          <h2>{item?.title}</h2>
-        </div>
-      ))}
+      <div className="space-y-3">
+        {allUpdates?.updates?.map((item, idx) => (
+          <div key={idx} className="border border-gray-600 p-3 rounded-md">
+            {item?.image && (
+              <Image
+                src={item?.image}
+                alt="image not found"
+                height={200}
+                width={200}
+              />
+            )}
+
+            <h2 className="text-xl font-bold text-white">{item?.title}</h2>
+            <h2>{item?.description}</h2>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

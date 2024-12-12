@@ -7,6 +7,7 @@ import { useAddress, useSigner } from "@thirdweb-dev/react";
 import axios from "axios";
 import { ethers } from "ethers";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 
 const ActiveProgram = ({
@@ -38,7 +39,7 @@ const ActiveProgram = ({
       });
       return;
     }
-
+    setIsLoading(true);
     try {
       if (isEthPayment) {
         // ETH Payment

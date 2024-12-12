@@ -6,11 +6,19 @@ import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useRouter } from "next/navigation";
 import "./banner.css";
+import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
+import useGetAllUsers from "@/hooks/useGetAllUsers/useGetAllUsers";
 const Banner = () => {
   const [beat, setBeat] = useState(false);
   const [isUnLine, setIsUnLine] = useState(false);
   const [unLine, setUnLine] = useState(null);
   const router = useRouter();
+  const [totalWithdrawal, setTotalWithdrawal] = useState(0);
+  const [totalLotteryEaring, setTotalLotteryEaring] = useState(0);
+  const [totalRoyaltySalary, setTotalRoyaltySalary] = useState(0);
+  const [websiteData] = useGetWebsiteData();
+  // console.log(websiteData?.totalWithdrawal);
+  const [allUsers] = useGetAllUsers();
 
   const handleUnLine = (e) => {
     setUnLine(e.target?.value);
@@ -38,6 +46,35 @@ const Banner = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    if (websiteData) {
+      if (websiteData?.totalWithdrawal?.length > 0) {
+        // Calculate the total deposit
+        const total = websiteData?.totalWithdrawal.reduce(
+          (sum, item) => sum + (item.amount || 0),
+          0
+        );
+        setTotalWithdrawal(total);
+      }
+      if (websiteData?.totalRoyaltySalary?.length > 0) {
+        // Calculate the total deposit
+        const total = websiteData?.totalRoyaltySalary.reduce(
+          (sum, item) => sum + (item.amount || 0),
+          0
+        );
+        setTotalRoyaltySalary(total);
+      }
+      if (websiteData?.totalLotteryWithdrawal?.length > 0) {
+        // Calculate the total deposit
+        const total = websiteData?.totalLotteryWithdrawal.reduce(
+          (sum, item) => sum + (item.amount || 0),
+          0
+        );
+        setTotalLotteryEaring(total);
+      }
+    }
+  }, [websiteData]);
+
   return (
     <div className="lg:w-[80%] w-[90%] mx-auto my-10 -mt-1 pt-24">
       {/* banner main part */}
@@ -52,7 +89,7 @@ const Banner = () => {
           backgroundSize: "200% 200%",
         }}
       >
-        Istimate-Pro
+        ISTIMATE-PRO
       </h2>
 
       <div>
@@ -338,7 +375,7 @@ const Banner = () => {
             "0 1rem 1.25rem 0 rgba(22, 75, 195, 0.5), inset 0 -0.25rem 1.5rem #6e0f9b, inset 0 0.75rem 0.5rem rgba(255, 255, 255, 0.4), inset 0 0.25rem 0.5rem #b446cf",
         }}
       >
-        Register
+        REGISTER
       </button>
 
       <dialog id="my_modal_1" className="modal custom-backdrop">
@@ -401,7 +438,7 @@ const Banner = () => {
               <div className="flex items-center gap-2 justify-center">
                 <BsPeopleFill className="text-green-500 text-2xl" />
                 <h2 className="text-green-500 text-2xl lg:text-3xl font-bold">
-                  295897
+                  {allUsers?.length}
                 </h2>
               </div>
               <h2 className="text-primary font-bold">All Participants</h2>
@@ -410,7 +447,7 @@ const Banner = () => {
               <div className="flex items-center gap-2 justify-center">
                 <LuCircleDollarSign className="text-green-500 text-2xl" />
                 <h2 className="text-green-500 text-2xl lg:text-3xl font-bold">
-                  725423.42
+                  {totalRoyaltySalary || 0}
                 </h2>
               </div>
               <h2 className="text-primary font-bold">
@@ -421,7 +458,7 @@ const Banner = () => {
               <div className="flex items-center gap-2 justify-center">
                 <LuCircleDollarSign className="text-green-500 text-2xl" />
                 <h2 className="text-green-500 text-2xl lg:text-3xl font-bold">
-                  0
+                  {totalLotteryEaring || 0}
                 </h2>
               </div>
               <h2 className="text-primary font-bold">Lottery Earning</h2>
@@ -430,7 +467,7 @@ const Banner = () => {
               <div className="flex items-center gap-2 justify-center">
                 <LuCircleDollarSign className="text-green-500 text-2xl" />
                 <h2 className="text-green-500 text-2xl lg:text-3xl font-bold">
-                  5528290
+                  {totalWithdrawal || "0.00"}
                 </h2>
               </div>
               <h2 className="text-primary font-bold">Total profit earned</h2>

@@ -81,6 +81,7 @@ const SendLotteryPayment = ({
           }
 
           let history = [];
+          const lotteryHistory = [];
 
           if (websiteData?.totalWithdrawal?.length > 0) {
             history = [
@@ -104,9 +105,32 @@ const SendLotteryPayment = ({
               },
             ];
           }
+          if (websiteData?.totalLotteryWithdrawal?.length > 0) {
+            history = [
+              {
+                history: tx,
+                userId: user?.user?._id,
+                wallet: address,
+                amount: parseFloat(ETH_PRICE),
+                date,
+              },
+              ...websiteData?.totalLotteryWithdrawal,
+            ];
+          } else {
+            history = [
+              {
+                history: tx,
+                userId: user?.user?._id,
+                wallet: address,
+                amount: parseFloat(ETH_PRICE),
+                date,
+              },
+            ];
+          }
 
           const mainHistory = {
             totalWithdrawal: history,
+            totalLotteryWithdrawal: lotteryHistory,
           };
 
           const { data: historyData } = await axios.post(
