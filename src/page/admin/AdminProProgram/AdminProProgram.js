@@ -4,7 +4,7 @@ import { BASE_URL } from "@/constant/constant";
 import useGetAllProgramsDataByType from "@/hooks/useProPrograms/UseAllProrams";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import React from "react";
+import React, { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import Swal from "sweetalert2";
 import { LuCircleDollarSign } from "react-icons/lu";
@@ -15,6 +15,7 @@ import Link from "next/link";
 
 const AdminProProgram = () => {
   const { data: user } = useSession();
+  const [lotteryImg, setLotteryImg] = useState("");
   const [programs, refetch] = useGetAllProgramsDataByType({
     type: "power-matrix",
     programName: "millionaire",
@@ -23,10 +24,13 @@ const AdminProProgram = () => {
   const handleAddSlot = async (e) => {
     e.preventDefault();
     const form = e.target;
+    const title = form.title.value;
     const price = form.price.value;
 
     const newSlotData = {
-      price,
+      price: parseFloat(price),
+      title,
+      image: lotteryImg,
       order:
         programs?.programs?.length > 0
           ? parseFloat(programs?.programs?.length) + 1
@@ -47,6 +51,7 @@ const AdminProProgram = () => {
         });
         form.reset();
         refetch();
+        setLotteryImg("");
       }
     } catch (err) {
       console.log(err);
@@ -78,6 +83,34 @@ const AdminProProgram = () => {
         }
       }
     });
+  };
+
+  const handleImageUpload = async (e) => {
+    const imageFile = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    try {
+      // Send the image to ImgBB
+      const response = await axios.post(
+        `https://api.imgbb.com/1/upload?key=9fa3cb8e4f8295683436ab614de928c1`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      // Get the image URL from the response
+      const imageUrl = response.data.data.url;
+      console.log("Image uploaded successfully:", imageUrl);
+
+      // Save the image URL to state or use it as needed
+      setLotteryImg(imageUrl);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
   };
 
   return (
@@ -146,14 +179,52 @@ const AdminProProgram = () => {
               </div>
               <form onSubmit={handleAddSlot} className="text-white space-y-3">
                 <div>
+                  <h2 className="text-white font-semibold  mb-1">Title</h2>
+                  <input
+                    name="title"
+                    placeholder="Ex: title"
+                    required
+                    className="w-full pl-2 py-2 rounded-md"
+                  />
+                </div>
+                <div>
                   <h2 className="text-white font-semibold  mb-1">Price</h2>
                   <input
-                    type="number"
                     name="price"
                     placeholder="Ex: Price"
                     required
                     className="w-full pl-2 py-2 rounded-md"
                   />
+                </div>
+                <div>
+                  <h2 className="text-white font-semibold  mb-1">Image Link</h2>
+                  <div className="flex flex-col md:flex-row justify-between gap-5">
+                    <input
+                      name="image"
+                      type="text"
+                      placeholder="Ex: http.."
+                      required
+                      className="w-full pl-2 py-2  rounded-md"
+                      defaultValue={lotteryImg}
+                    />
+                    <div>
+                      <label
+                        htmlFor="type3-2"
+                        className="flex w-full max-w-[170px]"
+                      >
+                        <p className="w-max truncate rounded-full hover:shadow-[0px_0px_4px_0.5px] border-[3px] border-green-500 px-6 py-1.5 font-medium text-green-500 shadow-md">
+                          {"CHOOSE FILE"}
+                        </p>
+                      </label>
+                      <input
+                        onChange={handleImageUpload}
+                        className="hidden"
+                        type="file"
+                        name=""
+                        id="type3-2"
+                      />
+                    </div>
+                  </div>
                 </div>
                 <button className="bg-primary font-semibold border-none h-10 w-28 text-white hover:bg-[#f2a74b] rounded-lg">
                   Create

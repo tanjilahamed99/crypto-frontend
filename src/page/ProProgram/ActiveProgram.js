@@ -26,8 +26,6 @@ const ActiveProgram = ({
   });
   const [isLoading, setIsLoading] = useState(false);
   const date = Date();
-  const ADMIN_ADDRESS = "0xd4835Bc8a235Cc6Ecd6274A06B40495331310F01"; // Admin address
-  const ETH_PRICE = "0.0001"; // ETH price
   const [websiteData] = useGetWebsiteData();
 
   const handleBuy = async () => {
@@ -44,8 +42,8 @@ const ActiveProgram = ({
       if (isEthPayment) {
         // ETH Payment
         const tx = await signer.sendTransaction({
-          to: ADMIN_ADDRESS,
-          value: ethers.utils.parseEther(ETH_PRICE),
+          to: websiteData?.wallets?.proProgram,
+          value: ethers.utils.parseEther(price),
         });
         await tx.wait();
 
@@ -88,15 +86,9 @@ const ActiveProgram = ({
                 { userId: user?.user?._id, wallet: user?.user?.wallet },
               ];
             }
-
-            console.log(newProgramData);
-
             const url = `${BASE_URL}/buyProgram/${id}`;
-            const { data } = await axios.put(url, newProgramData);
-
-            console.log(data);
-
-            if (data?.result?.modifiedCount > 0) {
+            const { data: result } = await axios.put(url, newProgramData);
+            if (result?.modifiedCount > 0) {
               Swal.fire({
                 icon: "success",
                 title: "Transaction Completed",
@@ -115,7 +107,7 @@ const ActiveProgram = ({
                 history: tx,
                 userId: user?.user?._id,
                 wallet: address,
-                amount: parseFloat(ETH_PRICE),
+                amount: parseFloat(price),
                 date,
               },
               ...websiteData?.totalDeposit,
@@ -126,7 +118,7 @@ const ActiveProgram = ({
                 history: tx,
                 userId: user?.user?._id,
                 wallet: address,
-                amount: parseFloat(ETH_PRICE),
+                amount: parseFloat(price),
                 date,
               },
             ];

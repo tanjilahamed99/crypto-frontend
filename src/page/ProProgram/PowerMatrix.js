@@ -10,7 +10,7 @@ import { useSession } from "next-auth/react";
 
 const PowerMatrix = () => {
   const [websiteData] = useGetWebsiteData();
-  const { data: user } = useSession()
+  const { data: user } = useSession();
 
   const [programsByTpe, refetch] = useGetAllProProgramByType({
     type: "power-matrix",
@@ -20,7 +20,6 @@ const PowerMatrix = () => {
     userId: user?.user?._id,
     wallet: user?.user?.wallet,
   });
-
 
   return (
     <div className="w-full lg:w-[1000px] xl:w-[1350px] mx-auto space-y-4 px-2 lg:px-0">
@@ -50,26 +49,28 @@ const PowerMatrix = () => {
             </div>
             <div className="p-6 pt-0 flex justify-center items-center flex-col gap-2 space-y-4">
               <Image
-                src={websiteData?.websiteImage || ""}
+                src={item?.image || websiteData?.websiteImage}
                 alt="'image link not working"
                 height={500}
                 width={500}
                 className="w-20 h-20"
               />
 
-
-
-              {myCartData?.result?.proProgram.find(pro => pro?._id === item?._id) ? (
-                <button
-                  className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-text bg-green-600 text-primary-foreground  h-9 rounded-md px-3"
-                >
+              {myCartData?.result?.proProgram.find(
+                (pro) => pro?._id === item?._id
+              ) ? (
+                <button className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-text bg-green-600 text-primary-foreground  h-9 rounded-md px-3">
                   Activated
                 </button>
               ) : (
-                <ActiveProgram isEthPayment={true} programData={item} proRefetch={refetch} id={item?._id} />
+                <ActiveProgram
+                  isEthPayment={true}
+                  programData={item}
+                  proRefetch={refetch}
+                  id={item?._id}
+                  price={String(item?.price)}
+                />
               )}
-
-
             </div>
           </div>
         ))}
