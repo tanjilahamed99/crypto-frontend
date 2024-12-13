@@ -1,64 +1,62 @@
 "use client";
-
-import { BASE_URL } from "@/constant/constant";
-import useGetAllProgramsDataByType from "@/hooks/useProPrograms/UseAllProrams";
-import axios from "axios";
 import { useSession } from "next-auth/react";
 import React from "react";
-import { RxCross1 } from "react-icons/rx";
-import Swal from "sweetalert2";
-import { LuCircleDollarSign } from "react-icons/lu";
-import { FaUser } from "react-icons/fa";
-import { MdDeleteSweep } from "react-icons/md";
-import { FaEdit } from "react-icons/fa";
-import Link from "next/link";
+import useGetAllUsers from "@/hooks/useGetAllUsers/useGetAllUsers";
+import UpLine from "@/components/UpLine/UpLine";
+import SendRoyaltySalary from "./SendRoyaltySalary";
 
 const AdminRoyaltySalary = () => {
-  const { data: user } = useSession();
-  const [programs, refetch] = useGetAllProgramsDataByType({
-    type: "power-matrix",
-    programName: "millionaire",
+  const { data: user } = useSession() || {};
+  const [allUsers, refetch] = useGetAllUsers({
+    adminId: user?.user?._id,
+    adminEmail: user?.user?.email,
+    wallet: user?.user?.wallet,
   });
 
   return (
     <div>
       <h2 className="text-white text-2xl font-bold my-5">Royalty Salary</h2>
 
-      <div className="my-10 space-y-3">
-        {/* millionaire program */}
-        <h2 className="text-white text-xl font-bold">millionaire Programs</h2>
-        <div className="px-2 border-gray-700 border-2">
-          <div className="flex justify-between items-center px-2">
-            <h2 className="text-white text-lg font-bold my-5">
-              Pro Power Matrix
-            </h2>
-          </div>
-
-          <div className="flex flex-wrap  gap-10 p-5">
-            {programs?.programs?.map((item, idx) => (
-              <Link
-                key={idx}
-                href={`/admin/dashboard/royaltySalary/royaltyUsers?id=${item?._id}`}
-              >
-                <div className="p-4 text-white border border-gray-500 shadow-md w-[200px] shadow-gray-300">
-                  <div className="flex flex-col gap-5 justify-center">
-                    <div className="w-10 h-10 mx-auto flex justify-center items-center rounded-full text-white ring-2 font-bold ring-white">
-                      <p>{item?.order}</p>
-                    </div>
-                    <p className="flex items-center gap-2 font-semibold">
-                      <LuCircleDollarSign className="text-primary text-2xl" />
-                      {item?.price}
-                    </p>
-                    <p className="flex items-center gap-2 ">
-                      <FaUser className="text-primary text-xl" />
-                      {item?.users?.length > 0 ? item?.users?.length : 0}
-                    </p>
-                  </div>
-                </div>
-              </Link>
+      <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr className="text-white">
+              <th className="whitespace-nowrap">No.</th>
+              <th className="whitespace-nowrap">UserId</th>
+              <th className="whitespace-nowrap">Wallet</th>
+              <th className="whitespace-nowrap">Up Line</th>
+              <th className="whitespace-nowrap">Down Line</th>
+              <th className="whitespace-nowrap">View</th>
+            </tr>
+          </thead>
+          <tbody>
+            {allUsers?.map((item, idx) => (
+              <tr className="text-white mx-auto" key={idx}>
+                <th className="whitespace-nowrap">{idx + 1}</th>
+                <th className="whitespace-nowrap">
+                  {item?._id?.slice(0, 5)}... {item?._id?.slice(19, 24)}
+                </th>
+                <th className="whitespace-nowrap">
+                  {item?.wallet?.slice(0, 7)}...{item?.wallet.slice(12, 20)}
+                </th>
+                <th className="whitespace-nowrap">
+                  <UpLine id={item?._id} />
+                </th>
+                <th className="whitespace-nowrap">
+                  <UpLine id={item?._id} />
+                </th>
+                <th className="whitespace-nowrap">
+                  <SendRoyaltySalary
+                    userId={item?._id}
+                    isEthPayment={true}
+                    price={"0.0003"}
+                  />
+                </th>
+              </tr>
             ))}
-          </div>
-        </div>
+          </tbody>
+        </table>
       </div>
     </div>
   );
