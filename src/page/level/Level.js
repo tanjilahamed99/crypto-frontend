@@ -7,13 +7,12 @@ import { RxCross1 } from "react-icons/rx";
 const Level = () => {
   const { data: user } = useSession();
   const [myRefers] = useGetMyRefersData({ id: user?.user?._id });
-  const [defaultUsers, setDefaultUsers] = useState([]);
   const [selectedLevel, setSelectedLevel] = useState(null); // Track selected level
 
   // Get filtered data based on selected level
   const getFilteredData = () => {
-    const startIndex = selectedLevel ? (selectedLevel - 1) * 10 : 0;
-    const endIndex = selectedLevel ? selectedLevel * 10 : 10;
+    const startIndex = selectedLevel ? (selectedLevel - 1) * 100 : 0;
+    const endIndex = selectedLevel ? selectedLevel * 100 : 100;
     return myRefers?.result?.slice(startIndex, endIndex) || [];
   };
 
@@ -31,28 +30,31 @@ const Level = () => {
             </tr>
           </thead>
           <tbody className="border-t-2 border-gray-700">
-            {[1, 2, 3, 4, 5].map((level) => (
-              <tr className="border-b border-gray-700" key={level}>
-                <th className="border-r border-gray-700">{level}</th>
-                <th className="border-r border-gray-700">
-                  {myRefers?.result?.length <= level * 10 &&
-                  myRefers?.result?.length > (level - 1) * 10
-                    ? myRefers?.result?.length - (level - 1) * 10
-                    : 0}
-                </th>
-                <th>
-                  <button
-                    onClick={() => {
-                      setSelectedLevel(level);
-                      document.getElementById("my_modal_1").showModal();
-                    }}
-                    className="btn btn-sm border-none bg-primary text-black"
-                  >
-                    Details
-                  </button>
-                </th>
-              </tr>
-            ))}
+            {[1, 2, 3, 4, 5].map((level) => {
+              const startIndex = (level - 1) * 100;
+              const endIndex = level * 100;
+              const memberCount = myRefers?.result
+                ? Math.min(myRefers?.result?.length - startIndex, 100)
+                : 0;
+
+              return (
+                <tr className="border-b border-gray-700" key={level}>
+                  <th className="border-r border-gray-700">{level}</th>
+                  <th className="border-r border-gray-700">{memberCount}</th>
+                  <th>
+                    <button
+                      onClick={() => {
+                        setSelectedLevel(level);
+                        document.getElementById("my_modal_1").showModal();
+                      }}
+                      className="btn btn-sm border-none bg-primary text-black"
+                    >
+                      Details
+                    </button>
+                  </th>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

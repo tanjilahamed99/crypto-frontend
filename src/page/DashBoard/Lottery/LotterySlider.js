@@ -11,27 +11,8 @@ import {
 } from "swiper/modules";
 import Image from "next/image";
 
-const LotterySlider = ({ view, data }) => {
-  // const data = [
-  //   {
-  //     img: "https://i.ibb.co.com/xMfmVQ2/1629198964029.jpg",
-  //   },
-  //   {
-  //     img: "https://i.ibb.co.com/DKw4yYc/crypto-lottery.png",
-  //   },
-  //   {
-  //     img: "https://i.ibb.co.com/wKs80w9/download.jpg",
-  //   },
-  //   {
-  //     img: "https://i.ibb.co.com/xMfmVQ2/1629198964029.jpg",
-  //   },
-  //   {
-  //     img: "https://i.ibb.co.com/DKw4yYc/crypto-lottery.png",
-  //   },
-  //   {
-  //     img: "https://i.ibb.co.com/wKs80w9/download.jpg",
-  //   },
-  // ];
+const  LotterySlider = ({ view, data }) => {
+
 
   return (
     <div>
