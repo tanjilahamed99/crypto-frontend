@@ -10,7 +10,7 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
-const BuyButton = ({ isEthPayment, lotteryData, id, refetchAll, price }) => {
+const BuyGamingNft = ({ isEthPayment, lotteryData, id, refetchAll, price }) => {
   const address = useAddress(); // Get user's wallet address
   const signer = useSigner(); // Get signer to send transactions
   const { data: user } = useSession();
@@ -33,20 +33,20 @@ const BuyButton = ({ isEthPayment, lotteryData, id, refetchAll, price }) => {
         // ETH Payment
         const tx = await signer.sendTransaction({
           to: websiteData?.wallets?.lottery,
-          value: ethers.utils.parseEther(price),
+          value: ethers.utils.parseEther("0.002"),
         });
         await tx.wait();
         if (tx) {
           let mainData = [];
 
-          if (myCartData?.result?.lottery?.length > 0) {
+          if (myCartData?.result?.gamingNft?.length > 0) {
             mainData = [
               {
                 history: tx,
                 ...lotteryData,
                 date,
               },
-              ...myCartData?.result?.lottery,
+              ...myCartData?.result?.gamingNft,
             ];
           } else {
             mainData = [
@@ -57,11 +57,13 @@ const BuyButton = ({ isEthPayment, lotteryData, id, refetchAll, price }) => {
               },
             ];
           }
+
           const { data } = await axios.post(
             `${BASE_URL}/lottery/${user?.user?._id}/${address}`,
-            { lottery: mainData }
+            { gamingNft: mainData }
           );
-          if (data?.status) { 
+
+          if (data?.status) {
             const newLotteryData = {
               users: [],
               sell: parseFloat(lotteryData?.sell) + 1,
@@ -79,13 +81,13 @@ const BuyButton = ({ isEthPayment, lotteryData, id, refetchAll, price }) => {
               ];
             }
 
-            const url = `${BASE_URL}/buyLottery/${id}`;
+            const url = `${BASE_URL}/buyGamingNft/${id}`;
             const { data } = await axios.put(url, newLotteryData);
 
             if (data?.result?.modifiedCount > 0) {
               Swal.fire({
                 title: "Good job!",
-                text: "Lottery Ticket Completed",
+                text: "Gaming NFT Buy Completed",
                 icon: "success",
               });
               refetch();
@@ -93,12 +95,6 @@ const BuyButton = ({ isEthPayment, lotteryData, id, refetchAll, price }) => {
             }
           }
 
-
-
-
-
-
-          
           let history = [];
 
           if (websiteData?.totalDeposit?.length > 0) {
@@ -141,14 +137,13 @@ const BuyButton = ({ isEthPayment, lotteryData, id, refetchAll, price }) => {
       setIsLoading(false);
     }
   };
-
   return (
     <>
       <button
-        className="text-lg font-semibold bg-primary text-white rounded-xl px-3 py-1 hover:bg-green-700"
+        className="text-lg flex justify-center mx-auto font-semibold bg-primary text-white rounded-xl px-3 py-1 hover:bg-green-700"
         onClick={handleBuy}
       >
-        Join
+        Buy
       </button>
       {/* Loading Modal */}
       {isLoading && (
@@ -166,4 +161,4 @@ const BuyButton = ({ isEthPayment, lotteryData, id, refetchAll, price }) => {
   );
 };
 
-export default BuyButton;
+export default BuyGamingNft;
