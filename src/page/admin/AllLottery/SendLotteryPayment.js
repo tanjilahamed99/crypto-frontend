@@ -7,6 +7,7 @@ import axios from "axios";
 import { ethers } from "ethers";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const SendLotteryPayment = ({
   isEthPayment,
@@ -24,23 +25,6 @@ const SendLotteryPayment = ({
   const [isLoading, setIsLoading] = useState(false);
   const date = Date();
   const [websiteData, refetch] = useGetWebsiteData();
-  const ETH_PRICE = "0.001"; // ETH price
-
-  // // Fetch BNB price in USD
-  // const fetchBNBPrice = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       "https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd"
-  //     );
-  //     console.log(response.data);
-  //     return response.data;
-  //   } catch (error) {
-  //     console.error("Failed to fetch BNB price:", error);
-  //     return null;
-  //   }
-  // };
-
-  // fetchBNBPrice();
 
   const handleBuy = async () => {
     if (!address || !signer) {
@@ -54,10 +38,9 @@ const SendLotteryPayment = ({
 
         const tx = await signer.sendTransaction({
           to: wallet,
-          value: ethers.utils.parseEther(ETH_PRICE),
+          value: ethers.utils.parseEther(price),
         });
         await tx.wait();
-        // console.log(tx);
         if (tx) {
           const main = winners?.filter((user) => user?.userId !== userId);
           const mainWinnersList = [
@@ -66,8 +49,9 @@ const SendLotteryPayment = ({
               wallet,
               history: tx,
               payment: "Completed",
-              amount: 0.03,
+              amount: price,
               date,
+              reword: parseFloat(price),
             },
             ...main,
           ];
@@ -78,6 +62,11 @@ const SendLotteryPayment = ({
           );
           if (data?.result?.modifiedCount > 0) {
             refetchAll();
+            Swal.fire({
+              title: "Good job!",
+              text: "Payment send Success",
+              icon: "success",
+            });
           }
 
           let history = [];
@@ -89,7 +78,7 @@ const SendLotteryPayment = ({
                 history: tx,
                 userId: user?.user?._id,
                 wallet: address,
-                amount: parseFloat(ETH_PRICE),
+                amount: parseFloat(price),
                 date,
               },
               ...websiteData?.totalWithdrawal,
@@ -100,7 +89,7 @@ const SendLotteryPayment = ({
                 history: tx,
                 userId: user?.user?._id,
                 wallet: address,
-                amount: parseFloat(ETH_PRICE),
+                amount: parseFloat(price),
                 date,
               },
             ];
@@ -111,7 +100,7 @@ const SendLotteryPayment = ({
                 history: tx,
                 userId: user?.user?._id,
                 wallet: address,
-                amount: parseFloat(ETH_PRICE),
+                amount: parseFloat(price),
                 date,
               },
               ...websiteData?.totalLotteryWithdrawal,
@@ -122,7 +111,7 @@ const SendLotteryPayment = ({
                 history: tx,
                 userId: user?.user?._id,
                 wallet: address,
-                amount: parseFloat(ETH_PRICE),
+                amount: parseFloat(price),
                 date,
               },
             ];

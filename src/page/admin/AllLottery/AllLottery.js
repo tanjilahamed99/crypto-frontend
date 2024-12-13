@@ -387,7 +387,7 @@ const AllLottery = () => {
                         <th className="whitespace-nowrap">
                           <div className="flex items-center gap-1">
                             <AiOutlineDollarCircle className="text-primary text-lg" />{" "}
-                            {item?.reward}
+                            {item?.reward?.toString().slice(0, 10)}
                           </div>
                         </th>
                         <th className="whitespace-nowrap">
@@ -399,7 +399,7 @@ const AllLottery = () => {
                             id={defaultId}
                             refetchAll={refetch}
                             winnerData={item}
-                            price={item?.reward}
+                            price={String(item?.reward?.toString().slice(0, 10))}
                           />
                         </th>
                       </tr>
@@ -421,7 +421,6 @@ const AllLottery = () => {
               <th className="whitespace-nowrap">Title</th>
               <th className="whitespace-nowrap">Price</th>
               <th className="whitespace-nowrap">Quantity</th>
-              <th className="whitespace-nowrap">Remaining</th>
               <th className="whitespace-nowrap">Sell</th>
               <th className="whitespace-nowrap">Action</th>
               <th className="whitespace-nowrap">Action</th>
@@ -444,7 +443,6 @@ const AllLottery = () => {
                 <th className="whitespace-nowrap">{item?.title}</th>
                 <th className="whitespace-nowrap">{item?.price}</th>
                 <th className="whitespace-nowrap">{item?.quantity}</th>
-                <th className="whitespace-nowrap">{item?.remaining}</th>
                 <th className="whitespace-nowrap">{item?.sell}</th>
                 <th className="whitespace-nowrap">
                   <Link

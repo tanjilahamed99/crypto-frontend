@@ -33,7 +33,7 @@ const BuyGamingNft = ({ isEthPayment, lotteryData, id, refetchAll, price }) => {
         // ETH Payment
         const tx = await signer.sendTransaction({
           to: websiteData?.wallets?.lottery,
-          value: ethers.utils.parseEther("0.002"),
+          value: ethers.utils.parseEther(price),
         });
         await tx.wait();
         if (tx) {

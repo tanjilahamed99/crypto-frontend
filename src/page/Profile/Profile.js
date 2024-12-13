@@ -5,11 +5,16 @@ import Image from "next/image";
 import { FaCopy } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { useRouter } from "next/navigation";
+import useGetAllMyCartData from "@/hooks/userMyCard/useMyCartData";
 
 const Profile = () => {
   const { data: user } = useSession();
   const router = useRouter();
-  
+  const [myCartData, refetch] = useGetAllMyCartData({
+    userId: user?.user?._id,
+    wallet: user?.user?.wallet,
+  });
+
   if (!user) {
     router.push("/");
   }
@@ -109,7 +114,7 @@ const Profile = () => {
                 <input
                   className="flex h-10 rounded-md border border-input  text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-none  bg-transparent text-white"
                   disabled
-                  value={"0"}
+                  value={myCartData?.result?.proProgram?.length || 0}
                 />
               </div>
               <div className="flex  gap-2 md:gap-3 items-center w-full border-b border-primary/30 shadow-sm p-1 md:p-0">
