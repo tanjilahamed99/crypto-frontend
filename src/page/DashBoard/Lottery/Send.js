@@ -10,13 +10,7 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
-const BuyButton = ({
-  isEthPayment,
-  lotteryData,
-  id,
-  refetchAll,
-  price,
-}) => {
+const BuyButton = ({ isEthPayment, lotteryData, id, refetchAll, price }) => {
   const address = useAddress(); // Get user's wallet address
   const signer = useSigner(); // Get signer to send transactions
   const { data: user } = useSession();
@@ -28,9 +22,6 @@ const BuyButton = ({
   const [isLoading, setIsLoading] = useState(false);
   const date = Date();
 
-  const ADMIN_ADDRESS = "0xa2D5c51A941ea7c1CA1c72748bD301a873F5A7df"; // Admin address
-  const ETH_PRICE = "0.001"; // ETH price
-
   const handleBuy = async () => {
     if (!address || !signer) {
       alert("Connect your wallet first!");
@@ -41,8 +32,8 @@ const BuyButton = ({
       if (isEthPayment) {
         // ETH Payment
         const tx = await signer.sendTransaction({
-          to: ADMIN_ADDRESS,
-          value: ethers.utils.parseEther(ETH_PRICE),
+          to: websiteData?.wallets?.lottery,
+          value: ethers.utils.parseEther(price),
         });
         await tx.wait();
         if (tx) {
@@ -110,7 +101,7 @@ const BuyButton = ({
                 history: tx,
                 userId: user?.user?._id,
                 wallet: address,
-                amount: parseFloat(ETH_PRICE),
+                amount: parseFloat(price),
                 date,
               },
               ...websiteData?.totalDeposit,
@@ -121,7 +112,7 @@ const BuyButton = ({
                 history: tx,
                 userId: user?.user?._id,
                 wallet: address,
-                amount: parseFloat(ETH_PRICE),
+                amount: parseFloat(price),
                 date,
               },
             ];

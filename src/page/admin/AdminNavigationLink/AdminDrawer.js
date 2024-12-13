@@ -1,7 +1,13 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import { FaBars, FaDatabase, FaGift, FaUserClock } from "react-icons/fa6";
+import {
+  FaBars,
+  FaDatabase,
+  FaGift,
+  FaUserClock,
+  FaUserTag,
+} from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { IoHomeOutline } from "react-icons/io5";
 import "./admindrawer.css";
@@ -11,6 +17,10 @@ import { MdOutlineMedicalInformation } from "react-icons/md";
 import { SlMenu } from "react-icons/sl";
 import { LuNewspaper } from "react-icons/lu";
 import { FiImage } from "react-icons/fi";
+import { IoWalletOutline } from "react-icons/io5";
+import { FaCertificate } from "react-icons/fa";
+import { SiFuturelearn } from "react-icons/si";
+import { BiWallet } from "react-icons/bi";
 
 const AdminDrawer = () => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
@@ -99,7 +109,7 @@ const AdminDrawer = () => {
               href={"/admin/dashboard/royaltyTag"}
               className="flex items-center text-md font-semibold gap-3"
             >
-              <FiImage className="text-2xl" /> Royalty Tag
+              <FaUserTag className="text-2xl" /> Royalty Tag
             </Link>
           </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
@@ -108,7 +118,16 @@ const AdminDrawer = () => {
               href={"/admin/dashboard/certified "}
               className="flex items-center text-md font-semibold gap-3"
             >
-              <FiImage className="text-2xl" /> Certified
+              <FaCertificate className="text-2xl" /> Certified
+            </Link>
+          </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
+            <Link
+              onClick={closeDrawer}
+              href={"/admin/dashboard/wallets "}
+              className="flex items-center text-md font-semibold gap-3"
+            >
+              <IoWalletOutline className="text-2xl" /> Wallets
             </Link>
           </li>
         </ul>
@@ -137,7 +156,7 @@ const AdminDrawer = () => {
           href={"/admin/dashboard/topEarners"}
           className="flex items-center text-md font-semibold gap-3"
         >
-          <IoHomeOutline className="text-2xl" /> Top Earners
+          <SiFuturelearn className="text-2xl" /> Top Earners
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
@@ -146,7 +165,7 @@ const AdminDrawer = () => {
           href={"/admin/dashboard/royaltySalary"}
           className="flex items-center text-md font-semibold gap-3"
         >
-          <IoHomeOutline className="text-2xl" /> Royalty Salary
+          <BiWallet className="text-2xl" /> Royalty Salary
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">

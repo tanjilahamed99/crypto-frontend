@@ -56,6 +56,7 @@ const DashboardLottery = ({ disable }) => {
                       lotteryData={item}
                       id={item?._id}
                       refetchAll={refetch}
+                      price={String(item?.price)}
                     />
                   ) : (
                     <button className="text-lg font-semibold text-white rounded-xl px-3 py-1 bg-green-700">

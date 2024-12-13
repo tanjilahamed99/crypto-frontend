@@ -32,11 +32,13 @@ const AllLottery = () => {
     const lotteryData = {
       title,
       image: lotteryImg,
-      price,
+      price: parseFloat(price),
       quantity,
       remaining: quantity,
       sell: 0,
     };
+
+    console.log(lotteryData);
 
     const url = `${BASE_URL}/admin/lottery/${user?.user?._id}/${user?.user?.email}/${user?.user?.wallet}`;
 
@@ -295,7 +297,6 @@ const AllLottery = () => {
             <div>
               <h2 className="text-white font-semibold  mb-1">Price</h2>
               <input
-                type="number"
                 name="price"
                 placeholder="Ex: Price"
                 required

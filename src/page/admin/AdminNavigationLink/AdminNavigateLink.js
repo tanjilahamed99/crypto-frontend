@@ -13,6 +13,11 @@ import { MdOutlineMedicalInformation } from "react-icons/md";
 import { SlMenu } from "react-icons/sl";
 import { LuNewspaper } from "react-icons/lu";
 import { FiImage } from "react-icons/fi";
+import { IoWalletOutline } from "react-icons/io5";
+import { FaCertificate } from "react-icons/fa";
+import { FaUserTag } from "react-icons/fa";
+import { SiFuturelearn } from "react-icons/si";
+import { BiWallet } from "react-icons/bi";
 
 const AdminNavigateLink = () => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
@@ -87,7 +92,7 @@ const AdminNavigateLink = () => {
               href={"/admin/dashboard/royaltyTag"}
               className="flex items-center text-md font-semibold gap-3"
             >
-              <FiImage className="text-2xl" /> Royalty Tag
+              <FaUserTag className="text-2xl" /> Royalty Tag
             </Link>
           </li>
           <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
@@ -95,7 +100,15 @@ const AdminNavigateLink = () => {
               href={"/admin/dashboard/certified "}
               className="flex items-center text-md font-semibold gap-3"
             >
-              <FiImage className="text-2xl" /> Certified
+              <FaCertificate className="text-2xl" /> Certified
+            </Link>
+          </li>
+          <li className="border border-gray-600  rounded-md hover:bg-gray-800 p-2">
+            <Link
+              href={"/admin/dashboard/wallets "}
+              className="flex items-center text-md font-semibold gap-3"
+            >
+              <IoWalletOutline className="text-2xl" /> Wallets
             </Link>
           </li>
         </ul>
@@ -121,7 +134,7 @@ const AdminNavigateLink = () => {
           href={"/admin/dashboard/topEarners"}
           className="flex items-center text-md font-semibold gap-3"
         >
-          <IoHomeOutline className="text-2xl" /> Top Earners
+          <SiFuturelearn className="text-2xl" /> Top Earners
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
@@ -129,7 +142,7 @@ const AdminNavigateLink = () => {
           href={"/admin/dashboard/royaltySalary"}
           className="flex items-center text-md font-semibold gap-3"
         >
-          <IoHomeOutline className="text-2xl" /> Royalty Salary
+          <BiWallet  className="text-2xl" /> Royalty Salary
         </Link>
       </li>
       <li className="border border-gray-600  rounded-md hover:bg-gray-700 p-2">
