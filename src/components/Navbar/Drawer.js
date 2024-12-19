@@ -134,15 +134,6 @@ const Drawer = () => {
           <FaPhoneAlt className="text-2xl" /> Support
         </Link>
       </li>
-      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
-        <Link
-          onClick={closeDrawer}
-          href={"/adminLogin"}
-          className="flex items-center text-md font-semibold"
-        >
-          <CiLogin className="text-2xl" /> Admin Login
-        </Link>
-      </li>
     </>
   );
   const wallet = useAddress();

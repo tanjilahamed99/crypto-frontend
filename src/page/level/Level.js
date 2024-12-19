@@ -30,32 +30,33 @@ const Level = () => {
             </tr>
           </thead>
           <tbody className="border-t-2 border-gray-700">
-            {[1, 2, 3, 4, 5].map((level) => {
-              const startIndex = (level - 1) * 100;
-              const endIndex = level * 100;
-              const memberCount = myRefers?.result
-                ? Math.min(myRefers?.result?.length - startIndex, 100)
-                : 0;
+  {[1, 2, 3, 4, 5].map((level) => {
+    const startIndex = (level - 1) * 100;
+    const endIndex = level * 100;
+    const memberCount =
+      myRefers?.result?.length > startIndex
+        ? Math.min(myRefers?.result?.length - startIndex, 100)
+        : 0;
 
-              return (
-                <tr className="border-b border-gray-700" key={level}>
-                  <th className="border-r border-gray-700">{level}</th>
-                  <th className="border-r border-gray-700">{memberCount}</th>
-                  <th>
-                    <button
-                      onClick={() => {
-                        setSelectedLevel(level);
-                        document.getElementById("my_modal_1").showModal();
-                      }}
-                      className="btn btn-sm border-none bg-primary text-black"
-                    >
-                      Details
-                    </button>
-                  </th>
-                </tr>
-              );
-            })}
-          </tbody>
+    return (
+      <tr className="border-b border-gray-700" key={level}>
+        <th className="border-r border-gray-700">{level}</th>
+        <th className="border-r border-gray-700">{memberCount}</th>
+        <th>
+          <button
+            onClick={() => {
+              setSelectedLevel(level);
+              document.getElementById("my_modal_1").showModal();
+            }}
+            className="btn btn-sm border-none bg-primary text-black"
+          >
+            Details
+          </button>
+        </th>
+      </tr>
+    );
+  })}
+</tbody>
         </table>
       </div>
 

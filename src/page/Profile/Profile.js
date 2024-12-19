@@ -1,11 +1,15 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import Image from "next/image";
 import { FaCopy } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import useGetAllMyCartData from "@/hooks/userMyCard/useMyCartData";
+import axios from "axios";
+import { BASE_URL } from "@/constant/constant";
+import Swal from "sweetalert2";
+import { RxCross1 } from "react-icons/rx";
 
 const Profile = () => {
   const { data: user } = useSession();
@@ -15,9 +19,75 @@ const Profile = () => {
     wallet: user?.user?.wallet,
   });
 
-  if (!user) {
-    router.push("/");
-  }
+  const uploadProfile = async (e) => {
+    const imageFile = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    try {
+      // Send the image to ImgBB
+      const response = await axios.post(
+        `https://api.imgbb.com/1/upload?key=9fa3cb8e4f8295683436ab614de928c1`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log("hello");
+      // Get the image URL from the response
+      const imageUrl = response.data.data.url;
+      // Save the image URL to state or use it as needed
+      console.log(imageUrl);
+      if (imageUrl) {
+        // update the userData
+        const updateImage = {
+          picture: imageUrl,
+        };
+        const { data } = await axios.put(
+          `${BASE_URL}/updateUserInfo/${user?.user?._id}/${user?.user?.wallet}`,
+          updateImage
+        );
+        console.log();
+
+        if (data?.result?.matchedCount > 0) {
+          Swal.fire({
+            title: "Good job!",
+            text: "You Picture updated",
+            icon: "success",
+          });
+        }
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+
+  const handleUpdateUserName = async (e) => {
+    e.preventDefault();
+    const username = e.target.username.value;
+    try {
+      const updateImage = {
+        username,
+      };
+      const { data } = await axios.put(
+        `${BASE_URL}/updateUserInfo/${user?.user?._id}/${user?.user?.wallet}`,
+        updateImage
+      );
+      console.log(data);
+      if (data?.result?.matchedCount > 0) {
+        document.getElementById("my_modal_1").close();
+        Swal.fire({
+          title: "Good job!",
+          text: "You UserName Updated",
+          icon: "success",
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="lg:w-[70%] w-[90%] mx-auto">
@@ -34,9 +104,22 @@ const Profile = () => {
             alt="image not found"
             className="h-60 w-60 rounded-full mx-auto"
           />
-          <p className="text-primary hover:underline text-center font-bold cursor-pointer mt-2">
-            Edit Profile Pic
-          </p>
+          <div className="mt-3">
+            <div>
+              <label htmlFor="type3-2" className="">
+                <p className="truncate text-center rounded-full hover:shadow-[0px_0px_4px_0.5px] border-[3px] border-gray-500 px-6 py-1.5 font-medium text-gray-500 shadow-md">
+                  {"Edit Profile Pic"}
+                </p>
+              </label>
+              <input
+                onChange={uploadProfile}
+                className="hidden"
+                type="file"
+                name=""
+                id="type3-2"
+              />
+            </div>
+          </div>
         </div>
         <div className="rounded-lg border bg-black  shadow-sm border-primary/30">
           <div className="md:p-6">
@@ -97,7 +180,12 @@ const Profile = () => {
                   disabled
                   value={user?.user?.username}
                 />
-                <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring   hover:bg-gray-600 hover:text-accent-foreground p-2 text-white bg-transparent">
+                <button
+                  onClick={() =>
+                    document.getElementById("my_modal_1").showModal()
+                  }
+                  className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring   hover:bg-gray-600 hover:text-accent-foreground p-2 text-white bg-transparent"
+                >
                   <FiEdit className="text-xl text-primary" />
                 </button>
               </div>
@@ -161,6 +249,36 @@ const Profile = () => {
           </div>
         </div>
       </div>
+
+      <dialog id="my_modal_1" className="modal">
+        <div className="modal-box bg-gray-600 text-white pt-0">
+          <div className="modal-action">
+            <form method="dialog">
+              <button>
+                <RxCross1 />
+              </button>
+            </form>
+          </div>
+          <form
+            onSubmit={handleUpdateUserName}
+            className="text-black space-y-3"
+          >
+            <div>
+              <h2 className="text-white font-semibold  mb-1">UserName</h2>
+              <input
+                type="text"
+                name="username"
+                placeholder="Ex: username"
+                required
+                className="w-full pl-2 py-2 rounded-md"
+              />
+            </div>
+            <button className="bg-primary font-semibold border-none h-10 w-28 text-white hover:bg-[#f2a74b] rounded-lg">
+              Update
+            </button>
+          </form>
+        </div>
+      </dialog>
     </div>
   );
 };
