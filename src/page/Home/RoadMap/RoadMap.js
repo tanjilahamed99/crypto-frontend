@@ -31,7 +31,7 @@ const RoadMap = () => {
             {/* Project Logo */}
             <div className="flex items-center mt-10 gap-2 md:gap-5 md:justify-center justify-start">
               <Image
-                src={websiteData?.websiteImage || ""}
+                src={websiteData?.roadMapImgOne || ""}
                 width={500}
                 height={500}
                 alt="image not found"
@@ -128,7 +128,7 @@ const RoadMap = () => {
             {/* Project Logo */}
             <div className="flex items-start mt-10 gap-2 md:gap-5 md:justify-center justify-start">
               <Image
-               src={websiteData?.websiteImage || ""}
+               src={websiteData?.roadMapImgTwo || ""}
                 width={500}
                 height={500}
                 alt="image not found"

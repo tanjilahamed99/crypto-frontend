@@ -97,7 +97,7 @@ const Banner = () => {
           height={500}
           width={500}
           alt="image not found"
-          className="mx-auto w-80 h-80"
+          className="mx-auto w-80 md:h-80"
         />
       </div>
 
