@@ -61,11 +61,7 @@ const Navbar = () => {
       <div className="flex-none">
         <Link href={"/"}>
           <Image
-            src={
-              websiteData?.websiteImage
-                ? websiteData?.websiteImage
-                : "https://i.ibb.co.com/9bQnXmF/images-3.jpg"
-            }
+            src={websiteData?.websiteImage || ""}
             width={500}
             height={500}
             alt="image not found"
