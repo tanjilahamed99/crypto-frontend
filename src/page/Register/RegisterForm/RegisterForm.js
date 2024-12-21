@@ -3,48 +3,88 @@
 import Image from "next/image";
 import Link from "next/link";
 import RegistrationFunction from "./RegistationFunction";
-import { useAddress } from "@thirdweb-dev/react";
+import { useAddress, useSigner } from "@thirdweb-dev/react";
 import axios from "axios";
 import { BASE_URL } from "@/constant/constant";
 import { useRouter } from "next/navigation";
 import { signIn, useSession, signOut } from "next-auth/react";
+import { ethers } from "ethers";
+import { useState } from "react";
 
 const RegisterForm = ({ refer }) => {
   const address = useAddress();
   const router = useRouter();
-  const url = `${BASE_URL}/register`;
+  const signer = useSigner(); // Get signer to send transactions
+  const [loading, setLoading] = useState(false);
+
   const { data: user } = useSession();
   const date = Date();
+  const price = "0.0003";
+  const adminAddress = "0xd4835Bc8a235Cc6Ecd6274A06B40495331310F01";
 
   const register = async () => {
-    const { data } = await axios?.post(url, {
-      wallet: address,
-      referBy: refer ? refer : "6729caf3a6953243197ef6bb",
-      joined: date,
-    });
-
+    setLoading(true);
+    const url = `${BASE_URL}/userCheck/${address}`;
+    const { data } = await axios?.get(url);
     // console.log(data);
 
-    if (data?.status) {
+    if (data?.created) {
       try {
         const response = await signIn("credentials", {
           wallet: address,
           callbackUrl: "/dashboard",
           redirect: false,
         });
-
         if (response?.status) {
-          if (user) {
-            const newUser = user?.user?._id;
-            const referOwner = refer || "6729caf3a6953243197ef6bb";
-            const { data } = await axios.post(
-              `${BASE_URL}/saveRefer/${referOwner}/${newUser}`
-            );
-            router.push("/dashboard");
+          router.push("/dashboard");
+        }
+        console.log(response);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error logging in:", error);
+      }
+    } else {
+      if (!address || !signer) {
+        alert("Connect your wallet first!");
+        return;
+      }
+      try {
+        // ETH Payment
+        const tx = await signer.sendTransaction({
+          to: adminAddress,
+          value: ethers.utils.parseEther(price),
+        });
+        await tx.wait();
+        console.log(tx);
+
+        if (tx) {
+          const registerUrl = `${BASE_URL}/register`;
+          const { data } = await axios?.post(registerUrl, {
+            wallet: address,
+            referBy: refer ? refer : "6729caf3a6953243197ef6bb",
+            joined: date,
+          });
+          if (data?.create) {
+            try {
+              const response = await signIn("credentials", {
+                wallet: address,
+                callbackUrl: "/dashboard",
+                redirect: false,
+              });
+              if (response?.status) {
+                router.push("/dashboard");
+              }
+              setLoading(false);
+            } catch (error) {
+              console.error("Error logging in:", error);
+            }
           }
         }
       } catch (error) {
-        console.error("Error logging in:", error);
+        console.error("Transaction failed:", error);
+        alert("Transaction failed: " + error.message);
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -93,6 +133,19 @@ const RegisterForm = ({ refer }) => {
           Go To Home
         </Link>
       </div>
+
+      {/* Loading Modal */}
+      {loading && (
+        <dialog id="loading_modal" className="modal " open>
+          <div className="modal-box text-black bg-white">
+            <span className="loading loading-spinner loading-lg flex justify-center mx-auto"></span>
+            <h3 className="font-bold text-lg">Processing...</h3>
+            <p className="py-4">
+              Your transaction is being processed. Please wait...
+            </p>
+          </div>
+        </dialog>
+      )}
     </div>
   );
 };

@@ -33,7 +33,7 @@ const AuthorizeUser = ({ children }) => {
             </Link>
           </div>
         )}
-        {/* {!wallet && user && (
+        {!wallet && user && (
           <div className="flex flex-col gap-2 justify-center items-center my-10 h-[35vh] lg:h-[50vh]">
             <IoPersonAddSharp className=" text-4xl text-red-500" />
             <h2 className="text-red-500 text-2xl font-bold text-center">
@@ -43,10 +43,9 @@ const AuthorizeUser = ({ children }) => {
               If have already registed please reload page after 1-5 minutes
             </h2>
           </div>
-        )} */}
+        )}
 
-        {/* {user && wallet && children} */}
-        {user && children}
+        {user && wallet && children}
       </div>
       <Contact />
       <Footer />
