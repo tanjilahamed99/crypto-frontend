@@ -33,7 +33,7 @@ const  LotterySlider = ({ view, data }) => {
         {data?.map((item, idx) => (
           <SwiperSlide className="cursor-pointer" key={idx}>
             <Image
-              src={item?.image}
+              src={item}
               alt="image not found"
               height={500}
               width={500}

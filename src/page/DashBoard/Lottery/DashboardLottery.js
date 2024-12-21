@@ -12,7 +12,6 @@ const DashboardLottery = ({ disable }) => {
   const [allLottery, refetch] = useGetAllLottery();
   const { data: user } = useSession();
   const [websiteData] = useGetWebsiteData();
-  console.log(websiteData);
 
   return (
     <div className=" w-full lg:w-[1000px] xl:w-[1350px] mx-auto space-y-2 mt-2">
@@ -22,10 +21,10 @@ const DashboardLottery = ({ disable }) => {
         {/* slider  */}
         <div className="mt-3">
           <div className="hidden md:inline">
-            <LotterySlider view={2} data={allLottery?.lottery} />
+            <LotterySlider view={2} data={websiteData?.lotteryImages} />
           </div>
           <div className=" md:hidden">
-            <LotterySlider view={1} data={allLottery?.lottery} />
+            <LotterySlider view={1} data={websiteData?.lotteryImages} />
           </div>
         </div>
 

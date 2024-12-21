@@ -8,10 +8,13 @@ import { BsPeopleFill } from "react-icons/bs";
 import { BiSolidNetworkChart } from "react-icons/bi";
 import { TbArrowUp } from "react-icons/tb";
 import { useRouter } from "next/navigation";
+import useGetMyRefersData from "@/hooks/useGetMyRefers/UseGetMyRefers";
 
 const DashboardProfile = () => {
   const { data: user, status } = useSession();
   const router = useRouter();
+  const [myRefers] = useGetMyRefersData({ id: user?.user?._id });
+  console.log(myRefers?.result?.length);
 
   if (!user) {
     router.push("/");
@@ -28,11 +31,7 @@ const DashboardProfile = () => {
             <div className="flex items-center text-white gap-3 md:gap-5 md:p-5">
               <div className="w-[20%]">
                 <Image
-                  src={
-                    user?.user?.picture
-                      ? user?.user?.picture
-                      : "https://i.ibb.co.com/9bQnXmF/images-3.jpg"
-                  }
+                  src={user?.user?.picture || ""}
                   width={500}
                   height={500}
                   alt="image not found"
@@ -64,7 +63,6 @@ const DashboardProfile = () => {
               </div>
             </div>
           </div>
- 
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  items.center gap-3 p-2 lg:p-0">
@@ -82,7 +80,10 @@ const DashboardProfile = () => {
           <div className="rounded-lg text-card-foreground gap-1 shadow-sm p-4 bg-opacity-20 bg-gray-400 w-full mx-auto grid justify-center items-center">
             <h2 className="text-primary flex items-center gap-1">
               <BsPeopleFill className="text-xl" />
-              <span className="text-3xl font-extrabold">0</span>
+              <span className="text-3xl font-extrabold">
+                {" "}
+                {myRefers?.result?.length || 0}
+              </span>
 
               <span className="text-green-500 text-base flex font-semibold items-center">
                 <TbArrowUp className="text-2xl" />0
@@ -93,7 +94,9 @@ const DashboardProfile = () => {
           <div className="rounded-lg text-card-foreground gap-1 shadow-sm p-4 bg-opacity-20 bg-gray-400 w-full mx-auto grid justify-center items-center">
             <h2 className="text-primary flex items-center gap-1">
               <BiSolidNetworkChart className="text-xl" />
-              <span className="text-3xl font-extrabold">0</span>
+              <span className="text-3xl font-extrabold">
+                {myRefers?.result?.length || 0}
+              </span>
 
               <span className="text-green-500 text-base flex font-semibold items-center">
                 <TbArrowUp className="text-2xl" />0
