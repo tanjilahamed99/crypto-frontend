@@ -270,7 +270,7 @@ const Profile = () => {
                 name="username"
                 placeholder="Ex: username"
                 required
-                className="w-full pl-2 py-2 rounded-md"
+                className="w-full pl-2 py-2 rounded-md text-black bg-white"
               />
             </div>
             <button className="bg-primary font-semibold border-none h-10 w-28 text-white hover:bg-[#f2a74b] rounded-lg">

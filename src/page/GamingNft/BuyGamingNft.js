@@ -139,12 +139,14 @@ const BuyGamingNft = ({ isEthPayment, lotteryData, id, refetchAll, price }) => {
   };
   return (
     <>
-      <button
-        className="text-lg flex justify-center mx-auto font-semibold bg-primary text-white rounded-xl px-3 py-1 hover:bg-green-700"
-        onClick={handleBuy}
-      >
-        Buy
-      </button>
+      {isEthPayment && (
+        <button
+          className="text-lg flex justify-center mx-auto font-semibold bg-primary text-white rounded-xl px-3 py-1 hover:bg-green-700"
+          onClick={handleBuy}
+        >
+          Buy
+        </button>
+      )}
       {/* Loading Modal */}
       {isLoading && (
         <dialog id="loading_modal" className="modal" open>

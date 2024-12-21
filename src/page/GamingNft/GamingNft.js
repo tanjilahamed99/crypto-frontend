@@ -6,6 +6,7 @@ import { AiTwotoneDollar } from "react-icons/ai";
 import BuyGamingNft from "./BuyGamingNft";
 import { useSession } from "next-auth/react";
 import useGetAllMyCartData from "@/hooks/userMyCard/useMyCartData";
+import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
 const GamingNft = () => {
   const [gamingNft, refetch] = useGetAllGamingNft();
   const { data: user } = useSession();
@@ -13,6 +14,7 @@ const GamingNft = () => {
     userId: user?.user?._id,
     wallet: user?.user?.wallet,
   });
+  const [websiteData] = useGetWebsiteData();
 
   return (
     <div className=" bg-background p-2  w-full lg:w-[1000px] xl:w-[1350px] mx-auto space-y-3">
@@ -46,7 +48,7 @@ const GamingNft = () => {
             <div className="flex justify-center mx-auto">
               <BuyGamingNft
                 id={item?._id}
-                isEthPayment={true}
+                isEthPayment={websiteData?.gamingNft}
                 lotteryData={item}
                 price={String(item?.price)}
                 refetchAll={refetch}
@@ -107,7 +109,9 @@ const GamingNft = () => {
       {/* my nft */}
 
       <div>
-        <h2 className="text-2xl font-semibold text-white mt-5 mb-3">My Gaming NFT</h2>
+        <h2 className="text-2xl font-semibold text-white mt-5 mb-3">
+          My Gaming NFT
+        </h2>
 
         <div className="grid items-center gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {myCartData?.result?.gamingNft?.map((item, idx) => (
