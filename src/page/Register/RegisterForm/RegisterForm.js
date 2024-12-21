@@ -10,17 +10,19 @@ import { useRouter } from "next/navigation";
 import { signIn, useSession, signOut } from "next-auth/react";
 import { ethers } from "ethers";
 import { useState } from "react";
+import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
 
 const RegisterForm = ({ refer }) => {
   const address = useAddress();
   const router = useRouter();
   const signer = useSigner(); // Get signer to send transactions
   const [loading, setLoading] = useState(false);
+  const [websiteData] = useGetWebsiteData();
+
+  console.log(websiteData);
 
   const { data: user } = useSession();
   const date = Date();
-  const price = "0.0003";
-  const adminAddress = "0xd4835Bc8a235Cc6Ecd6274A06B40495331310F01";
 
   const register = async () => {
     setLoading(true);
@@ -51,12 +53,10 @@ const RegisterForm = ({ refer }) => {
       try {
         // ETH Payment
         const tx = await signer.sendTransaction({
-          to: adminAddress,
-          value: ethers.utils.parseEther(price),
+          to: websiteData?.register?.wallet,
+          value: ethers.utils.parseEther(String(websiteData?.register?.fee)),
         });
         await tx.wait();
-        console.log(tx);
-
         if (tx) {
           const registerUrl = `${BASE_URL}/register`;
           const { data } = await axios?.post(registerUrl, {
@@ -79,6 +79,37 @@ const RegisterForm = ({ refer }) => {
               console.error("Error logging in:", error);
             }
           }
+          let history = [];
+          if (websiteData?.totalRegisterFee?.length > 0) {
+            history = [
+              {
+                history: tx,
+                userId: user?.user?._id,
+                wallet: address,
+                amount: websiteData?.register?.fee,
+                date,
+              },
+              ...websiteData?.totalRegisterFee,
+            ];
+          } else {
+            history = [
+              {
+                history: tx,
+                wallet: address,
+                amount: websiteData?.register?.fee,
+                date,
+              },
+            ];
+          }
+
+          const mainHistory = {
+            totalRegisterFee: history,
+          };
+
+          const { data: historyData } = await axios.post(
+            `${BASE_URL}/history`,
+            mainHistory
+          );
         }
       } catch (error) {
         console.error("Transaction failed:", error);
@@ -95,7 +126,7 @@ const RegisterForm = ({ refer }) => {
         Registering for Istimate-Pro
       </h2>
       <Image
-        src={"https://i.ibb.co.com/9bQnXmF/images-3.jpg"}
+        src={websiteData?.websiteImage || ""}
         width={500}
         height={500}
         alt="image not found"
