@@ -19,10 +19,10 @@ const ReferCon = () => {
           <div className="md:p-5">
             <div className="mt-3">
               <div className="hidden md:inline">
-                <LotterySlider view={2} data={websiteData?.referImage} />
+                <LotterySlider view={2} data={websiteData?.referImages} />
               </div>
               <div className=" md:hidden">
-                <LotterySlider view={1} data={websiteData?.referImage} />
+                <LotterySlider view={1} data={websiteData?.referImages} />
               </div>
             </div>
           </div>

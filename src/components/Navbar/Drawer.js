@@ -17,6 +17,7 @@ import "./drawer.css";
 import { signOut, useSession } from "next-auth/react";
 import { useAddress } from "@thirdweb-dev/react";
 import { AiOutlineDashboard } from "react-icons/ai";
+import { VscReferences } from "react-icons/vsc";
 
 const Drawer = () => {
   const { data: user } = useSession();
@@ -132,6 +133,15 @@ const Drawer = () => {
           className="flex items-center text-md font-semibold"
         >
           <FaPhoneAlt className="text-2xl" /> Support
+        </Link>
+      </li>
+      <li className="border border-gray-600  rounded-md hover:bg-gray-700">
+        <Link
+          onClick={closeDrawer}
+          href={"/refer"}
+          className="flex items-center text-md font-semibold"
+        >
+          <VscReferences className="text-2xl" /> Refer
         </Link>
       </li>
     </>
