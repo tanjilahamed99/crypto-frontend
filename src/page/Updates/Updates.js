@@ -6,8 +6,6 @@ import Image from "next/image";
 const Updates = () => {
   const [allUpdates, refetch] = useGetAllUpdates();
 
-  console.log(allUpdates?.updates);
-
   return (
     <div className="w-full lg:w-[1000px] xl:w-[1350px] mx-auto">
       <h2 className="text-white text-2xl font-bold">Updates</h2>
