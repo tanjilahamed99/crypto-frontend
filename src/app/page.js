@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import About from "@/page/Home/About/About";
 import Certified from "@/page/Home/Certified/Certified";
 import Contact from "@/page/Home/Contact/Contact";
+import DashboardImage from "@/page/Home/DashboardImage/DashboardImage";
 import Faq from "@/page/Home/Faq/Faq";
 import RoadMap from "@/page/Home/RoadMap/RoadMap";
 import RoyaltyTag from "@/page/Home/RoyaltyTag/RoyaltyTag";
@@ -22,6 +23,8 @@ export default function Home() {
         <Testimonial />
         <RoyaltyTag />
         <TopEarners />
+        {/* dashboard image */}
+        <DashboardImage />
         <Certified />
         <Faq />
         <Contact />

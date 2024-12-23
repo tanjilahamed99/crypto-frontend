@@ -29,7 +29,7 @@ const Certified = () => {
               src={item?.image}
               height={500}
               width={500}
-              className="w-20 mx-auto mb-2"
+              className="w-20 h-20 mx-auto mb-2"
             />
             <h2 className="text-white font-semibold text-center">
               {item?.name}

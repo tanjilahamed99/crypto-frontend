@@ -15,10 +15,10 @@ const PrivacyPolicy = () => {
         <Navbar />
 
         <div className="pt-20 lg:pt-24 w-full lg:w-[1000px] xl:w-[1350px] mx-auto">
-          <h2 className="text-white text-2xl font-semibold">Privacy Policy</h2>
+          <h2 className="text-white text-2xl font-extrabold">Privacy Policy</h2>
 
           <div className="text-white font-semibold mt-2">
-            {/* <p>{websiteData?.privacyPolicy}</p> */}
+            <p>{websiteData?.privacyPolicy}</p>
           </div>
         </div>
 

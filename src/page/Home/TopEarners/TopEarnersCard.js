@@ -7,7 +7,7 @@ const TopEarnersCard = ({ data }) => {
   return (
     <div className="bg-gray-500 bg-opacity-20 py-5">
       <Image
-        className="w-20 mx-auto"
+        className="w-20 mx-auto h-20"
         src={data?.image || ""}
         alt="image not found"
         height={500}
