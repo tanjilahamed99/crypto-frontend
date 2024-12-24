@@ -8,7 +8,7 @@ const DashboardImage = () => {
   return (
     <div className="my-10 lg:w-[80%] w-[90%] mx-auto">
       <h2 className="text-primary  text-2xl lg:text-3xl font-extrabold text-center mb-5">
-        Premium Dashboard
+      User-Friendly Premium Dashboard
       </h2>
       <Image
         src={websiteData?.dashboardImage || ""}

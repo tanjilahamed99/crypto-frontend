@@ -10,26 +10,53 @@ import {
   Autoplay,
 } from "swiper/modules";
 import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
+import TestimonailVideo from "./TestimonailVideo";
+import { useEffect, useState } from "react";
 
 const Testimonial = () => {
   const [websiteData] = useGetWebsiteData();
-  console.log();
+
+  const [linkIds, setLinkIds] = useState([]);
+
+  // Function to extract the video ID from YouTube URLs
+  const extractVideoId = (url) => {
+    try {
+      const urlObj = new URL(url);
+      // If it's a youtu.be link, the video ID is in the pathname
+      if (urlObj.hostname === "youtu.be") {
+        return urlObj.pathname.slice(1); // Removes the leading '/'
+      }
+      // If it's a standard YouTube URL, the video ID is in the "v" query parameter
+      if (
+        urlObj.hostname === "www.youtube.com" ||
+        urlObj.hostname === "youtube.com"
+      ) {
+        return urlObj.searchParams.get("v");
+      }
+    } catch (error) {
+      console.error("Invalid YouTube URL:", url);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    // Extract video IDs from the provided URLs
+    if (websiteData?.testimonial && Array.isArray(websiteData?.testimonial)) {
+      const ids = websiteData?.testimonial
+        .map((url) => extractVideoId(url))
+        .filter((id) => id);
+      setLinkIds(ids);
+    }
+  }, [websiteData?.testimonial]);
+
   return (
     <div className="my-10 lg:w-[80%] w-[90%] mx-auto">
       {" "}
       <h2 className="text-primary  text-2xl lg:text-3xl font-extrabold text-center md:mb-10 mb-5">
         Testimonials Video
       </h2>
-      <div className="lg:grid grid-cols-3 hidden">
-        <div>
-          <video src="/" controls autoPlay loop muted />
-        </div>
-        <div>
-          <video src="/" controls autoPlay loop muted />
-        </div>
-        <div>
-          <video src="/" controls autoPlay loop muted />
-        </div>
+      <div>
+        <TestimonailVideo data={websiteData?.testimonial} />
       </div>
       <div className="lg:hidden">
         <Swiper
@@ -46,9 +73,18 @@ const Testimonial = () => {
           modules={[Pagination, Navigation, HashNavigation, Autoplay]}
           className="mySwiper w-full"
         >
-          {websiteData?.testimonial?.map((item, idx) => (
+          {linkIds?.map((id, idx) => (
             <SwiperSlide key={idx}>
-              <video src={item || "/"} controls autoPlay loop muted />
+              <iframe
+                key={idx}
+                src={`https://www.youtube.com/embed/${id}`}
+                title={`YouTube Video ${idx + 1}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                
+                style={{ marginBottom: "20px" }}
+                className="w-full h-[200px]"
+              />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -30,7 +30,7 @@ const Level = () => {
             </tr>
           </thead>
           <tbody className="border-t-2 border-gray-700">
-            {[1, 2, 3, 4, 5].map((level) => {
+            {[1, 2, 3, 4, 5,6,7,8,9,10].map((level) => {
               const startIndex = (level - 1) * 100;
               const endIndex = level * 100;
               const memberCount =
