@@ -9,16 +9,72 @@ import { BiSolidNetworkChart } from "react-icons/bi";
 import { TbArrowUp } from "react-icons/tb";
 import { useRouter } from "next/navigation";
 import useGetMyRefersData from "@/hooks/useGetMyRefers/UseGetMyRefers";
+import useGetAllUsers from "@/hooks/useGetAllUsers/useGetAllUsers";
+import { useEffect, useState } from "react";
 
 const DashboardProfile = () => {
   const { data: user, status } = useSession();
   const router = useRouter();
   const [myRefers] = useGetMyRefersData({ id: user?.user?._id });
-  console.log(myRefers?.result?.length);
+  const [allUsers] = useGetAllUsers();
+  const [downLine, setDownLine] = useState();
 
-  if (!user) {
-    router.push("/");
-  }
+  useEffect(() => {
+    if (allUsers?.length > 0) {
+      // Step 1: Group users by who referred them
+      const referralMap = {};
+      allUsers.forEach((user) => {
+        const referrer = user.referBy;
+        if (!referralMap[referrer]) {
+          referralMap[referrer] = [];
+        }
+        referralMap[referrer].push(user._id);
+      });
+
+      // Step 2: Recursive function to count and list referrals
+      function getReferrals(userId) {
+        const directReferrals = referralMap[userId] || [];
+        let totalReferrals = [...directReferrals]; // Collect all direct referrals
+        for (const referralId of directReferrals) {
+          totalReferrals = totalReferrals.concat(getReferrals(referralId));
+        }
+        return totalReferrals;
+      }
+
+      // Step 3: Calculate referrals for the admin's referrals
+      function getAdminReferralsAndSubReferrals(adminId) {
+        const adminReferrals = referralMap[adminId] || [];
+        const result = {};
+
+        adminReferrals.forEach((referralId) => {
+          const referralChain = getReferrals(referralId); // Get referrals for this user
+          result[referralId] = {
+            directReferrals: referralMap[referralId]?.length || 0,
+            totalReferrals: referralChain.length,
+            referralChain: referralChain,
+          };
+        });
+
+        return result;
+      }
+      // Step 4: Calculate the total referrals sum
+      function calculateTotalReferralsSum(adminId) {
+        const adminReferralsData = getAdminReferralsAndSubReferrals(adminId);
+
+        let totalSum = 0;
+        for (const key in adminReferralsData) {
+          totalSum += adminReferralsData[key].totalReferrals;
+        }
+        return totalSum;
+      }
+
+      // Example Usage
+      const adminId = "6729caf3a6953243197ef6bb";
+      const totalReferralsSum = calculateTotalReferralsSum(adminId);
+
+      setDownLine(totalReferralsSum);
+    }
+  }, [allUsers]);
 
   return (
     <>
@@ -94,9 +150,7 @@ const DashboardProfile = () => {
           <div className="rounded-lg text-card-foreground gap-1 shadow-sm p-4 bg-opacity-20 bg-gray-400 w-full mx-auto grid justify-center items-center">
             <h2 className="text-primary flex items-center gap-1">
               <BiSolidNetworkChart className="text-xl" />
-              <span className="text-3xl font-extrabold">
-                {myRefers?.result?.length || 0}
-              </span>
+              <span className="text-3xl font-extrabold">{downLine || 0}</span>
 
               <span className="text-green-500 text-base flex font-semibold items-center">
                 <TbArrowUp className="text-2xl" />0
