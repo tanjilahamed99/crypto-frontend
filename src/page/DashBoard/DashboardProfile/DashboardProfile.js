@@ -11,13 +11,14 @@ import { useRouter } from "next/navigation";
 import useGetMyRefersData from "@/hooks/useGetMyRefers/UseGetMyRefers";
 import useGetAllUsers from "@/hooks/useGetAllUsers/useGetAllUsers";
 import { useEffect, useState } from "react";
+import useGetMyProfit from "@/hooks/useGetMyRefers/UseGetMyTotalProfit";
 
 const DashboardProfile = () => {
   const { data: user, status } = useSession();
-  const router = useRouter();
   const [myRefers] = useGetMyRefersData({ id: user?.user?._id });
   const [allUsers] = useGetAllUsers();
   const [downLine, setDownLine] = useState();
+  const [myProfit] = useGetMyProfit({ id: user?.user?._id });
 
   useEffect(() => {
     if (allUsers?.length > 0) {
@@ -125,8 +126,9 @@ const DashboardProfile = () => {
           <div className="rounded-lg text-card-foreground gap-1 shadow-sm p-4 bg-opacity-20 bg-gray-400 w-full mx-auto grid justify-center items-center">
             <h2 className="text-primary flex items-center gap-1">
               <LuCircleDollarSign className="text-xl" />
-              <span className="text-3xl font-extrabold">0</span>
-
+              <span className="text-3xl font-extrabold">
+                {myProfit?.totalAmount}
+              </span>
               <span className="text-green-500 text-base flex font-semibold items-center">
                 <TbArrowUp className="text-2xl" />0
               </span>
