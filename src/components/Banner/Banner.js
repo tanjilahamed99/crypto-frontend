@@ -27,7 +27,7 @@ const Banner = () => {
     if (isUnLine) {
       router.push(`/register?unLine=${unLine}`);
     } else {
-      router.push(`/register?unLine=12321332`);
+      router.push(`/register?unLine=6729caf3a6953243197ef6bb`);
     }
   };
 
