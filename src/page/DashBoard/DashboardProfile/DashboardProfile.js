@@ -68,14 +68,11 @@ const DashboardProfile = () => {
         }
         return totalSum;
       }
-
-      // Example Usage
-      const adminId = "6729caf3a6953243197ef6bb";
-      const totalReferralsSum = calculateTotalReferralsSum(adminId);
+      const totalReferralsSum = calculateTotalReferralsSum(user?.user?._id);
 
       setDownLine(totalReferralsSum);
     }
-  }, [allUsers]);
+  }, [allUsers, user]);
 
   return (
     <>
