@@ -22,7 +22,7 @@ const Updates = () => {
             )}
 
             <h2 className="text-xl font-bold text-white">{item?.title}</h2>
-            <h2>{item?.description}</h2>
+            <h2 className="text-white">{item?.description}</h2>
           </div>
         ))}
       </div>

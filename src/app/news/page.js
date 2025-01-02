@@ -1,10 +1,13 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar/Navbar";
 import Contact from "@/page/Home/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
+import useGetWebsiteData from "@/hooks/useGetWebsiteData/userGetWebsiteData";
 
-const page = () => {
+const News = () => {
+  const [websiteData] = useGetWebsiteData();
   return (
     <>
       <div>
@@ -19,7 +22,7 @@ const page = () => {
               <div className="h-[100vh] flex flex-col justify-center items-center gap-3">
                 <div>
                   <Image
-                    src={"https://i.ibb.co.com/9bQnXmF/images-3.jpg"}
+                    src={websiteData?.websiteImage || ""}
                     width={500}
                     height={500}
                     alt="image not found"
@@ -41,4 +44,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default News;
